@@ -41,6 +41,8 @@ export const es = {
     docs: "Documentación",
     credit: "Diseñado y desarrollado por Juan David Ríos.",
     portfolio: "Proyecto de portafolio · 2026",
+    whatsapp: "Escríbeme por WhatsApp",
+    linkedin: "Mi perfil de LinkedIn",
   },
 
   hero: {
@@ -139,29 +141,6 @@ export const es = {
   /** Copy shown inside the product mock-ups (the in-app UI language). */
   mock: {
     status,
-    appNav: ["Dashboard", "Solicitudes", "Cotizaciones", "Trabajos", "Agenda", "Clientes", "Equipo", "Facturación", "Reportes", "Configuración"],
-    searchAll: "Buscar clientes, trabajos, cotizaciones...",
-    allStatuses: "Todos los estados",
-    jobs: {
-      title: "Trabajos de campo",
-      subtitle: "Gestiona y da seguimiento a todos los trabajos asignados.",
-      newJob: "Nuevo trabajo",
-      tabs: ["Todos", "En proceso", "Programados", "Completados", "Cancelados"],
-      search: "Buscar trabajos, clientes, direcciones...",
-      range: "1 sep 2026 - 30 sep 2026",
-      statusFilter: "Estado",
-      columns: ["# Trabajo", "Cliente", "Dirección", "Servicio", "Fecha", "Técnico", "Estado"],
-      services: ["Reparación de fuga", "Mantenimiento AC", "Instalación", "Inspección HVAC", "Reparación"],
-    },
-    phone: {
-      title: "Mis trabajos",
-      date: "Miércoles, 23 de sep de 2026",
-      today: "Hoy",
-      week: "Esta semana",
-      tabs: ["Hoy", "Agenda", "Registro", "Mensajes", "Más"],
-      times: ["9:30 a. m.", "11:30 a. m.", "2:00 p. m."],
-      jobs: ["Reparación de fuga en fregadero", "Mantenimiento AC", "Inspección HVAC"],
-    },
     portal: {
       label: "Portal del cliente",
       title: "Mis servicios",
@@ -172,24 +151,6 @@ export const es = {
       tech: "Técnico",
       details: "Ver detalles",
       messages: "Mensajes",
-    },
-    reports: {
-      title: "Reportes",
-      subtitle: "Analiza el rendimiento de tu operación.",
-      tabs: ["Resumen", "Trabajos", "Facturación", "Clientes", "Equipo", "Auditoría"],
-      users: "Todos los usuarios",
-      range: "1 sep 2026 - 30 sep 2026",
-      types: "Todos los tipos",
-      export: "Exportar",
-      columns: ["Fecha y hora", "Usuario", "Acción", "Detalle"],
-      rows: [
-        { when: "Sep 23, 2026 9:14 a. m.", what: "Trabajo actualizado", detail: "Se cambió el estado a En proceso (WO-3091)" },
-        { when: "Sep 23, 2026 8:57 a. m.", what: "Nota agregada", detail: "Se agregó una nota al trabajo (WO-3091)" },
-        { when: "Sep 22, 2026 4:31 p. m.", what: "Cotización enviada", detail: "Se envió la cotización COT-1042 por email" },
-        { when: "Sep 22, 2026 3:18 p. m.", what: "Trabajo completado", detail: "Se marcó como completado el trabajo (WO-3090)" },
-        { when: "Sep 21, 2026 11:03 a. m.", what: "Cliente actualizado", detail: "Se actualizó la información de contacto" },
-        { when: "Sep 20, 2026 2:16 p. m.", what: "Usuario creado", detail: "Se creó el usuario Michael Torres" },
-      ],
     },
     book: {
       kicker: "DOCUMENTACIÓN DEL PRODUCTO",

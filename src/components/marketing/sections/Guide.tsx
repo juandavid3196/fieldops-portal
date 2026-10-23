@@ -1,5 +1,6 @@
 import { GUIDE_ICONS } from "@/content/landing.data";
 import { getDictionary, type Dictionary } from "@/i18n/dictionaries";
+import { order } from "../../motion";
 import { Avatar, Bell, Icon, LogoMark, Wordmark, StatusBar } from "../mock-frames";
 
 type Mock = Dictionary["mock"];
@@ -52,7 +53,7 @@ function Book({ b }: { b: Mock["book"] }) {
   );
 }
 
-const stat = { height: 38, border: "1px solid #e6ebf2", borderRadius: 5, display: "flex", alignItems: "center", justifyContent: "center", gap: 5 } as const;
+const stat = { height: 38, border: "1px solid var(--m-line)", borderRadius: 5, display: "flex", alignItems: "center", justifyContent: "center", gap: 5 } as const;
 
 function GuideSheet({ s }: { s: Mock["sheet"] }) {
   return (
@@ -65,7 +66,7 @@ function GuideSheet({ s }: { s: Mock["sheet"] }) {
         top: 12,
         width: 358,
         height: 440,
-        background: "#fff",
+        background: "var(--m-surface)",
         borderRadius: 4,
         boxShadow: "0 20px 50px rgba(11,29,69,.16), 0 0 0 1px rgba(11,29,69,.05)",
         transform: "rotate(2.5deg)",
@@ -77,20 +78,20 @@ function GuideSheet({ s }: { s: Mock["sheet"] }) {
       <div style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 13, fontWeight: 700 }}>
         <LogoMark size={15} />
         <Wordmark ops="#0f9d9a" />
-        <span style={{ marginLeft: "auto", fontSize: 7.5, letterSpacing: ".16em", color: "#7b88a3", fontWeight: 500 }}>{s.kicker}</span>
+        <span style={{ marginLeft: "auto", fontSize: 7.5, letterSpacing: ".16em", color: "var(--m-muted)", fontWeight: 500 }}>{s.kicker}</span>
       </div>
       <div style={{ marginTop: 20, fontSize: 8, fontWeight: 600, color: "#0f8c89", letterSpacing: ".1em" }}>{s.chapter}</div>
       <div style={{ marginTop: 6, fontSize: 19.5, fontWeight: 700, lineHeight: 1.1, letterSpacing: "-0.02em" }}>{s.title}</div>
-      <div style={{ marginTop: 5, fontSize: 9.5, color: "#46557a" }}>{s.lead}</div>
-      <div style={{ marginTop: 12, background: "#e8f6f5", borderRadius: 6, padding: "9px 11px", fontSize: 9, color: "#46557a", display: "flex", gap: 9, alignItems: "center" }}>
+      <div style={{ marginTop: 5, fontSize: 9.5, color: "var(--m-body)" }}>{s.lead}</div>
+      <div style={{ marginTop: 12, background: "var(--m-teal-bg)", borderRadius: 6, padding: "9px 11px", fontSize: 9, color: "var(--m-body)", display: "flex", gap: 9, alignItems: "center" }}>
         <Icon name="pi-file" size={15} style={{ color: "#0f8c89" }} />
         <div>
-          <b style={{ color: "#0b5e5b", fontSize: 9.5 }}>{s.tipTitle}</b>
+          <b style={{ color: "var(--m-teal-fg)", fontSize: 9.5 }}>{s.tipTitle}</b>
           <div style={{ marginTop: 2 }}>{s.tip}</div>
         </div>
       </div>
       <div style={{ margin: "14px 0 0 2px", width: 207, height: 300, background: "#0b0f19", borderRadius: 26, padding: 5 }}>
-        <div style={{ background: "#fff", height: "100%", borderRadius: 21, overflow: "hidden" }}>
+        <div style={{ background: "var(--m-surface)", height: "100%", borderRadius: 21, overflow: "hidden" }}>
           <div style={{ background: "#0b1d33", color: "#fff" }}>
             <StatusBar font={8} height={22} />
             <div style={{ display: "flex", alignItems: "center", gap: 5, padding: "2px 10px 9px", fontSize: 10, fontWeight: 700 }}>
@@ -98,7 +99,7 @@ function GuideSheet({ s }: { s: Mock["sheet"] }) {
               <Wordmark ops="#2cc2bd" />
               <span style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: 7 }}>
                 <Bell size={10} color="#fff" />
-                <Avatar initials="CR" size={18} font={6.5} bg="#e6f7f6" color="#0b7471" style={{ border: "1.5px solid #2cc2bd" }} />
+                <Avatar initials="CR" size={18} font={6.5} bg="var(--m-teal-bg)" color="var(--m-teal-fg)" style={{ border: "1.5px solid #2cc2bd" }} />
               </span>
             </div>
           </div>
@@ -106,7 +107,7 @@ function GuideSheet({ s }: { s: Mock["sheet"] }) {
             <div style={{ display: "flex", alignItems: "flex-start" }}>
               <div>
                 <div style={{ fontSize: 11, fontWeight: 700 }}>{s.today}</div>
-                <div style={{ fontSize: 7.5, color: "#7b88a3", marginTop: 2 }}>{s.date}</div>
+                <div style={{ fontSize: 7.5, color: "var(--m-muted)", marginTop: 2 }}>{s.date}</div>
               </div>
               <Icon name="pi-filter" size={10} style={{ marginLeft: "auto" }} />
             </div>
@@ -114,31 +115,31 @@ function GuideSheet({ s }: { s: Mock["sheet"] }) {
               <div style={stat}>
                 <div style={{ textAlign: "center" }}>
                   <div style={{ fontSize: 11, fontWeight: 700 }}>4</div>
-                  <div style={{ fontSize: 6.5, color: "#7b88a3" }}>{s.stats[0]}</div>
+                  <div style={{ fontSize: 6.5, color: "var(--m-muted)" }}>{s.stats[0]}</div>
                 </div>
               </div>
               <div style={stat}>
-                <Icon name="pi-clock" size={9} style={{ color: "#46557a" }} />
+                <Icon name="pi-clock" size={9} style={{ color: "var(--m-body)" }} />
                 <div>
                   <div style={{ fontSize: 11, fontWeight: 700 }}>7.5</div>
-                  <div style={{ fontSize: 6, color: "#7b88a3" }}>{s.stats[1]}</div>
+                  <div style={{ fontSize: 6, color: "var(--m-muted)" }}>{s.stats[1]}</div>
                 </div>
               </div>
               <div style={stat}>
-                <Icon name="pi-car" size={9} style={{ color: "#46557a" }} />
+                <Icon name="pi-car" size={9} style={{ color: "var(--m-body)" }} />
                 <div>
                   <div style={{ fontSize: 11, fontWeight: 700 }}>52 min</div>
-                  <div style={{ fontSize: 6, color: "#7b88a3" }}>{s.stats[2]}</div>
+                  <div style={{ fontSize: 6, color: "var(--m-muted)" }}>{s.stats[2]}</div>
                 </div>
               </div>
             </div>
-            <div style={{ fontSize: 7.5, color: "#7b88a3" }}>{s.next}</div>
-            <div style={{ border: "1px solid #e6ebf2", borderRadius: 6, padding: 8, display: "grid", gridTemplateColumns: "1fr auto", gap: 6 }}>
+            <div style={{ fontSize: 7.5, color: "var(--m-muted)" }}>{s.next}</div>
+            <div style={{ border: "1px solid var(--m-line)", borderRadius: 6, padding: 8, display: "grid", gridTemplateColumns: "1fr auto", gap: 6 }}>
               <div>
                 <div style={{ fontSize: 10, fontWeight: 700, lineHeight: 1.2 }}>{s.job}</div>
-                <div style={{ fontSize: 7.5, color: "#7b88a3", marginTop: 3 }}>#WO-3091</div>
+                <div style={{ fontSize: 7.5, color: "var(--m-muted)", marginTop: 3 }}>#WO-3091</div>
               </div>
-              <div style={{ fontSize: 7, color: "#46557a", lineHeight: 1.6 }}>
+              <div style={{ fontSize: 7, color: "var(--m-body)", lineHeight: 1.6 }}>
                 <div>
                   <Icon name="pi-car" size={7} /> 22 min · 8.4 mi
                 </div>
@@ -159,11 +160,11 @@ export async function Guide() {
   return (
     <section id="guia" className="fo-guide">
       <div className="fo-container fo-guide-grid">
-        <div className="fo-stage fo-guide-stage">
+        <div className="fo-stage fo-guide-stage" data-reveal="left">
           <Book b={mock.book} />
           <GuideSheet s={mock.sheet} />
         </div>
-        <div className="fo-guide-copy" style={{ minWidth: 0 }}>
+        <div className="fo-guide-copy" style={{ minWidth: 0 }} data-reveal="right">
           <div className="fo-eyebrow" style={{ color: "var(--eyebrow-alt)" }}>{t.eyebrow}</div>
           <h2 className="fo-title fo-title-lg" style={{ marginTop: 13, fontSize: 38.5, lineHeight: 1.15, letterSpacing: "-0.04em", whiteSpace: "nowrap" }}>
             {t.title}
@@ -173,7 +174,8 @@ export async function Guide() {
             {t.items.map((item, i) => (
               <li
                 key={item}
-                style={{ display: "flex", gap: 34, alignItems: "center", height: 22, fontSize: 15.5, color: i < 2 ? "var(--ink-strong)" : "var(--body)", fontWeight: i < 2 ? 500 : 400 }}
+                className="fo-stagger"
+                style={{ ...order(i + 2), display: "flex", gap: 34, alignItems: "center", height: 22, fontSize: 15.5, color: i < 2 ? "var(--ink-strong)" : "var(--body)", fontWeight: i < 2 ? 500 : 400 }}
               >
                 <Icon name={GUIDE_ICONS[i]} size={20} style={{ color: "var(--icon-teal)", width: 20, textAlign: "center" }} />
                 {item}
@@ -181,7 +183,7 @@ export async function Guide() {
             ))}
           </ul>
           {/* Targets TBD: guide route and PDF asset. */}
-          <div style={{ marginTop: 30, display: "flex", flexWrap: "wrap", gap: 15 }}>
+          <div className="fo-stagger" style={{ ...order(6), marginTop: 30, display: "flex", flexWrap: "wrap", gap: 15 }}>
             <a href="#guia" className="fo-btn fo-btn-primary" style={{ minWidth: 220, height: 48, padding: "0 24px", fontSize: 16 }}>
               {t.explore} <Icon name="pi-arrow-right" size={13} />
             </a>

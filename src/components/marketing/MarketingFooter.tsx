@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { getDictionary, getLocale } from "@/i18n/dictionaries";
-import { LogoMark, Wordmark } from "./mock-frames";
+import { ColombiaFlag, LogoMark, Wordmark } from "./mock-frames";
+import { SocialLinks } from "./SocialLinks";
 
 const linkStyle = { color: "var(--ink)" } as const;
 
@@ -20,10 +21,14 @@ export async function MarketingFooter() {
           <a href="#demo" style={linkStyle}>{t.demo}</a>
           <Link href={`/${locale}/caso-tecnico`} style={linkStyle}>{t.docs}</Link>
         </nav>
-        <div style={{ marginLeft: "auto", fontSize: 11.5, color: "var(--ink)", textAlign: "right", lineHeight: 1.45 }}>
-          {t.credit}
-          <br />
-          <span style={{ color: "var(--muted)" }}>{t.portfolio}</span>
+        <div className="fo-footer-end">
+          <div style={{ fontSize: 11.5, color: "var(--ink)", textAlign: "right", lineHeight: 1.45 }}>
+            {t.credit}
+            <ColombiaFlag />
+            <br />
+            <span style={{ color: "var(--muted)" }}>{t.portfolio}</span>
+          </div>
+          <SocialLinks />
         </div>
       </div>
     </footer>

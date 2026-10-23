@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { REPO_URL } from "@/content/case-study.data";
 import { getDictionary, getLocale } from "@/i18n/dictionaries";
-import { Icon, LogoMark, Wordmark } from "../marketing/mock-frames";
+import { ColombiaFlag, Icon, LogoMark, Wordmark } from "../marketing/mock-frames";
+import { SocialLinks } from "../marketing/SocialLinks";
 
 /** Low-poly teal ridge on the right of the CTA bar. */
 function Mountains() {
@@ -67,7 +68,13 @@ export async function CaseFooter() {
           <a href="#proceso" style={linkStyle}>{t.docs}</a>
           <Link href={`/${locale}#demo`} style={linkStyle}>{t.demo}</Link>
         </nav>
-        <div style={{ marginLeft: "auto", fontSize: 13, color: "var(--body)" }}>{t.credit}</div>
+        <div className="fo-footer-end">
+          <div style={{ fontSize: 13, color: "var(--body)" }}>
+            {t.credit}
+            <ColombiaFlag />
+          </div>
+          <SocialLinks />
+        </div>
       </div>
     </footer>
   );

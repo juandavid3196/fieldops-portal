@@ -16,6 +16,25 @@ export function LogoMark({ size }: { size: number }) {
   );
 }
 
+/** Colombian flag (drawn as SVG: Windows doesn't render flag emoji). */
+export function ColombiaFlag({ height = 11 }: { height?: number }) {
+  return (
+    <svg
+      width={height * 1.5}
+      height={height}
+      viewBox="0 0 3 2"
+      role="img"
+      aria-label="Colombia"
+      style={{ display: "inline-block", verticalAlign: "-1px", marginLeft: 6, borderRadius: 2, boxShadow: "0 0 0 1px rgba(11,29,69,.12)" }}
+    >
+      <title>Colombia</title>
+      <rect width="3" height="1" fill="#fcd116" />
+      <rect y="1" width="3" height=".5" fill="#003893" />
+      <rect y="1.5" width="3" height=".5" fill="#ce1126" />
+    </svg>
+  );
+}
+
 /** "FieldOps" wordmark: "Field" inherits the text color, "Ops" is teal. */
 export function Wordmark({ ops = "var(--accent)" }: { ops?: string }) {
   return (
@@ -39,77 +58,17 @@ export function HardHat({ size }: { size: number }) {
 
 export const WINDOW_SHADOW = "0 22px 50px rgba(11,29,69,.12), 0 0 0 1px rgba(11,29,69,.06)";
 
-export type SidebarSpec = {
-  width: number;
-  logo: { top: number; leaf: number; font: number; left: number };
-  items: { top: number; step: number; height: number; font: number; icon: number; inset: number; iconX: number; gap: number };
-};
-
-/** Dark app sidebar drawn at absolute design positions. */
-export function Sidebar({ items, active, spec }: { items: NavItem[]; active: string; spec: SidebarSpec }) {
-  const { width, logo, items: it } = spec;
-  return (
-    <div className="fo-sidebar" style={{ position: "relative", width, flex: "none", background: "#0b1d33", alignSelf: "stretch" }}>
-      <div
-        style={{
-          position: "absolute",
-          left: logo.left,
-          top: logo.top,
-          transform: "translateY(-50%)",
-          display: "flex",
-          alignItems: "center",
-          gap: 6,
-          color: "#fff",
-          fontWeight: 700,
-          fontSize: logo.font,
-          letterSpacing: "-0.02em",
-        }}
-      >
-        <LogoMark size={logo.leaf} />
-        <Wordmark ops="#2cc2bd" />
-      </div>
-      {items.map((item, i) => {
-        const on = item.label === active;
-        return (
-          <div
-            key={item.label}
-            style={{
-              position: "absolute",
-              left: it.inset,
-              right: it.inset,
-              top: it.top + i * it.step - it.height / 2,
-              height: it.height,
-              display: "flex",
-              alignItems: "center",
-              gap: it.gap,
-              paddingLeft: it.iconX - it.inset,
-              borderRadius: 4,
-              fontSize: it.font,
-              color: on ? "#fff" : "#c9d3e3",
-              background: on ? "#2563eb" : "transparent",
-              whiteSpace: "nowrap",
-            }}
-          >
-            <Icon name={item.icon} size={it.icon} style={{ width: it.icon, textAlign: "center" }} />
-            {item.label}
-          </div>
-        );
-      })}
-    </div>
-  );
-}
-
 export function Box({ children, style }: { children?: ReactNode; style?: CSSProperties }) {
   return (
     <div
       style={{
-        border: "1px solid #dfe5ee",
+        border: "1px solid var(--m-line)",
         borderRadius: 4,
         display: "flex",
         alignItems: "center",
         gap: 6,
         padding: "0 8px",
-        background: "#fff",
+        background: "var(--m-surface)",
         whiteSpace: "nowrap",
         overflow: "hidden",
         ...style,
@@ -144,7 +103,7 @@ export function Chip({ status, size, height, pad = "0 8px", style }: { status: {
   );
 }
 
-export function Avatar({ initials, size, font, bg = "#0b1d45", color = "#fff", style }: { initials: string; size: number; font: number; bg?: string; color?: string; style?: CSSProperties }) {
+export function Avatar({ initials, size, font, bg = "var(--m-avatar)", color = "var(--m-avatar-fg)", style }: { initials: string; size: number; font: number; bg?: string; color?: string; style?: CSSProperties }) {
   return (
     <span
       style={{
@@ -166,11 +125,11 @@ export function Avatar({ initials, size, font, bg = "#0b1d45", color = "#fff", s
   );
 }
 
-export function Bell({ size, color = "#1c2b55" }: { size: number; color?: string }) {
+export function Bell({ size, color = "var(--m-ink2)" }: { size: number; color?: string }) {
   return (
     <span style={{ position: "relative", color, display: "inline-flex" }}>
       <Icon name="pi-bell" size={size} />
-      <span style={{ position: "absolute", top: -1, right: -2, width: size * 0.42, height: size * 0.42, borderRadius: "50%", background: "#e5484d", border: "1.5px solid #fff" }} />
+      <span className="fo-dot" style={{ position: "absolute", top: -1, right: -2, width: size * 0.42, height: size * 0.42, borderRadius: "50%", background: "#e5484d", border: "1.5px solid #fff" }} />
     </span>
   );
 }
@@ -184,6 +143,7 @@ export function PhoneShell({
   notch,
   shadow = "0 30px 60px rgba(11,29,69,.3)",
   style,
+  className,
   children,
 }: {
   width: number;
@@ -193,12 +153,13 @@ export function PhoneShell({
   notch?: { w: number; h: number; top: number; radius?: number };
   shadow?: string;
   style?: CSSProperties;
+  className?: string;
   children: ReactNode;
 }) {
   return (
     <div
       aria-hidden="true"
-      className="fo-mock"
+      className={className ? `fo-mock ${className}` : "fo-mock"}
       style={{ width, height, background: "#0b0f19", borderRadius: radius, padding: bezel, boxShadow: shadow, boxSizing: "border-box", ...style }}
     >
       <div
@@ -206,7 +167,7 @@ export function PhoneShell({
           width: "100%",
           height: "100%",
           borderRadius: radius - bezel,
-          background: "#fff",
+          background: "var(--m-surface)",
           overflow: "hidden",
           display: "flex",
           flexDirection: "column",
@@ -244,18 +205,18 @@ export function PhoneTabBar({ tabs, font, icon, height, dotIndex }: { tabs: NavI
         display: "grid",
         gridTemplateColumns: "repeat(5,1fr)",
         alignItems: "center",
-        borderTop: "1px solid #e6ebf2",
+        borderTop: "1px solid var(--m-line)",
         fontSize: font,
-        color: "#46557a",
+        color: "var(--m-body)",
         textAlign: "center",
-        background: "#fff",
+        background: "var(--m-surface)",
       }}
     >
       {tabs.map((t, i) => (
-        <div key={t.label} style={{ color: i === 0 ? "#0f8c89" : "#46557a", fontWeight: i === 0 ? 600 : 400, whiteSpace: "nowrap" }}>
+        <div key={t.label} style={{ color: i === 0 ? "#0f8c89" : "var(--m-body)", fontWeight: i === 0 ? 600 : 400, whiteSpace: "nowrap" }}>
           <span style={{ position: "relative", display: "inline-block", marginBottom: 3 }}>
             <Icon name={t.icon} size={icon} style={{ display: "block" }} />
-            {i === dotIndex && <span style={{ position: "absolute", top: -2, right: -3, width: 6, height: 6, borderRadius: "50%", background: "#e5484d" }} />}
+            {i === dotIndex && <span className="fo-dot" style={{ position: "absolute", top: -2, right: -3, width: 6, height: 6, borderRadius: "50%", background: "#e5484d" }} />}
           </span>
           <div>{t.label}</div>
         </div>

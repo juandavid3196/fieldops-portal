@@ -2,6 +2,7 @@ import type { CSSProperties, ReactNode } from "react";
 import Link from "next/link";
 import { STATS } from "@/content/case-study.data";
 import { getDictionary, getLocale, type Dictionary } from "@/i18n/dictionaries";
+import { delay } from "../motion";
 import { Icon } from "../marketing/mock-frames";
 import { AngularMark, DotnetMark, PostgresMark, TechIcon } from "./BrandIcons";
 
@@ -49,7 +50,7 @@ const ARROW: CSSProperties = { position: "absolute", color: "#9fb0c8" };
 
 function ArchDiagram({ caption, d }: { caption: string; d: Dictionary["caseStudy"]["diagram"] }) {
   return (
-    <figure className="fo-stage cs-diagram-stage" style={{ margin: 0, background: "linear-gradient(160deg,#0d2440 0%,#0a1c33 100%)", borderRadius: 8, boxShadow: "0 24px 60px rgba(11,29,69,.28)" }}>
+    <figure className="fo-stage cs-diagram-stage fo-enter-fade" style={{ ...delay(250), margin: 0, background: "linear-gradient(160deg,#0d2440 0%,#0a1c33 100%)", borderRadius: 8, boxShadow: "0 24px 60px rgba(11,29,69,.28)" }}>
       <figcaption style={{ position: "absolute", width: 1, height: 1, overflow: "hidden", clip: "rect(0 0 0 0)" }}>{caption}</figcaption>
       <div aria-hidden="true">
         <Column left={22} width={226} title={<><AngularMark size={24} /> Angular applications</>}>
@@ -70,11 +71,11 @@ function ArchDiagram({ caption, d }: { caption: string; d: Dictionary["caseStudy
         </Column>
         {/* column-to-column arrows */}
         <svg width="713" height="396" style={{ position: "absolute", inset: 0 }} aria-hidden="true">
-          <g stroke="#9fb0c8" strokeWidth="1.3" fill="none">
+          <g className="cs-flow-arrow" stroke="#9fb0c8" strokeWidth="1.3" fill="none">
             <path d="M250 147 H280 M274 142 L280 147 L274 152" />
             <path d="M503 147 H528 M522 142 L528 147 L522 152" />
           </g>
-          <g stroke="rgba(159,176,200,.55)" strokeWidth="1" strokeDasharray="3 3" fill="none">
+          <g className="cs-flow-dash" stroke="rgba(159,176,200,.55)" strokeWidth="1" strokeDasharray="3 3" fill="none">
             <path d="M93 283 V306 M393 283 V306 M613 283 V306 M93 306 H613" />
             <path d="M95 306 V319 M268 306 V319 M443 306 V319 M611 306 V319" />
           </g>
@@ -115,25 +116,25 @@ export async function CaseHero() {
       <section className="cs-hero">
         <div className="fo-container cs-hero-grid">
           <div style={{ minWidth: 0 }}>
-            <div className="cs-eyebrow">{t.eyebrow}</div>
-            <h1 className="cs-h1" style={{ marginTop: 16 }}>
+            <div className="cs-eyebrow fo-enter">{t.eyebrow}</div>
+            <h1 className="cs-h1 fo-enter" style={{ marginTop: 16, ...delay(100) }}>
               {t.h1[0]}
               <br />
               {t.h1[1]}
               <br />
-              <span className="teal">{t.h1Accent}</span>
+              <span className="teal fo-shine">{t.h1Accent}</span>
             </h1>
-            <p style={{ marginTop: 20, fontSize: 18, lineHeight: "28px", color: "var(--body)", maxWidth: 520 }}>
+            <p className="fo-enter" style={{ marginTop: 20, fontSize: 18, lineHeight: "28px", color: "var(--body)", maxWidth: 520, ...delay(220) }}>
               {t.lead}
             </p>
-            <div style={{ marginTop: 22, display: "flex", flexWrap: "wrap", gap: 10 }}>
+            <div className="fo-enter" style={{ marginTop: 22, display: "flex", flexWrap: "wrap", gap: 10, ...delay(320) }}>
               {t.tags.map((tag) => (
                 <span key={tag} style={{ height: 32, display: "inline-flex", alignItems: "center", fontSize: 13.5, color: "var(--ink)", background: "var(--pill)", padding: "0 16px", borderRadius: 999 }}>
                   {tag}
                 </span>
               ))}
             </div>
-            <div style={{ marginTop: 32, display: "flex", flexWrap: "wrap", gap: 14 }}>
+            <div className="fo-enter" style={{ marginTop: 32, display: "flex", flexWrap: "wrap", gap: 14, ...delay(420) }}>
               <a href="#arquitectura" className="fo-btn fo-btn-primary" style={{ height: 52, padding: "0 26px", fontSize: 15.5, fontWeight: 500, boxShadow: "0 6px 16px rgba(15,140,137,.22)" }}>
                 {t.explore} <Icon name="pi-arrow-right" size={13} />
               </a>
@@ -152,7 +153,7 @@ export async function CaseHero() {
       <section style={{ background: "var(--bg)", borderTop: "1px solid var(--line-soft)", borderBottom: "1px solid var(--line-soft)" }}>
         <div className="fo-container cs-stats">
           {STATS.map((s, i) => (
-            <div key={s.title} className="cs-stat">
+            <div key={s.title} className="cs-stat" data-reveal="" style={delay(i * 90)}>
               <span style={{ width: 44, display: "grid", placeItems: "center", flex: "none" }}>
                 <TechIcon id={s.icon} size={s.icon.startsWith("pi-") ? 40 : s.icon === "dotnet" ? 42 : 38} color="var(--icon-teal)" />
               </span>

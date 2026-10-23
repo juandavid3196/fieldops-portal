@@ -1,5 +1,6 @@
 import { STEP_STYLE } from "@/content/landing.data";
 import { getDictionary } from "@/i18n/dictionaries";
+import { delay } from "../../motion";
 import { Icon } from "../mock-frames";
 
 const TONES = {
@@ -11,7 +12,7 @@ export async function Flow() {
   const { flow: t } = await getDictionary();
   return (
     <section id="como-funciona" className="fo-flow">
-      <div className="fo-container" style={{ textAlign: "center" }}>
+      <div className="fo-container" style={{ textAlign: "center" }} data-reveal="">
         <h2 className="fo-title fo-title-md" style={{ fontSize: 36, lineHeight: 1.15, letterSpacing: "-0.035em" }}>
           {t.title}
         </h2>
@@ -22,7 +23,7 @@ export async function Flow() {
           const style = STEP_STYLE[i];
           const tone = TONES[style.tone];
           return (
-            <li key={s.title} className="fo-step">
+            <li key={s.title} className="fo-step" data-reveal="" style={delay(120 + i * 110)}>
               <div className="fo-step-icon" style={{ width: 88, height: 88, borderRadius: "50%", background: tone.bg, color: tone.fg, display: "grid", placeItems: "center" }}>
                 <Icon name={style.icon} size={34} />
               </div>

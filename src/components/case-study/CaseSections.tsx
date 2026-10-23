@@ -11,6 +11,7 @@ import {
   TECH,
 } from "@/content/case-study.data";
 import { getDictionary, getLocale, type Dictionary } from "@/i18n/dictionaries";
+import { delay, order } from "../motion";
 import { Icon } from "../marketing/mock-frames";
 import { DotnetMark, PostgresMark, TechIcon } from "./BrandIcons";
 
@@ -46,7 +47,7 @@ function Title({ eyebrow, children, light }: { eyebrow: string; children: ReactN
 /** Section header row: title on the left, optional lead paragraph on the right. */
 function Head({ eyebrow, title, lead, light }: { eyebrow: string; title: ReactNode; lead?: ReactNode; light?: boolean }) {
   return (
-    <div className="cs-head" style={lead ? undefined : { gridTemplateColumns: "minmax(0, 1fr)" }}>
+    <div className="cs-head" data-reveal="" style={lead ? undefined : { gridTemplateColumns: "minmax(0, 1fr)" }}>
       <Title eyebrow={eyebrow} light={light}>
         {title}
       </Title>
@@ -68,8 +69,8 @@ export async function Challenge() {
         <Head eyebrow={t.eyebrow} title={lines(t.title)} lead={t.lead} />
         <div className="cs-reto">
           {t.pillars.map((p, i) => (
-            <div key={p.title} className="cs-card" style={{ padding: "30px 28px" }}>
-              <Icon name={PILLAR_ICONS[i]} size={36} style={{ color: "var(--icon-teal)" }} />
+            <div key={p.title} className="cs-card lift" data-reveal="" style={{ padding: "30px 28px", ...delay(i * 110) }}>
+              <span className="cs-card-icon"><Icon name={PILLAR_ICONS[i]} size={36} style={{ color: "var(--icon-teal)" }} /></span>
               <h3 style={{ marginTop: 22, fontSize: 19, fontWeight: 700, color: "var(--ink-strong)", letterSpacing: "-0.01em" }}>{p.title}</h3>
               <p style={{ marginTop: 10, fontSize: 15.5, lineHeight: 1.55, color: "var(--body)" }}>{p.desc}</p>
             </div>
@@ -86,7 +87,7 @@ const strong: CSSProperties = { fontWeight: 600, color: "var(--ink-strong)" };
 
 function LayerDiagram({ t }: { t: CaseCopy["architecture"] }) {
   return (
-    <div className="fo-stage cs-arch-stage" aria-hidden="true">
+    <div className="fo-stage cs-arch-stage" data-reveal="scale" aria-hidden="true">
       <div style={{ ...blueBox, left: 0, top: 0, width: 563, height: 90 }}>
         <div style={{ height: 34, display: "flex", alignItems: "center", justifyContent: "center", gap: 9, fontSize: 12, ...strong }}>
           <Icon name="pi-desktop" size={20} style={{ color: "var(--diag-icon)" }} />
@@ -151,9 +152,9 @@ export async function Architecture() {
         <Head eyebrow={t.eyebrow} title={t.title} lead={t.lead} />
         <div className="cs-arch-body">
           <LayerDiagram t={t} />
-          <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "flex", flexDirection: "column", gap: 26 }}>
-            {t.checks.map((c) => (
-              <li key={c.title} style={{ display: "flex", gap: 18, alignItems: "center" }}>
+          <ul data-reveal="right" style={{ listStyle: "none", margin: 0, padding: 0, display: "flex", flexDirection: "column", gap: 26 }}>
+            {t.checks.map((c, i) => (
+              <li key={c.title} className="fo-stagger" style={{ ...order(i), display: "flex", gap: 18, alignItems: "center" }}>
                 <Check size={32} icon={13} />
                 <div>
                   <div style={{ fontSize: 16.5, fontWeight: 600, color: "var(--ink-strong)" }}>{c.title}</div>
@@ -176,10 +177,10 @@ export async function Technologies() {
       <div className="fo-container">
         <Head eyebrow={t.eyebrow} title={t.title} />
         <div className="cs-tech">
-          {TECH.map((g) => (
-            <div key={g.title} className="cs-card" style={{ padding: "26px 26px 28px", minWidth: 0 }}>
+          {TECH.map((g, i) => (
+            <div key={g.title} className="cs-card lift" data-reveal="" style={{ padding: "26px 26px 28px", minWidth: 0, ...delay(i * 100) }}>
               <h3 style={{ display: "flex", alignItems: "center", gap: 14, fontSize: 17, fontWeight: 700, color: "var(--ink-strong)", paddingBottom: 18, borderBottom: "1px solid var(--line-soft)" }}>
-                <Icon name={g.icon} size={26} style={{ color: g.iconColor, width: 28 }} />
+                <span className="cs-card-icon"><Icon name={g.icon} size={26} style={{ color: g.iconColor, width: 28 }} /></span>
                 {g.title}
               </h3>
               <ul style={{ listStyle: "none", margin: "18px 0 0", padding: 0, display: "flex", flexDirection: "column", gap: g.big ? 18 : 13 }}>
@@ -215,7 +216,9 @@ export async function SpecDriven() {
             {t.steps.map((p, i) => (
               <li
                 key={p.title}
+                data-reveal=""
                 style={{
+                  ...delay(i * 120),
                   position: "relative",
                   border: "1px solid rgba(95,211,207,.32)",
                   marginLeft: i ? -1 : 0,
@@ -255,7 +258,7 @@ export async function SpecDriven() {
               </li>
             ))}
           </ol>
-          <div aria-hidden="true" style={{ background: "var(--surface)", borderRadius: 8, overflow: "hidden", boxShadow: "0 24px 50px rgba(0,0,0,.28)", border: "1px solid var(--mock-ring)", minWidth: 0 }}>
+          <div aria-hidden="true" data-reveal="right" style={{ ...delay(250), background: "var(--surface)", borderRadius: 8, overflow: "hidden", boxShadow: "0 24px 50px rgba(0,0,0,.28)", border: "1px solid var(--mock-ring)", minWidth: 0 }}>
             <div style={{ height: 52, display: "flex", alignItems: "center", gap: 12, padding: "0 20px", borderBottom: "1px solid var(--line-soft)" }}>
               <span style={{ width: 16, height: 12, border: "1.5px solid var(--muted)", borderRadius: 2 }} />
               <span style={{ fontSize: 14.5, fontWeight: 600, color: "var(--ink-strong)" }}>{t.card}</span>
@@ -263,7 +266,7 @@ export async function SpecDriven() {
             </div>
             <div style={{ padding: "6px 20px 10px" }}>
               {SPEC_ROWS.map((r, i) => (
-                <div key={r.title} style={{ padding: "13px 0", display: "flex", gap: 16, alignItems: "center", borderBottom: i < SPEC_ROWS.length - 1 ? "1px solid var(--line-soft)" : undefined }}>
+                <div key={r.title} className="fo-stagger" style={{ ...order(i + 2), padding: "13px 0", display: "flex", gap: 16, alignItems: "center", borderBottom: i < SPEC_ROWS.length - 1 ? "1px solid var(--line-soft)" : undefined }}>
                   <span style={{ width: 36, height: 36, flex: "none", borderRadius: 6, background: "var(--tint-blue)", color: "var(--icon-blue)", display: "grid", placeItems: "center" }}>
                     <Icon name={r.icon} size={15} />
                   </span>
@@ -290,8 +293,8 @@ export async function Decisions() {
         <Head eyebrow={t.eyebrow} title={t.title} />
         <div className="cs-dec">
           {t.items.map((d, i) => (
-            <div key={d.title} className="cs-card" style={{ padding: "26px 24px 22px", display: "flex", flexDirection: "column", minWidth: 0 }}>
-              <Icon name={DECISION_ICONS[i]} size={30} style={{ color: "var(--icon-teal)" }} />
+            <div key={d.title} className="cs-card lift" data-reveal="" style={{ ...delay(i * 100), padding: "26px 24px 22px", display: "flex", flexDirection: "column", minWidth: 0 }}>
+              <span className="cs-card-icon"><Icon name={DECISION_ICONS[i]} size={30} style={{ color: "var(--icon-teal)" }} /></span>
               <h3 style={{ marginTop: 18, fontSize: 17, fontWeight: 700, color: "var(--ink-strong)", letterSpacing: "-0.01em" }}>{d.title}</h3>
               <p style={{ marginTop: 10, fontSize: 15, lineHeight: 1.55, color: "var(--body)", flex: 1 }}>{d.desc}</p>
               <div style={{ marginTop: 20, paddingTop: 14, borderTop: "1px solid var(--line-soft)", display: "flex", alignItems: "center", gap: 7, fontSize: 13, color: "var(--body)" }}>
@@ -313,7 +316,7 @@ export async function Quality() {
       <div className="fo-container">
         <Head eyebrow={t.eyebrow} title={t.title} />
         <div className="cs-qual-body">
-          <div aria-hidden="true" className="cs-card" style={{ overflow: "hidden" }}>
+          <div aria-hidden="true" className="cs-card" data-reveal="left" style={{ overflow: "hidden" }}>
             <div style={{ height: 56, display: "flex", alignItems: "center", gap: 12, padding: "0 22px", borderBottom: "1px solid var(--line-soft)" }}>
               <Icon name="pi-github" size={20} style={{ color: "var(--ink-strong)" }} />
               <span style={{ fontSize: 15, fontWeight: 600, color: "var(--ink-strong)" }}>GitHub Actions</span>
@@ -323,21 +326,21 @@ export async function Quality() {
             </div>
             {PIPELINE.map((p, i) => (
               <div key={p.title} style={{ height: 60, display: "flex", alignItems: "center", gap: 16, padding: "0 22px", borderTop: i ? "1px solid var(--line-soft)" : undefined }}>
-                <span style={{ width: 22, height: 22, flex: "none", borderRadius: "50%", background: "#16a34a", color: "#fff", display: "grid", placeItems: "center" }}>
+                <span className="fo-stagger-pop" style={{ ...order(i * 2 + 1), width: 22, height: 22, flex: "none", borderRadius: "50%", background: "#16a34a", color: "#fff", display: "grid", placeItems: "center" }}>
                   <Icon name="pi-check" size={10} />
                 </span>
                 <div style={{ flex: 1 }}>
                   <div style={{ fontSize: 14.5, fontWeight: 600, color: "var(--ink-strong)" }}>{p.title}</div>
                   <div style={{ fontSize: 13, color: "var(--body)", marginTop: 2 }}>{p.desc}</div>
                 </div>
-                <span style={{ fontSize: 13.5, color: "var(--body)" }}>{p.time}</span>
+                <span className="fo-stagger" style={{ ...order(i * 2 + 1), fontSize: 13.5, color: "var(--body)" }}>{p.time}</span>
               </div>
             ))}
           </div>
-          <div style={{ minWidth: 0 }}>
+          <div style={{ minWidth: 0 }} data-reveal="right">
             <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "flex", flexDirection: "column", gap: 18 }}>
-              {t.checks.map((q) => (
-                <li key={q} style={{ display: "flex", gap: 16, alignItems: "center", fontSize: 16, color: "var(--ink)" }}>
+              {t.checks.map((q, i) => (
+                <li key={q} className="fo-stagger" style={{ ...order(i), display: "flex", gap: 16, alignItems: "center", fontSize: 16, color: "var(--ink)" }}>
                   <Check size={28} icon={12} />
                   {q}
                 </li>
@@ -367,7 +370,7 @@ export async function Contribution() {
             const external = l.href.startsWith("http");
             const href = external ? l.href : `/${locale}${l.href}`;
             return (
-              <a key={l.icon} href={href} className="cs-link-card" {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}>
+              <a key={l.icon} href={href} className="cs-link-card" data-reveal="" style={delay(i * 110)} {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}>
                 <Icon name={l.icon} size={34} style={{ color: "var(--icon-teal)", width: 36, textAlign: "center" }} />
                 <div style={{ flex: 1, minWidth: 0 }}>
                   <div style={{ fontSize: 17, fontWeight: 700, color: "var(--ink-strong)" }}>{t.links[i].title}</div>

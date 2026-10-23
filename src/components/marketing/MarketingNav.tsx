@@ -15,12 +15,15 @@ function readTheme(): "light" | "dark" {
 }
 
 function ThemeToggle({ t }: { t: NavCopy }) {
-  // Strict Mode's dev remount resets <html> attributes; re-apply the stored theme (no-op in production).
+  // React can reset <html> attributes (Strict Mode's dev remount, or a locale switch re-rendering
+  // the root layout); re-apply the same theme the inline script picked.
   useLayoutEffect(() => {
+    let theme: string | null = null;
     try {
-      const saved = localStorage.getItem("theme");
-      if (saved === "light" || saved === "dark") document.documentElement.setAttribute("data-theme", saved);
+      theme = localStorage.getItem("theme");
     } catch {}
+    if (theme !== "light" && theme !== "dark") theme = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    document.documentElement.setAttribute("data-theme", theme);
   }, []);
 
   function toggle() {
