@@ -1,6 +1,6 @@
 import { INVOICES, KPIS, NAV_HERO, PHONE_TABS_EN } from "@/content/landing.data";
 import { getDictionary } from "@/i18n/dictionaries";
-import { Avatar, Bell, Box, Chip, Icon, Leaf, PhoneShell, PhoneTabBar, Sidebar, type SidebarSpec } from "../mock-frames";
+import { Avatar, Bell, Box, Chip, Icon, LogoMark, Wordmark, PhoneShell, PhoneTabBar, Sidebar, type SidebarSpec } from "../mock-frames";
 
 const SIDEBAR: SidebarSpec = {
   width: 129,
@@ -178,8 +178,8 @@ function PhoneMock() {
       style={{ position: "absolute", left: 598, top: 75, zIndex: 2 }}
     >
       <div style={{ height: 61, flex: "none", background: "#0b1d33", color: "#fff", display: "flex", alignItems: "flex-end", padding: "0 12px 11px 14px", gap: 6, fontSize: 11.5, fontWeight: 700 }}>
-        <Leaf size={15} fill="#2cc2bd" />
-        FieldOps
+        <LogoMark size={15} />
+        <Wordmark ops="#2cc2bd" />
         <span style={{ fontWeight: 500, marginLeft: 12 }}>Today&apos;s jobs</span>
         <span style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: 8 }}>
           <Bell size={12} color="#fff" />

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { REPO_URL } from "@/content/case-study.data";
 import { getDictionary, getLocale } from "@/i18n/dictionaries";
-import { Icon, Leaf } from "../marketing/mock-frames";
+import { Icon, LogoMark, Wordmark } from "../marketing/mock-frames";
 
 /** Low-poly teal ridge on the right of the CTA bar. */
 function Mountains() {
@@ -58,8 +58,8 @@ export async function CaseFooter() {
     <footer style={{ background: "var(--bg)", borderTop: "1px solid var(--line-soft)" }}>
       <div className="fo-container" style={{ minHeight: 76, display: "flex", flexWrap: "wrap", alignItems: "center", gap: "12px 56px", paddingTop: 16, paddingBottom: 16 }}>
         <Link href={`/${locale}`} style={{ display: "flex", alignItems: "center", gap: 8 }}>
-          <Leaf size={26} stroke />
-          <span style={{ fontWeight: 700, fontSize: 20, letterSpacing: "-0.03em", color: "var(--ink-strong)" }}>FieldOps</span>
+          <LogoMark size={26} />
+          <span style={{ fontWeight: 700, fontSize: 20, letterSpacing: "-0.03em", color: "var(--ink-strong)" }}><Wordmark /></span>
         </Link>
         <nav aria-label={footer.label} style={{ display: "flex", flexWrap: "wrap", gap: "8px 32px", fontSize: 14 }}>
           <Link href={`/${locale}`} style={linkStyle}>{t.product}</Link>

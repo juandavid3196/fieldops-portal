@@ -6,7 +6,7 @@ import { useLayoutEffect, useState } from "react";
 import { REPO_URL } from "@/content/case-study.data";
 import { LOCALE_COOKIE, locales, type Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/es";
-import { Icon, Leaf } from "./mock-frames";
+import { Icon, LogoMark, Wordmark } from "./mock-frames";
 
 type NavCopy = Dictionary["nav"];
 
@@ -71,8 +71,8 @@ export function MarketingNav({ variant = "landing", locale, t }: { variant?: "la
     <header className="fo-nav">
       <div className="fo-container fo-nav-inner">
         <Link href={home} style={{ display: "flex", alignItems: "center", gap: 9 }} aria-label={t.home}>
-          <Leaf size={30} stroke />
-          <span style={{ fontWeight: 700, fontSize: 25, letterSpacing: "-0.035em", color: "var(--ink-strong)" }}>FieldOps</span>
+          <LogoMark size={30} />
+          <span style={{ fontWeight: 700, fontSize: 25, letterSpacing: "-0.035em", color: "var(--ink-strong)" }}><Wordmark /></span>
         </Link>
         <nav className="fo-nav-links" aria-label={t.main}>
           <Link href={home} className={`fo-nav-link${caso ? "" : " active"}`} aria-current={caso ? undefined : "page"}>

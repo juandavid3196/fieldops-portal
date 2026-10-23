@@ -1,6 +1,6 @@
 import { GUIDE_ICONS } from "@/content/landing.data";
 import { getDictionary, type Dictionary } from "@/i18n/dictionaries";
-import { Avatar, Bell, Icon, Leaf, StatusBar } from "../mock-frames";
+import { Avatar, Bell, Icon, LogoMark, Wordmark, StatusBar } from "../mock-frames";
 
 type Mock = Dictionary["mock"];
 
@@ -40,8 +40,8 @@ function Book({ b }: { b: Mock["book"] }) {
       }}
     >
       <div style={{ display: "flex", alignItems: "center", gap: 8, color: "#fff", fontWeight: 700, fontSize: 21, letterSpacing: "-0.02em" }}>
-        <Leaf size={24} fill="#2cc2bd" />
-        FieldOps
+        <LogoMark size={24} />
+        <Wordmark ops="#2cc2bd" />
       </div>
       <div style={{ marginTop: 26, fontSize: 8.5, letterSpacing: "0.2em", color: "#d5deea" }}>{b.kicker}</div>
       <div style={{ marginTop: 10, fontSize: 36, fontWeight: 700, color: "#fff", lineHeight: 1.05, letterSpacing: "-0.02em" }}>{b.title}</div>
@@ -75,8 +75,8 @@ function GuideSheet({ s }: { s: Mock["sheet"] }) {
       }}
     >
       <div style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 13, fontWeight: 700 }}>
-        <Leaf size={15} />
-        FieldOps
+        <LogoMark size={15} />
+        <Wordmark ops="#0f9d9a" />
         <span style={{ marginLeft: "auto", fontSize: 7.5, letterSpacing: ".16em", color: "#7b88a3", fontWeight: 500 }}>{s.kicker}</span>
       </div>
       <div style={{ marginTop: 20, fontSize: 8, fontWeight: 600, color: "#0f8c89", letterSpacing: ".1em" }}>{s.chapter}</div>
@@ -94,8 +94,8 @@ function GuideSheet({ s }: { s: Mock["sheet"] }) {
           <div style={{ background: "#0b1d33", color: "#fff" }}>
             <StatusBar font={8} height={22} />
             <div style={{ display: "flex", alignItems: "center", gap: 5, padding: "2px 10px 9px", fontSize: 10, fontWeight: 700 }}>
-              <Leaf size={12} fill="#2cc2bd" />
-              FieldOps
+              <LogoMark size={12} />
+              <Wordmark ops="#2cc2bd" />
               <span style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: 7 }}>
                 <Bell size={10} color="#fff" />
                 <Avatar initials="CR" size={18} font={6.5} bg="#e6f7f6" color="#0b7471" style={{ border: "1.5px solid #2cc2bd" }} />

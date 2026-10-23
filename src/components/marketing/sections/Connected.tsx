@@ -1,7 +1,7 @@
 import type { CSSProperties } from "react";
 import { appNav, JOBS, MY_JOBS, PHONE_TAB_ICONS, STATUS_TONE, SURFACE_ICONS } from "@/content/landing.data";
 import { getDictionary, type Dictionary } from "@/i18n/dictionaries";
-import { Avatar, Bell, Box, Chip, Icon, Leaf, PhoneShell, PhoneTabBar, Sidebar, StatusBar, WINDOW_SHADOW, type SidebarSpec } from "../mock-frames";
+import { Avatar, Bell, Box, Chip, Icon, LogoMark, Wordmark, PhoneShell, PhoneTabBar, Sidebar, StatusBar, WINDOW_SHADOW, type SidebarSpec } from "../mock-frames";
 
 type Mock = Dictionary["mock"];
 
@@ -105,8 +105,8 @@ function TechPhone({ m }: { m: Mock }) {
       <div style={{ height: 68, flex: "none", background: "#0b1d33", color: "#fff", display: "flex", flexDirection: "column" }}>
         <StatusBar font={10} height={34} />
         <div style={{ display: "flex", alignItems: "center", gap: 6, padding: "0 12px 0 14px", fontSize: 12, fontWeight: 700 }}>
-          <Leaf size={15} fill="#2cc2bd" />
-          FieldOps
+          <LogoMark size={15} />
+          <Wordmark ops="#2cc2bd" />
           <span style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: 8 }}>
             <Bell size={12} color="#fff" />
             <Avatar initials="CR" size={25} font={8.5} bg="#e6f7f6" color="#0b7471" style={{ border: "1.5px solid #2cc2bd" }} />
@@ -168,8 +168,8 @@ function CustomerPortal({ m }: { m: Mock }) {
       style={{ position: "absolute", left: 977, top: 30, width: 279, height: 342, background: "#fff", borderRadius: 8, boxShadow: WINDOW_SHADOW, overflow: "hidden" }}
     >
       <div style={{ height: 48, padding: "0 15px", borderBottom: "1px solid #edf1f6", display: "flex", alignItems: "center", gap: 7 }}>
-        <Leaf size={17} />
-        <b style={{ fontSize: 13.5, letterSpacing: "-0.01em" }}>FieldOps</b>
+        <LogoMark size={17} />
+        <b style={{ fontSize: 13.5, letterSpacing: "-0.01em" }}><Wordmark ops="#0f9d9a" /></b>
         <span style={{ fontSize: 12.5, color: "#46557a", borderLeft: "1px solid #dfe5ee", paddingLeft: 8, marginLeft: 2 }}>{p.label}</span>
         <Icon name="pi-bars" size={14} style={{ marginLeft: "auto", color: "#46557a" }} />
       </div>

@@ -5,12 +5,23 @@ export function Icon({ name, size, style }: { name: string; size: number; style?
   return <i className={`pi ${name}`} style={{ fontSize: size, ...style }} aria-hidden="true" />;
 }
 
-export function Leaf({ size, fill = "#0f9d9a", stroke = false }: { size: number; fill?: string; stroke?: boolean }) {
+/** FieldOps mark: two overlapping teal peaks. */
+export function LogoMark({ size }: { size: number }) {
   return (
-    <svg width={size} height={size} viewBox="0 0 24 24" aria-hidden="true" style={{ flex: "none" }}>
-      <path d="M3 21C3 11 9 3 21 3c0 11-7 18-18 18z" fill={fill} />
-      {stroke && <path d="M5.5 18.5L15 9" stroke="#fff" strokeWidth="1.6" strokeLinecap="round" />}
+    <svg width={size * (26 / 22)} height={size} viewBox="0 0 26 22" aria-hidden="true" style={{ flex: "none" }}>
+      <path d="M1 21 L10 2.5 L16 13 L12.5 21 Z" fill="#5bd6c8" />
+      <path d="M10 2.5 L16 13 L13.7 17.3 L10.7 9.6 Z" fill="#3cc4b5" />
+      <path d="M8.5 21 L17 9.5 L25 21 Z" fill="#17a796" />
     </svg>
+  );
+}
+
+/** "FieldOps" wordmark: "Field" inherits the text color, "Ops" is teal. */
+export function Wordmark({ ops = "var(--accent)" }: { ops?: string }) {
+  return (
+    <span>
+      Field<span style={{ color: ops }}>Ops</span>
+    </span>
   );
 }
 
@@ -54,8 +65,8 @@ export function Sidebar({ items, active, spec }: { items: NavItem[]; active: str
           letterSpacing: "-0.02em",
         }}
       >
-        <Leaf size={logo.leaf} fill="#2cc2bd" />
-        FieldOps
+        <LogoMark size={logo.leaf} />
+        <Wordmark ops="#2cc2bd" />
       </div>
       {items.map((item, i) => {
         const on = item.label === active;

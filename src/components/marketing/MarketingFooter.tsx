@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { getDictionary, getLocale } from "@/i18n/dictionaries";
-import { Leaf } from "./mock-frames";
+import { LogoMark, Wordmark } from "./mock-frames";
 
 const linkStyle = { color: "var(--ink)" } as const;
 
@@ -11,8 +11,8 @@ export async function MarketingFooter() {
     <footer style={{ background: "var(--bg)" }}>
       <div className="fo-container fo-footer-inner">
         <Link href={`/${locale}`} style={{ display: "flex", alignItems: "center", gap: 8 }}>
-          <Leaf size={27} stroke />
-          <span style={{ fontWeight: 700, fontSize: 20, letterSpacing: "-0.03em", color: "var(--ink-strong)" }}>FieldOps</span>
+          <LogoMark size={27} />
+          <span style={{ fontWeight: 700, fontSize: 20, letterSpacing: "-0.03em", color: "var(--ink-strong)" }}><Wordmark /></span>
         </Link>
         <nav aria-label={t.label} style={{ display: "flex", flexWrap: "wrap", gap: "8px 28px", fontSize: 13 }}>
           <a href="#producto" style={linkStyle}>{t.product}</a>
