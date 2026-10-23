@@ -12,7 +12,7 @@ import { MarketingNav } from "@/components/marketing/MarketingNav";
 export default function Home() {
   return (
     <div className="fo">
-      <MarketingNav active="producto" />
+      <MarketingNav variant="landing" />
       <main>
         <Hero />
         <Flow />

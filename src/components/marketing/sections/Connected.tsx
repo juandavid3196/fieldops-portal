@@ -1,61 +1,86 @@
+import type { CSSProperties } from "react";
 import { JOBS, MY_JOBS, NAV_ES, PHONE_TABS_ES, SURFACES } from "@/app/landing.data";
-import { Chip, FilterBox, Icon, Leaf, PhoneHeader, PhoneShell, PhoneTabBar, Sidebar, Tabs, TopBar, WINDOW_SHADOW } from "../mock-frames";
+import { Avatar, Bell, Box, Chip, Icon, Leaf, PhoneShell, PhoneTabBar, Sidebar, StatusBar, WINDOW_SHADOW, type SidebarSpec } from "../mock-frames";
 
-const JOB_COLS = "38px minmax(0,1fr) minmax(0,1fr) minmax(0,1fr) 40px 54px 58px";
-const ellipsis = { whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" } as const;
+const SIDEBAR: SidebarSpec = {
+  width: 129,
+  logo: { top: 22, leaf: 17, font: 13.5, left: 14 },
+  items: { top: 57, step: 30.4, height: 29, font: 10, icon: 12, inset: 5.5, iconX: 15, gap: 14 },
+};
+
+const JOB_COLS = "67px 70px 85px 88px 77px 89px 90px";
+const cell: CSSProperties = { whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", paddingLeft: 7 };
 
 function JobsDesktop() {
   return (
     <div
-      className="fo-comp-desktop"
       aria-hidden="true"
-      style={{ background: "#fff", borderRadius: 8, boxShadow: WINDOW_SHADOW, overflow: "hidden", display: "flex" }}
+      style={{ position: "absolute", left: 1, top: 4, width: 726, height: 400, background: "#fff", borderRadius: 8, boxShadow: WINDOW_SHADOW, overflow: "hidden", display: "flex" }}
     >
-      <Sidebar items={NAV_ES} active="Trabajos" width={94} padX={7} />
-      <div style={{ flex: 1, minWidth: 0, display: "flex", flexDirection: "column" }}>
-        <TopBar height={32} searchWidth={210} searchPlaceholder="Buscar clientes, trabajos, cotizaciones..." filterLabel="Todos los estados" filterGap={14} />
-        <div style={{ padding: "10px 12px", display: "flex", flexDirection: "column", gap: 7 }}>
+      <Sidebar items={NAV_ES} active="Trabajos" spec={SIDEBAR} />
+      <div style={{ position: "relative", flex: 1, minWidth: 0 }}>
+        <div style={{ height: 47, borderBottom: "1px solid #edf1f6", display: "flex", alignItems: "center", padding: "0 11px 0 13.5px" }}>
+          <Box style={{ width: 303, height: 25, fontSize: 9, color: "#9aa5b8" }}>
+            <Icon name="pi-search" size={9} /> Buscar clientes, trabajos, cotizaciones...
+          </Box>
+          <Box style={{ marginLeft: 17, width: 171, height: 25, fontSize: 9, color: "#1c2b55", justifyContent: "space-between" }}>
+            Todos los estados <Icon name="pi-chevron-down" size={7} />
+          </Box>
+          <span style={{ marginLeft: 28 }}>
+            <Bell size={14} color="#2563eb" />
+          </span>
+          <Avatar initials="DK" size={25} font={8.5} style={{ marginLeft: "auto" }} />
+        </div>
+        <div style={{ position: "absolute", left: 16, right: 14, top: 57 }}>
           <div style={{ display: "flex", alignItems: "flex-start" }}>
             <div>
-              <div style={{ fontSize: 13, fontWeight: 700 }}>Trabajos de campo</div>
-              <div style={{ fontSize: 7, color: "#7b88a3" }}>Gestiona y da seguimiento a todos los trabajos asignados.</div>
+              <div style={{ fontSize: 16.5, fontWeight: 700, letterSpacing: "-0.01em" }}>Trabajos de campo</div>
+              <div style={{ fontSize: 9, color: "#7b88a3", marginTop: 4 }}>Gestiona y da seguimiento a todos los trabajos asignados.</div>
             </div>
-            <div style={{ marginLeft: "auto", fontSize: 7.5, color: "#fff", background: "#2563eb", padding: "5px 9px", borderRadius: 4, fontWeight: 500 }}>+ Nuevo trabajo</div>
-          </div>
-          <Tabs tabs={["Todos", "En proceso", "Programados", "Completados", "Cancelados"]} gap={16} />
-          <div style={{ display: "flex", gap: 6, fontSize: 7, color: "#46557a" }}>
-            <FilterBox style={{ flex: 1, color: "#9aa5b8" }}>
-              <Icon name="pi-search" size={6.5} /> Buscar trabajos, clientes, direcciones...
-            </FilterBox>
-            <FilterBox>
-              <Icon name="pi-calendar" size={6.5} /> 1 sep 2026 - 30 sep 2026
-            </FilterBox>
-            <FilterBox>
-              Estado <Icon name="pi-chevron-down" size={5} />
-            </FilterBox>
-          </div>
-          <div style={{ display: "grid", gridTemplateColumns: JOB_COLS, gap: 6, fontSize: 6.8, fontWeight: 600, color: "#46557a", padding: "5px 4px", background: "#f6f8fb", borderRadius: 3 }}>
-            <span># Trabajo</span>
-            <span>Cliente</span>
-            <span>Dirección</span>
-            <span>Servicio</span>
-            <span>Fecha</span>
-            <span>Técnico</span>
-            <span>Estado</span>
-          </div>
-          {JOBS.map((j) => (
-            <div key={j.id} style={{ display: "grid", gridTemplateColumns: JOB_COLS, gap: 6, fontSize: 7, color: "#46557a", padding: "5px 4px", borderBottom: "1px solid #f1f4f8", alignItems: "center" }}>
-              <span style={{ color: "#2563eb" }}>{j.id}</span>
-              <span style={{ color: "#2563eb", ...ellipsis }}>{j.customer}</span>
-              <span style={ellipsis}>{j.addr}</span>
-              <span style={ellipsis}>{j.service}</span>
-              <span>{j.date}</span>
-              <span style={{ color: "#2563eb", whiteSpace: "nowrap" }}>{j.tech}</span>
-              <span>
-                <Chip status={j.status} pad="2px 6px" />
-              </span>
+            <div style={{ marginLeft: "auto", marginTop: 5, width: 118, height: 26, borderRadius: 4, background: "#2563eb", color: "#fff", fontSize: 9.5, fontWeight: 500, display: "flex", alignItems: "center", justifyContent: "center", gap: 7 }}>
+              <Icon name="pi-plus" size={8} /> Nuevo trabajo
             </div>
-          ))}
+          </div>
+          <div style={{ marginTop: 13, height: 26, display: "flex", alignItems: "center", gap: 28, fontSize: 10, color: "#46557a", borderBottom: "1px solid #e6ebf2" }}>
+            <span style={{ height: 26, display: "flex", alignItems: "center", color: "#2563eb", fontWeight: 600, borderBottom: "2px solid #2563eb", padding: "0 10px" }}>Todos</span>
+            <span>En proceso</span>
+            <span>Programados</span>
+            <span>Completados</span>
+            <span>Cancelados</span>
+          </div>
+          <div style={{ marginTop: 11, display: "flex", gap: 8, fontSize: 9, color: "#1c2b55" }}>
+            <Box style={{ width: 308, height: 27, color: "#9aa5b8" }}>
+              <Icon name="pi-search" size={9} /> Buscar trabajos, clientes, direcciones...
+            </Box>
+            <Box style={{ width: 159, height: 27, gap: 8 }}>
+              <Icon name="pi-calendar" size={9} /> 1 sep 2026 - 30 sep 2026
+            </Box>
+            <Box style={{ width: 81, height: 27, justifyContent: "space-between" }}>
+              Estado <Icon name="pi-chevron-down" size={7} />
+            </Box>
+          </div>
+          <div style={{ marginTop: 12, border: "1px solid #e6ebf2", borderRadius: 4, overflow: "hidden" }}>
+            <div style={{ display: "grid", gridTemplateColumns: JOB_COLS, height: 30, alignItems: "center", fontSize: 9, fontWeight: 600, color: "#46557a", background: "#f6f8fb" }}>
+              {["# Trabajo", "Cliente", "Dirección", "Servicio", "Fecha", "Técnico", "Estado"].map((h, i) => (
+                <span key={h} style={{ ...cell, height: 30, display: "flex", alignItems: "center", borderLeft: i ? "1px solid #e6ebf2" : undefined }}>
+                  {h}
+                </span>
+              ))}
+            </div>
+            {JOBS.map((j) => (
+              <div key={j.id} style={{ display: "grid", gridTemplateColumns: JOB_COLS, height: 31.5, alignItems: "center", fontSize: 9, color: "#46557a", borderTop: "1px solid #f1f4f8" }}>
+                <span style={{ ...cell, color: "#2563eb" }}>{j.id}</span>
+                <span style={{ ...cell, color: "#2563eb" }}>{j.customer}</span>
+                <span style={cell}>{j.addr}</span>
+                <span style={cell}>{j.service}</span>
+                <span style={cell}>{j.date}</span>
+                <span style={{ ...cell, color: "#2563eb" }}>{j.tech}</span>
+                <span style={{ paddingLeft: 5 }}>
+                  <Chip status={j.status} size={8.5} height={20} pad="0 9px" />
+                </span>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>
@@ -64,85 +89,101 @@ function JobsDesktop() {
 
 function TechPhone() {
   return (
-    <PhoneShell
-      className="fo-comp-phone"
-      width={172}
-      height={360}
-      radius={28}
-      innerRadius={23}
-      notch={{ w: 54, h: 14, top: 5 }}
-      shadow="0 30px 60px rgba(11,29,69,.28)"
-    >
-      <PhoneHeader padding="22px 9px 8px" fontSize={9} logo={10} avatar={15} bell={8.5} />
-      <div style={{ padding: "8px 9px", display: "flex", flexDirection: "column", gap: 6, flex: 1 }}>
+    <PhoneShell width={234} height={495} radius={36} bezel={6} notch={{ w: 100, h: 20, top: 0, radius: 12 }} shadow="0 30px 60px rgba(11,29,69,.28)" style={{ position: "absolute", left: 727, top: 0, zIndex: 2 }}>
+      <div style={{ height: 68, flex: "none", background: "#0b1d33", color: "#fff", display: "flex", flexDirection: "column" }}>
+        <StatusBar font={10} height={34} />
+        <div style={{ display: "flex", alignItems: "center", gap: 6, padding: "0 12px 0 14px", fontSize: 12, fontWeight: 700 }}>
+          <Leaf size={15} fill="#2cc2bd" />
+          FieldOps
+          <span style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: 8 }}>
+            <Bell size={12} color="#fff" />
+            <Avatar initials="CR" size={25} font={8.5} bg="#e6f7f6" color="#0b7471" style={{ border: "1.5px solid #2cc2bd" }} />
+            <Icon name="pi-chevron-down" size={7} />
+          </span>
+        </div>
+      </div>
+      <div style={{ padding: "13px 10px 0", display: "flex", flexDirection: "column", flex: 1, minHeight: 0 }}>
         <div style={{ display: "flex", alignItems: "flex-start" }}>
           <div>
-            <div style={{ fontSize: 11, fontWeight: 700 }}>Mis trabajos</div>
-            <div style={{ fontSize: 6.5, color: "#7b88a3" }}>Miércoles, 23 de sep de 2026</div>
+            <div style={{ fontSize: 13.5, fontWeight: 700 }}>Mis trabajos</div>
+            <div style={{ fontSize: 9, color: "#7b88a3", marginTop: 3 }}>Miércoles, 23 de sep de 2026</div>
           </div>
-          <Icon name="pi-filter" size={9} style={{ marginLeft: "auto" }} />
+          <Icon name="pi-filter" size={13} style={{ marginLeft: "auto", marginTop: 3 }} />
         </div>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", border: "1px solid #dfe5ee", borderRadius: 4, fontSize: 6.5, textAlign: "center", overflow: "hidden" }}>
-          <span style={{ background: "#eef3fc", color: "#2563eb", fontWeight: 600, padding: 3 }}>Hoy</span>
-          <span style={{ padding: 3, color: "#46557a" }}>Esta semana</span>
+        <div style={{ marginTop: 11, height: 24, display: "grid", gridTemplateColumns: "1fr 1fr", border: "1px solid #dfe5ee", borderRadius: 4, fontSize: 9, overflow: "hidden" }}>
+          <span style={{ display: "grid", placeItems: "center", background: "#e3ecfb", color: "#2563eb", fontWeight: 600 }}>Hoy</span>
+          <span style={{ display: "grid", placeItems: "center", color: "#46557a" }}>Esta semana</span>
         </div>
-        {MY_JOBS.map((m) => (
-          <div key={m.who} style={{ borderBottom: "1px solid #f1f4f8", paddingBottom: 6 }}>
-            <div style={{ display: "flex", alignItems: "center", fontSize: 6.5, color: "#46557a" }}>
+        {MY_JOBS.map((m, i) => (
+          <div key={m.who} style={{ padding: i === 0 ? "12px 0 8px" : "8px 0", borderBottom: i < MY_JOBS.length - 1 ? "1px solid #edf1f6" : undefined }}>
+            <div style={{ display: "flex", alignItems: "center", fontSize: 9.5, color: "#46557a" }}>
               {m.time}
               <span style={{ marginLeft: "auto" }}>
-                <Chip status={m.status} pad="1px 5px" />
+                <Chip status={m.status} size={8} height={19} pad="0 9px" />
               </span>
             </div>
-            <div style={{ fontSize: 8.5, fontWeight: 700, marginTop: 2, lineHeight: 1.2 }}>{m.title}</div>
-            <div style={{ fontSize: 6.3, color: "#7b88a3", marginTop: 1 }}>{m.who}</div>
-            <div style={{ fontSize: 6.3, color: "#7b88a3" }}>
-              <Icon name="pi-map-marker" size={6} /> {m.addr}
+            <div style={{ fontSize: 12, fontWeight: 700, marginTop: 2, lineHeight: "17px", maxWidth: 120 }}>{m.title}</div>
+            <div style={{ fontSize: 9, color: "#7b88a3", marginTop: 2 }}>{m.who}</div>
+            <div style={{ fontSize: 9, color: "#46557a", marginTop: 4, display: "flex", alignItems: "center", gap: 5 }}>
+              <Icon name="pi-map-marker" size={9} /> {m.addr}
             </div>
           </div>
         ))}
       </div>
-      <PhoneTabBar tabs={PHONE_TABS_ES} fontSize={5.5} iconSize={8.5} pad="4px 2px 9px" />
+      <PhoneTabBar tabs={PHONE_TABS_ES} font={8.5} icon={15} height={56} dotIndex={3} />
     </PhoneShell>
   );
 }
 
+const portalBtn: CSSProperties = {
+  height: 31,
+  border: "1px solid #dfe5ee",
+  borderRadius: 4,
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  gap: 7,
+  color: "#2563eb",
+  fontSize: 10,
+};
+
 function CustomerPortal() {
   return (
-    <div className="fo-comp-portal" aria-hidden="true" style={{ background: "#fff", borderRadius: 8, boxShadow: WINDOW_SHADOW, overflow: "hidden" }}>
-      <div style={{ padding: "11px 13px", borderBottom: "1px solid #edf1f6", display: "flex", alignItems: "center", gap: 7, fontSize: 10 }}>
-        <Leaf size={13} />
-        <b style={{ fontSize: 11 }}>FieldOps</b>
-        <span style={{ color: "#46557a", borderLeft: "1px solid #dfe5ee", paddingLeft: 7 }}>Portal del cliente</span>
-        <Icon name="pi-bars" size={10} style={{ marginLeft: "auto", color: "#46557a" }} />
+    <div
+      aria-hidden="true"
+      style={{ position: "absolute", left: 977, top: 30, width: 279, height: 342, background: "#fff", borderRadius: 8, boxShadow: WINDOW_SHADOW, overflow: "hidden" }}
+    >
+      <div style={{ height: 48, padding: "0 15px", borderBottom: "1px solid #edf1f6", display: "flex", alignItems: "center", gap: 7 }}>
+        <Leaf size={17} />
+        <b style={{ fontSize: 13.5, letterSpacing: "-0.01em" }}>FieldOps</b>
+        <span style={{ fontSize: 12.5, color: "#46557a", borderLeft: "1px solid #dfe5ee", paddingLeft: 8, marginLeft: 2 }}>Portal del cliente</span>
+        <Icon name="pi-bars" size={14} style={{ marginLeft: "auto", color: "#46557a" }} />
       </div>
-      <div style={{ padding: "12px 13px", display: "flex", flexDirection: "column", gap: 10 }}>
-        <div style={{ fontSize: 13, fontWeight: 700 }}>Mis servicios</div>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", border: "1px solid #dfe5ee", borderRadius: 4, fontSize: 8, textAlign: "center", overflow: "hidden" }}>
-          <span style={{ background: "#eef3fc", color: "#2563eb", fontWeight: 600, padding: 5, border: "1px solid #2563eb", borderRadius: 4 }}>En curso</span>
-          <span style={{ padding: 5, color: "#46557a" }}>Historial</span>
+      <div style={{ padding: "13px 15px 0" }}>
+        <div style={{ fontSize: 17, fontWeight: 700, letterSpacing: "-0.01em" }}>Mis servicios</div>
+        <div style={{ marginTop: 12, height: 30, display: "grid", gridTemplateColumns: "1fr 1fr", background: "#f3f6fa", border: "1px solid #e6ebf2", borderRadius: 4, fontSize: 10 }}>
+          <span style={{ display: "grid", placeItems: "center", background: "#fff", color: "#2563eb", fontWeight: 600, border: "1px solid #2563eb", borderRadius: 4, margin: -1 }}>En curso</span>
+          <span style={{ display: "grid", placeItems: "center", color: "#7b88a3" }}>Historial</span>
         </div>
-        <div style={{ border: "1px solid #e6ebf2", borderRadius: 6, padding: 10, display: "flex", flexDirection: "column", gap: 6 }}>
-          <div style={{ display: "flex", alignItems: "center", fontSize: 10, fontWeight: 700 }}>
+        <div style={{ marginTop: 13, height: 194, border: "1px solid #e6ebf2", borderRadius: 6, padding: "10px 12px", display: "flex", flexDirection: "column" }}>
+          <div style={{ display: "flex", alignItems: "center", fontSize: 13, fontWeight: 700 }}>
             WO-3091
-            <span style={{ marginLeft: "auto", fontSize: 7, fontWeight: 600, color: "#136f4a", background: "#e7f6ee", padding: "2px 6px", borderRadius: 999 }}>● En proceso</span>
+            <span style={{ marginLeft: "auto" }}>
+              <Chip status={{ label: "En proceso", bg: "#e7f6ee", fg: "#136f4a" }} size={8.5} height={20} pad="0 9px" />
+            </span>
           </div>
-          <div style={{ fontSize: 10, fontWeight: 500 }}>Reparación de fuga en fregadero</div>
-          <div style={{ fontSize: 7.5, color: "#46557a" }}>Mié, 23 de sep de 2026 · 9:30 a. m. – 11:30 a. m.</div>
-          <div style={{ display: "flex", alignItems: "center", gap: 7, borderTop: "1px solid #f1f4f8", paddingTop: 7, marginTop: 2 }}>
-            <div style={{ width: 22, height: 22, borderRadius: "50%", background: "#0b1d45", color: "#fff", fontSize: 7.5, fontWeight: 600, display: "grid", placeItems: "center" }}>SM</div>
+          <div style={{ marginTop: 9, fontSize: 12.5, fontWeight: 600 }}>Reparación de fuga en fregadero</div>
+          <div style={{ marginTop: 6, fontSize: 9.5, color: "#46557a", whiteSpace: "nowrap", letterSpacing: "-0.01em" }}>Mié, 23 de sep de 2026 · 9:30 a. m. – 11:30 a. m.</div>
+          <div style={{ marginTop: 12, paddingTop: 13, borderTop: "1px solid #f1f4f8", display: "flex", alignItems: "center", gap: 10 }}>
+            <Avatar initials="SM" size={27} font={9} />
             <div>
-              <div style={{ fontSize: 6.5, color: "#7b88a3" }}>Técnico</div>
-              <div style={{ fontSize: 8.5, fontWeight: 600 }}>Sofía Martínez</div>
+              <div style={{ fontSize: 9, color: "#7b88a3" }}>Técnico</div>
+              <div style={{ fontSize: 11.5, fontWeight: 600, marginTop: 1 }}>Sofía Martínez</div>
             </div>
           </div>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 5, fontSize: 7.5, color: "#2563eb" }}>
-            <span style={{ border: "1px solid #dfe5ee", borderRadius: 4, padding: 5, textAlign: "center" }}>
-              <Icon name="pi-phone" size={7} /> Ver detalles
-            </span>
-            <span style={{ border: "1px solid #dfe5ee", borderRadius: 4, padding: 5, textAlign: "center" }}>
-              <Icon name="pi-comment" size={7} /> Mensajes
-            </span>
+          <div style={{ marginTop: "auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 9 }}>
+            <span style={portalBtn}><Icon name="pi-phone" size={10} /> Ver detalles</span>
+            <span style={portalBtn}><Icon name="pi-comment" size={10} /> Mensajes</span>
           </div>
         </div>
       </div>
@@ -150,31 +191,61 @@ function CustomerPortal() {
   );
 }
 
+function Feature({ icon, title, desc, circleLeft, textLeft, width }: { icon: string; title: string; desc: string; circleLeft?: number; textLeft?: number; width: number }) {
+  const positioned = circleLeft !== undefined;
+  return (
+    <>
+      <div
+        style={{
+          ...(positioned ? { position: "absolute", left: circleLeft, top: 431 } : {}),
+          width: 85,
+          height: 85,
+          flex: "none",
+          borderRadius: "50%",
+          background: "#e8f6f5",
+          color: "#0f8c89",
+          display: "grid",
+          placeItems: "center",
+        }}
+      >
+        <Icon name={icon} size={36} />
+      </div>
+      <div style={positioned ? { position: "absolute", left: textLeft, top: 441, width } : { maxWidth: width }}>
+        <h3 style={{ fontSize: 17.5, fontWeight: 700, color: "#0b1d45", letterSpacing: "-0.01em" }}>{title}</h3>
+        <p style={{ marginTop: 9, fontSize: 13, lineHeight: "19px", color: "#6b7895" }}>{desc}</p>
+      </div>
+    </>
+  );
+}
+
+const FEATURE_POS = [
+  { circleLeft: -5, textLeft: 104, width: 232 },
+  { circleLeft: 394, textLeft: 505, width: 222 },
+  { circleLeft: 975, textLeft: 1079, width: 228 },
+];
+
 export function Connected() {
   return (
-    <section style={{ background: "#fff" }}>
-      <div className="fo-wrap" style={{ display: "flex", flexDirection: "column", gap: 36 }}>
-        <div style={{ textAlign: "center", display: "flex", flexDirection: "column", gap: 8, alignItems: "center" }}>
-          <h2 className="fo-h2">
+    <section className="fo-conn">
+      <div className="fo-container">
+        <div style={{ textAlign: "center" }}>
+          <h2 className="fo-title fo-title-md" style={{ fontSize: 40, lineHeight: 1.15, letterSpacing: "-0.04em" }}>
             Del escritorio al campo, <span className="teal">todo permanece conectado.</span>
           </h2>
-          <p style={{ fontSize: 18, color: "#46557a" }}>La información correcta llega a cada persona en el momento adecuado.</p>
+          <p style={{ marginTop: 4, fontSize: 21.5, color: "#46557a" }}>La información correcta llega a cada persona en el momento adecuado.</p>
         </div>
-        <div className="fo-comp">
+        <div className="fo-stage fo-conn-stage">
           <JobsDesktop />
           <TechPhone />
           <CustomerPortal />
+          {SURFACES.map((f, i) => (
+            <Feature key={f.title} {...f} {...FEATURE_POS[i]} />
+          ))}
         </div>
-        <div className="fo-surfaces">
+        <div className="fo-conn-features">
           {SURFACES.map((f) => (
             <div key={f.title} style={{ display: "flex", gap: 20, alignItems: "flex-start" }}>
-              <div style={{ width: 62, height: 62, flex: "none", borderRadius: "50%", background: "#e8f6f5", color: "#0f8c89", display: "grid", placeItems: "center" }}>
-                <Icon name={f.icon} size={26} />
-              </div>
-              <div>
-                <h3 style={{ margin: 0, fontSize: 16, fontWeight: 700, color: "#0b1d45" }}>{f.title}</h3>
-                <div style={{ fontSize: 13.5, lineHeight: 1.5, color: "#46557a", marginTop: 6 }}>{f.desc}</div>
-              </div>
+              <Feature {...f} width={320} />
             </div>
           ))}
         </div>

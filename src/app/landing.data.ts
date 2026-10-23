@@ -19,13 +19,13 @@ export const STATUS = {
 export type NavItem = { label: string; icon: string };
 
 const enNav: NavItem[] = [
-  { label: "Dashboard", icon: "pi-th-large" },
+  { label: "Dashboard", icon: "pi-home" },
   { label: "Requests", icon: "pi-inbox" },
-  { label: "Quotes", icon: "pi-file-edit" },
+  { label: "Quotes", icon: "pi-file" },
   { label: "Jobs", icon: "pi-wrench" },
   { label: "Schedule", icon: "pi-calendar" },
-  { label: "Customers", icon: "pi-users" },
-  { label: "Team", icon: "pi-id-card" },
+  { label: "Customers", icon: "pi-user" },
+  { label: "Team", icon: "pi-users" },
 ];
 
 export const NAV_HERO: NavItem[] = [
@@ -38,13 +38,13 @@ export const NAV_HERO: NavItem[] = [
 export const NAV_SCHED: NavItem[] = [...enNav, { label: "Settings", icon: "pi-cog" }];
 
 export const NAV_ES: NavItem[] = [
-  { label: "Dashboard", icon: "pi-th-large" },
+  { label: "Dashboard", icon: "pi-home" },
   { label: "Solicitudes", icon: "pi-inbox" },
-  { label: "Cotizaciones", icon: "pi-file-edit" },
-  { label: "Trabajos", icon: "pi-wrench" },
+  { label: "Cotizaciones", icon: "pi-file" },
+  { label: "Trabajos", icon: "pi-briefcase" },
   { label: "Agenda", icon: "pi-calendar" },
-  { label: "Clientes", icon: "pi-users" },
-  { label: "Equipo", icon: "pi-id-card" },
+  { label: "Clientes", icon: "pi-user" },
+  { label: "Equipo", icon: "pi-users" },
   { label: "Facturación", icon: "pi-receipt" },
   { label: "Reportes", icon: "pi-chart-bar" },
   { label: "Configuración", icon: "pi-cog" },
@@ -65,12 +65,6 @@ export const INVOICES = [
   { id: "INV-1050", customer: "Robert Chen", wo: "WO-1053", date: "—", due: "—", amount: "$485.00", balance: "$485.00", status: STATUS.draft },
 ];
 
-export const PHONE_STATS = [
-  { icon: "pi-briefcase", v: "4", l: "jobs" },
-  { icon: "pi-clock", v: "7.5", l: "scheduled hours" },
-  { icon: "pi-car", v: "52 min", l: "travel" },
-];
-
 export const PHONE_TABS_EN: NavItem[] = [
   { label: "Today", icon: "pi-home" },
   { label: "Schedule", icon: "pi-calendar" },
@@ -88,12 +82,13 @@ export const PHONE_TABS_ES: NavItem[] = [
 ];
 
 export const STEPS = [
-  { icon: "pi-file", title: "Solicitud", desc: "Registra y organiza las solicitudes de servicio.", tone: "teal" },
-  { icon: "pi-file-edit", title: "Cotización", desc: "Crea y envía cotizaciones en minutos.", tone: "blue" },
-  { icon: "pi-clipboard", title: "Orden", desc: "Convierte en una orden de trabajo.", tone: "teal" },
-  { icon: "pi-calendar", title: "Visita", desc: "Agenda y asigna a tu equipo.", tone: "teal" },
-  { icon: "pi-dollar", title: "Factura", desc: "Genera la factura automáticamente.", tone: "blue" },
-  { icon: "pi-credit-card", title: "Pago", desc: "Recibe pagos en línea o fuera de FieldOps.", tone: "teal" },
+  // "\n" marks the line break used in the design.
+  { icon: "pi-file", title: "Solicitud", desc: "Registra y organiza\nlas solicitudes de servicio.", tone: "teal" },
+  { icon: "pi-file-edit", title: "Cotización", desc: "Crea y envía\ncotizaciones en minutos.", tone: "blue" },
+  { icon: "pi-clipboard", title: "Orden", desc: "Convierte en una\norden de trabajo.", tone: "teal" },
+  { icon: "pi-calendar", title: "Visita", desc: "Agenda y asigna\na tu equipo.", tone: "teal" },
+  { icon: "pi-dollar", title: "Factura", desc: "Genera la factura\nautomáticamente.", tone: "blue" },
+  { icon: "pi-credit-card", title: "Pago", desc: "Recibe pagos en línea\no fuera de FieldOps.", tone: "teal" },
 ] as const;
 
 const EVENT_TONE = {
@@ -104,22 +99,17 @@ const EVENT_TONE = {
 
 type Tone = keyof typeof EVENT_TONE;
 
-function ev(start: number, dur: number, title: string, place: string, tone: Tone) {
-  return {
-    top: (start - 8) * 20 + 3,
-    height: dur * 20 * 1.6 - 3,
-    title,
-    place,
-    ...EVENT_TONE[tone],
-  };
+// Positions in px below the day header, as drawn in the design.
+function ev(top: number, height: number, title: string, place: string, tone: Tone) {
+  return { top, height, title, place, ...EVENT_TONE[tone] };
 }
 
 export const DAYS = [
-  { label: "Mon 21", today: false, events: [ev(9, 1, "Toilet repair", "Westlake Dr", "teal")] },
-  { label: "Tue 22", today: false, events: [ev(10, 1, "Sink leak repair", "Oak Street", "blue"), ev(13, 1, "HVAC inspection", "Cedar Park", "gray")] },
-  { label: "Wed 23", today: true, events: [ev(11, 1, "Water heater", "Maple Ave", "blue"), ev(14, 1, "Pipe inspection", "Riverside Ave", "blue")] },
-  { label: "Thu 24", today: false, events: [ev(9, 1, "AC maintenance", "Downtown", "teal"), ev(12, 0.9, "Follow up", "South Congress", "gray")] },
-  { label: "Fri 25", today: false, events: [ev(10, 1, "Estimate visit", "Lamar Blvd", "gray"), ev(15, 0.9, "Install water heater", "Pine Street", "teal")] },
+  { label: "Mon 21", today: false, events: [ev(27, 42, "Toilet repair", "Westlake Dr", "teal")] },
+  { label: "Tue 22", today: false, events: [ev(64, 49, "Sink leak repair", "Oak Street", "blue"), ev(144, 49, "HVAC inspection", "Cedar Park", "gray")] },
+  { label: "Wed 23", today: true, events: [ev(90, 53, "Water heater", "Maple Ave", "blue"), ev(171, 46, "Pipe inspection", "Riverside Ave", "blue")] },
+  { label: "Thu 24", today: false, events: [ev(31, 54, "AC maintenance", "Downtown", "teal"), ev(117, 41, "Follow up", "South Congress", "gray")] },
+  { label: "Fri 25", today: false, events: [ev(63, 45, "Estimate visit", "Lamar Blvd", "gray"), ev(176, 43, "Install water heater", "Pine Street", "teal")] },
 ];
 
 export const HOURS = ["8 AM", "9 AM", "10 AM", "11 AM", "12 PM", "1 PM", "2 PM", "3 PM", "4 PM", "5 PM"];
@@ -133,7 +123,7 @@ export const PLAN_CHECKS = [
 export const ROLES = [
   { icon: "pi-home", title: "Propietario", desc: "Control total de la operación, las finanzas y el equipo." },
   { icon: "pi-users", title: "Coordinador", desc: "Organiza solicitudes, agenda visitas y mantiene el trabajo en movimiento." },
-  { icon: "pi-wrench", title: "Técnico", desc: "Consulta su ruta, registra avances y documenta el servicio desde el móvil." },
+  { icon: "hardhat", title: "Técnico", desc: "Consulta su ruta, registra avances y documenta el servicio desde el móvil." },
   { icon: "pi-user", title: "Cliente", desc: "Aprueba cotizaciones, sigue el servicio y consulta sus facturas." },
 ];
 

@@ -22,7 +22,7 @@ export const metadata: Metadata = {
 export default function CaseStudyPage() {
   return (
     <div className="fo cs">
-      <MarketingNav active="caso" />
+      <MarketingNav variant="case" />
       <main>
         <CaseHero />
         <Challenge />

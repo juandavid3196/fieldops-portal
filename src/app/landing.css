@@ -1,13 +1,13 @@
-/* Landing — responsive tokens and layout. Breakpoints: mobile < 760, tablet < 1100. */
+/*
+ * Landing — measured against the design at a 1384px viewport (64px gutters, 1256px content).
+ * Mock compositions ("stages") are drawn at design size and scaled down with --z below 1384px.
+ * Breakpoints: mobile < 760, tablet < 1100.
+ */
 
 .fo {
-  --padx: 48px;
-  --h1: 60px;
-  --h2: 34px;
-  --h2b: 42px;
-  --sec-pad: 72px;
-  --hero-pad-top: 56px;
-  --hero-pad-bottom: 64px;
+  --padx: 64px;
+  --maxw: 1384px;
+  --z: 1;
 
   font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   color: #0b1d45;
@@ -15,7 +15,6 @@
   min-width: 0;
   overflow: hidden;
   -webkit-font-smoothing: antialiased;
-  scroll-behavior: smooth;
 }
 
 html {
@@ -23,8 +22,7 @@ html {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html,
-  .fo {
+  html {
     scroll-behavior: auto;
   }
 }
@@ -33,32 +31,40 @@ html {
   color: #0f766e;
   text-decoration: none;
 }
-
 .fo a:hover {
   color: #0b5f59;
 }
-
 .fo h1,
 .fo h2,
+.fo h3,
 .fo p {
   margin: 0;
 }
 
-.fo-wrap {
-  max-width: 1200px;
+.fo-container {
+  max-width: var(--maxw);
   margin: 0 auto;
-  padding: var(--sec-pad) var(--padx);
+  padding-left: var(--padx);
+  padding-right: var(--padx);
+}
+
+/* Fixed-size mock compositions, scaled as a whole. */
+.fo-stage {
+  zoom: var(--z);
+}
+
+.teal {
+  color: #0f9d9a;
 }
 
 /* ---------- buttons ---------- */
 .fo-btn {
-  display: flex;
+  display: inline-flex;
   align-items: center;
+  justify-content: center;
   white-space: nowrap;
   border-radius: 5px;
-  font-size: 15px;
 }
-
 .fo a.fo-btn-primary {
   gap: 12px;
   background: #0f8c89;
@@ -72,21 +78,19 @@ html {
 .fo a.fo-btn-primary.on-navy:hover {
   background: #13a29e;
 }
-
 .fo a.fo-btn-secondary {
-  gap: 10px;
+  gap: 12px;
   background: #fff;
   color: #0b1d45;
   font-weight: 500;
-  border: 1px solid #2563eb;
+  border: 1px solid #3b78e7;
 }
 .fo a.fo-btn-secondary:hover {
   background: #f1f6ff;
   color: #0b1d45;
 }
-
 .fo a.fo-btn-outline {
-  gap: 12px;
+  gap: 14px;
   background: #fff;
   color: #0b1d45;
   font-weight: 500;
@@ -96,7 +100,6 @@ html {
   background: #f4f7fb;
   color: #0b1d45;
 }
-
 .fo a.fo-btn-ghost {
   gap: 12px;
   color: #fff;
@@ -109,22 +112,23 @@ html {
 }
 
 /* ---------- nav ---------- */
+.fo-nav {
+  background: #fff;
+  border-bottom: 1px solid #edf1f6;
+  position: relative;
+  z-index: 5;
+}
 .fo-nav-inner {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 14px var(--padx);
+  height: 63px;
   display: flex;
   align-items: center;
-  gap: 56px;
 }
-
 .fo-nav-links {
   display: flex;
   gap: 30px;
-  font-size: 14px;
-  flex: 1;
+  font-size: 14.5px;
+  margin-left: 56px;
 }
-
 .fo .fo-nav-link {
   color: #46557a;
   font-weight: 500;
@@ -132,12 +136,14 @@ html {
   border-bottom: 2px solid transparent;
   white-space: nowrap;
 }
+.fo .fo-nav-link:hover {
+  color: #0b1d45;
+}
 .fo .fo-nav-link.active {
   color: #0b1d45;
   font-weight: 600;
   border-bottom-color: #0f9d9a;
 }
-
 .fo-burger {
   display: none;
   width: 44px;
@@ -148,7 +154,6 @@ html {
   border: 0;
   cursor: pointer;
 }
-
 .fo-drawer {
   display: none;
   border-top: 1px solid #edf1f6;
@@ -167,189 +172,313 @@ html {
 
 /* ---------- hero ---------- */
 .fo-hero {
-  background: linear-gradient(180deg, #eef3f8 0%, #f5f8fb 70%, #fff 100%);
+  position: relative;
+  z-index: 2;
+  background: linear-gradient(180deg, #eef3f8 0%, #f3f6fa 70%, #f8fafc 100%);
 }
 .fo-hero-grid {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: var(--hero-pad-top) var(--padx) var(--hero-pad-bottom);
+  height: 640px;
+  padding-top: 60px;
   display: grid;
-  grid-template-columns: minmax(0, 0.62fr) minmax(0, 1fr);
-  gap: 40px;
-  align-items: center;
+  grid-template-columns: 409px minmax(0, 1fr);
+  column-gap: 24px;
+  align-items: start;
+}
+.fo-hero-copy {
+  padding-top: 26px;
+  display: flex;
+  flex-direction: column;
 }
 .fo-h1 {
-  font-size: var(--h1);
-  line-height: 1.06;
-  letter-spacing: -0.04em;
+  font-size: 56px;
+  line-height: 64px;
+  letter-spacing: -0.045em;
   font-weight: 700;
   color: #0b1730;
+  white-space: nowrap;
 }
-.fo-hero-mock {
+.fo-hero-stage {
   position: relative;
-  height: 420px;
-  min-width: 0;
-}
-.fo-hero-desktop {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 96%;
-  height: 372px;
-}
-.fo-hero-phone {
-  position: absolute;
-  right: -24px;
-  top: 58px;
-}
-.fo-toast {
-  position: absolute;
-  left: 37%;
-  bottom: 14px;
-  z-index: 3;
+  width: 823px;
+  height: 550px;
 }
 
-/* ---------- headings ---------- */
-.fo-h2 {
-  font-size: var(--h2);
-  line-height: 1.1;
-  letter-spacing: -0.035em;
-  font-weight: 700;
-  color: #0b1d45;
-  text-wrap: balance;
-}
-.fo-h2b {
-  font-size: var(--h2b);
-  line-height: 1.08;
-  letter-spacing: -0.035em;
-  font-weight: 700;
-  color: #0b1d45;
-}
+/* ---------- shared headings ---------- */
 .fo-eyebrow {
-  font-size: 12px;
+  font-size: 12.5px;
   font-weight: 500;
   letter-spacing: 0.16em;
   color: #46557a;
+  text-transform: uppercase;
 }
-.teal {
-  color: #0f9d9a;
+.fo-title {
+  font-weight: 700;
+  color: #0b1d45;
+  letter-spacing: -0.035em;
 }
 
 /* ---------- flow ---------- */
+.fo-flow {
+  background: #fff;
+  padding: 80px 0 72px;
+}
 .fo-steps {
+  width: 1320px;
+  max-width: calc(100vw - 32px);
+  margin: 44px auto 0;
   display: grid;
   grid-template-columns: repeat(6, minmax(0, 1fr));
-  gap: 32px 0;
+  list-style: none;
+  padding: 0;
+}
+.fo-step {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 .fo-step-arrow {
   position: absolute;
   right: -10px;
-  top: 26px;
-  font-size: 16px;
-  color: #6b7ba1;
+  top: 34px;
+  font-size: 20px;
+  color: #7f8fb3;
 }
 
-/* ---------- two-column sections ---------- */
+/* ---------- schedule ---------- */
+.fo-sched {
+  background: linear-gradient(180deg, #f3f7fc 0%, #edf3fa 100%);
+  padding: 80px 0;
+}
 .fo-sched-grid {
+  margin: 0 -12px;
   display: grid;
-  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
-  gap: 52px;
+  grid-template-columns: minmax(0, 757px) minmax(0, 1fr);
+  column-gap: 64px;
   align-items: center;
 }
-.fo-data-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
-  gap: 52px;
-  align-items: center;
-}
-.fo-guide-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 0.95fr);
-  gap: 40px;
-  align-items: center;
-}
-.fo-guide-visual {
-  position: relative;
-  height: 380px;
-  min-width: 0;
-}
-.fo-book {
-  left: 20px;
+.fo-sched-stage {
+  width: 757px;
+  height: 435px;
 }
 
 /* ---------- roles ---------- */
+.fo-roles {
+  background: linear-gradient(135deg, #0a1f3d 0%, #0c2a4f 55%, #0a223f 100%);
+  padding: 76px 0 80px;
+}
+.fo-roles-head {
+  padding-left: 0;
+}
 .fo-roles-grid {
+  margin-top: 44px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 18px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
 }
 
 /* ---------- connected ---------- */
-.fo-comp {
+.fo-conn {
+  background: #fff;
+  padding: 80px 0 64px;
+}
+.fo-conn-stage {
   position: relative;
-  height: 400px;
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
+  width: 1256px;
+  height: 535px;
+  margin-top: 44px;
+}
+.fo-conn-features {
+  display: none;
+}
+
+/* ---------- data ---------- */
+.fo-data {
+  background: linear-gradient(180deg, #eef5fc 0%, #e8f1fb 100%);
+  padding: 80px 0;
+}
+.fo-data-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 705px);
+  column-gap: 56px;
   align-items: center;
 }
-.fo-comp-desktop {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 58%;
-  height: 300px;
+.fo-data-stage {
+  width: 705px;
+  height: 389px;
 }
-.fo-comp-phone {
-  position: absolute;
-  left: 52%;
-  top: -12px;
-  z-index: 2;
+
+/* ---------- guide ---------- */
+.fo-guide {
+  background: linear-gradient(180deg, #fff 0%, #f6f9fc 100%);
+  height: 470px;
+  overflow: hidden;
 }
-.fo-comp-portal {
-  position: absolute;
-  right: 0;
-  top: 20px;
-  width: 22%;
-  max-width: 100%;
-}
-.fo-surfaces {
+/* The guide visual sits on the section's bottom edge, so the book and sheet are cropped as in the design. */
+.fo-guide-grid {
+  height: 100%;
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 28px;
+  grid-template-columns: 690px minmax(0, 1fr);
+  column-gap: 32px;
+  align-items: end;
+}
+.fo-guide-copy {
+  align-self: center;
+  padding-bottom: 8px;
+}
+.fo-guide-stage {
+  position: relative;
+  width: 690px;
+  height: 382px;
+}
+
+/* ---------- CTA ---------- */
+.fo-cta {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #0a1f3d 0%, #0c2a4f 60%, #0a223f 100%);
 }
 
 /* ---------- footer ---------- */
 .fo-footer-inner {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 18px var(--padx);
+  min-height: 76px;
+  padding-top: 14px;
+  padding-bottom: 14px;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 16px 56px;
+  gap: 12px 57px;
+}
+
+/* ---------- intermediate desktop: scale stages ---------- */
+@media (max-width: 1383.98px) {
+  .fo {
+    --padx: 48px;
+  }
+  .fo-hero-grid,
+  .fo-sched-grid,
+  .fo-data-grid,
+  .fo-guide-grid {
+    overflow: visible;
+  }
+  .fo-hero-stage,
+  .fo-sched-stage,
+  .fo-data-stage,
+  .fo-guide-stage,
+  .fo-conn-stage {
+    --z: 0.88;
+  }
+  .fo-hero-grid {
+    height: auto;
+    padding-bottom: 36px;
+  }
+  .fo-sched-grid {
+    grid-template-columns: auto minmax(0, 1fr);
+    column-gap: 36px;
+  }
+  .fo-data-grid {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+  .fo-guide {
+    height: auto;
+  }
+  .fo-guide-grid {
+    grid-template-columns: auto minmax(0, 1fr);
+    padding-bottom: 32px;
+  }
+  .fo-roles-title {
+    font-size: 46px !important;
+  }
+}
+
+@media (max-width: 1239.98px) {
+  .fo-hero-stage,
+  .fo-sched-stage,
+  .fo-data-stage,
+  .fo-guide-stage,
+  .fo-conn-stage {
+    --z: 0.76;
+  }
+  .fo-roles-title {
+    font-size: 40px !important;
+  }
 }
 
 /* ---------- tablet ---------- */
 @media (max-width: 1099.98px) {
   .fo {
     --padx: 40px;
-    --h1: 56px;
-    --h2: 32px;
-    --h2b: 38px;
-    --sec-pad: 72px;
   }
-  .fo-hero-grid,
-  .fo-sched-grid,
-  .fo-data-grid,
-  .fo-guide-grid {
+  .fo-nav-links {
+    margin-left: 40px;
+  }
+  .fo-flow,
+  .fo-sched,
+  .fo-roles,
+  .fo-conn,
+  .fo-data {
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
+  .fo-hero-grid {
     grid-template-columns: minmax(0, 1fr);
+    row-gap: 40px;
+    padding-top: 48px;
+  }
+  .fo-hero-stage {
+    --z: 0.82;
   }
   .fo-steps {
+    width: auto;
+    max-width: none;
+    margin-left: var(--padx);
+    margin-right: var(--padx);
     grid-template-columns: repeat(3, minmax(0, 1fr));
+    row-gap: 36px;
   }
   .fo-step-arrow {
     display: none;
+  }
+  .fo-sched-grid,
+  .fo-data-grid {
+    margin: 0;
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 40px;
+  }
+  .fo-sched-stage,
+  .fo-data-stage {
+    --z: 0.9;
+  }
+  .fo-roles-head {
+    padding-left: 0;
+  }
+  .fo-roles-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .fo-conn-stage {
+    display: none;
+  }
+  .fo-conn-features {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 28px;
+    margin-top: 36px;
+  }
+  .fo-guide {
+    height: auto;
+    overflow: hidden;
+  }
+  .fo-guide-grid {
+    grid-template-columns: minmax(0, 1fr);
+    padding-top: 40px;
+    padding-bottom: 48px;
+    row-gap: 24px;
+  }
+  .fo-guide-stage {
+    --z: 0.7;
+    height: 420px;
+    overflow: hidden;
   }
 }
 
@@ -357,56 +486,49 @@ html {
 @media (max-width: 759.98px) {
   .fo {
     --padx: 20px;
-    --h1: 44px;
-    --h2: 28px;
-    --h2b: 32px;
-    --sec-pad: 56px;
-    --hero-pad-top: 44px;
-    --hero-pad-bottom: 56px;
   }
-  .fo-nav-links,
-  .fo-sidebar,
-  .fo-hero-desktop,
-  .fo-comp-desktop,
-  .fo-page-sheet {
+  .fo-nav-links {
     display: none;
   }
   .fo-burger {
     display: grid;
   }
+  .fo-nav-cta {
+    display: none !important;
+  }
+  .fo-h1 {
+    font-size: 42px;
+    line-height: 48px;
+    white-space: normal;
+  }
+  .fo-hero-stage {
+    --z: 0.42;
+  }
   .fo-steps {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-  .fo-hero-phone {
-    position: relative;
-    right: auto;
-    top: 0;
-    margin: 0 auto;
+  .fo-sched-stage,
+  .fo-data-stage {
+    --z: 0.42;
   }
-  .fo-toast {
-    left: 0;
-    bottom: -6px;
-  }
-  .fo-guide-visual {
-    height: 360px;
-  }
-  .fo-book {
-    left: calc(50% - 115px);
-  }
-  .fo-comp {
-    height: auto;
-  }
-  .fo-comp-phone,
-  .fo-comp-portal {
-    position: relative;
-    left: auto;
-    right: auto;
-    top: auto;
-  }
-  .fo-comp-portal {
-    width: 320px;
-  }
-  .fo-surfaces {
+  .fo-roles-grid {
     grid-template-columns: minmax(0, 1fr);
+  }
+  .fo-conn-features {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .fo-guide-stage {
+    --z: 0.5;
+  }
+  .fo-cta-lines {
+    display: none;
+  }
+  .fo-title-lg {
+    font-size: 34px !important;
+    line-height: 1.1 !important;
+    white-space: normal !important;
+  }
+  .fo-title-md {
+    font-size: 30px !important;
   }
 }

@@ -2,54 +2,12 @@ export const REPO_URL = "https://github.com/juandavid3196/fieldops";
 
 export const TAGS = ["Full Stack", "Product design", "System design", "Spec-driven development"];
 
-export type ArchItem = { icon: string; size: number; title: string; desc: string; down?: boolean };
-export type ArchColumn = {
-  title: string;
-  badge?: { text: string; bg: string; radius: string; fontSize: number };
-  items: ArchItem[];
-};
-
-export const ARCH_COLUMNS: ArchColumn[] = [
-  {
-    title: "Angular applications",
-    badge: { text: "A", bg: "#dd0031", radius: "4px", fontSize: 12 },
-    items: [
-      { icon: "pi-desktop", size: 18, title: "Staff portal", desc: "Gestión completa" },
-      { icon: "pi-wrench", size: 17, title: "Technician experience", desc: "Trabajo en campo" },
-      { icon: "pi-user", size: 17, title: "Customer portal", desc: "Consulta y pagos" },
-    ],
-  },
-  {
-    title: ".NET 10 API",
-    badge: { text: ".NET", bg: "#5b3fd4", radius: "50%", fontSize: 6.5 },
-    items: [
-      { icon: "pi-verified", size: 17, title: "Application", desc: "CQRS (Use cases)", down: true },
-      { icon: "pi-database", size: 17, title: "Domain", desc: "DDD (Entities)", down: true },
-      { icon: "pi-server", size: 17, title: "Infrastructure", desc: "EF Core (Repositories)" },
-    ],
-  },
-  {
-    title: "Data & storage",
-    items: [
-      { icon: "pi-database", size: 22, title: "PostgreSQL", desc: "Datos de la aplicación" },
-      { icon: "pi-file", size: 22, title: "File storage", desc: "Archivos y evidencias" },
-    ],
-  },
-];
-
-export const OPS = [
-  { icon: "pi-cog", title: "CI/CD", desc: "GitHub Actions" },
-  { icon: "pi-box", title: "Docker", desc: "Entornos de desarrollo" },
-  { icon: "pi-file-check", title: "Audit", desc: "Trazabilidad" },
-  { icon: "pi-shield", title: "RBAC", desc: "Permisos por rol" },
-];
-
 export const STATS = [
-  { mark: "A", bg: "#dd0031", radius: "6px", fontSize: 16, title: "Angular 22.1", desc: "Frontend moderno y reactivo" },
-  { mark: ".NET", bg: "#5b3fd4", radius: "50%", fontSize: 10, title: ".NET 10", desc: "API robusta y escalable" },
-  { icon: "pi-database", color: "#336791", title: "PostgreSQL", desc: "Datos relacionales confiables" },
-  { icon: "pi-database", color: "#0f8c89", title: "50 domain entities", desc: "Modelo de dominio completo" },
-  { icon: "pi-users", color: "#0f8c89", title: "3 user experiences", desc: "Equipo, técnicos y clientes" },
+  { icon: "angular", title: "Angular 22.1", desc: "Frontend moderno y reactivo" },
+  { icon: "dotnet", title: ".NET 10", desc: "API robusta y escalable" },
+  { icon: "postgres", title: "PostgreSQL", desc: "Datos relacionales confiables" },
+  { icon: "pi-database", title: "50 domain entities", desc: "Modelo de dominio completo" },
+  { icon: "pi-users", title: "3 user experiences", desc: "Equipo, técnicos y clientes" },
 ];
 
 export const PILLARS = [
@@ -65,7 +23,7 @@ export const APPS = [
 ];
 
 export const LAYERS = [
-  { icon: "pi-list", title: "Application", key: "CQRS", desc: "Casos de uso y orquestación" },
+  { icon: "pi-file", title: "Application", key: "CQRS", desc: "Casos de uso y orquestación" },
   { icon: "pi-box", title: "Domain", key: "DDD", desc: "Entidades y reglas de negocio" },
   { icon: "pi-database", title: "Infrastructure", key: "EF Core", desc: "Repositorios y persistencia" },
 ];
@@ -78,44 +36,45 @@ export const ARCH_CHECKS = [
   { title: "Versioned database migrations", desc: "Migraciones versionadas y revisadas." },
 ];
 
-export type Chip = { m: string; t: string; bg: string; size?: number; r?: string; fs?: number };
-const chip = (m: string, t: string, bg: string, o: Partial<Chip> = {}): Chip => ({ m, t, bg, ...o });
+// Item icons: a BrandIcons key, a PrimeIcon ("pi-…") or literal text ("text:…").
+export type TechItem = { icon: string; label: string; note?: string; color?: string };
 
-export const TECH = [
+export const TECH: { icon: string; iconColor: string; title: string; big?: boolean; items: TechItem[] }[] = [
   {
     icon: "pi-desktop",
     iconColor: "#0f8c89",
     title: "Frontend",
     items: [
-      chip("A", "Angular 22.1", "#dd0031"),
-      chip("TS", "TypeScript", "#3178c6"),
-      chip("((·))", "Signals", "#7c3aed", { fs: 5 }),
-      chip("Rx", "RxJS", "#d6247f", { r: "50%" }),
-      chip("P", "PrimeNG", "#dd0031", { r: "50% 50% 4px 4px" }),
-      chip("S", "SCSS", "#cd6799", { r: "50%" }),
+      { icon: "angular", label: "Angular 22.1" },
+      { icon: "ts", label: "TypeScript" },
+      { icon: "signals", label: "Signals" },
+      { icon: "rxjs", label: "RxJS" },
+      { icon: "primeng", label: "PrimeNG" },
+      { icon: "sass", label: "SCSS" },
     ],
   },
   {
     icon: "pi-cog",
-    iconColor: "#0b1d45",
+    iconColor: "#0f8c89",
     title: "Backend",
     items: [
-      chip(".NET", ".NET 10", "#5b3fd4", { r: "50%", fs: 5 }),
-      chip("C#", "C#", "#68217a"),
-      chip("◎", "CQRS", "#0b1d45", { r: "50%" }),
-      chip("⬡", "DDD", "#0f8c89"),
-      chip("EF", "EF Core", "#1e3a8a", { fs: 6 }),
-      chip("{ }", "REST APIs", "#0b1d45", { fs: 6 }),
+      { icon: "dotnet", label: ".NET 10" },
+      { icon: "csharp", label: "C#" },
+      { icon: "pi-circle-fill", label: "CQRS", color: "#0b1d45" },
+      { icon: "pi-box", label: "DDD", color: "#0f8c89" },
+      { icon: "ef", label: "EF Core" },
+      { icon: "text:{ }", label: "REST APIs", color: "#0b1d45" },
     ],
   },
   {
     icon: "pi-database",
     iconColor: "#0f8c89",
     title: "Data & infrastructure",
+    big: true,
     items: [
-      chip("PG", "PostgreSQL", "#336791", { size: 22, r: "50%", fs: 8 }),
-      chip("🐳", "Docker Compose", "#2496ed", { size: 22, fs: 11 }),
-      chip("", "GitHub Actions", "#0b1d45", { size: 22, r: "50%" }),
+      { icon: "postgres", label: "PostgreSQL" },
+      { icon: "docker", label: "Docker Compose" },
+      { icon: "pi-github", label: "GitHub Actions", color: "#0b1d45" },
     ],
   },
   {
@@ -123,21 +82,22 @@ export const TECH = [
     iconColor: "#0f8c89",
     title: "Quality",
     items: [
-      chip("ES", "ESLint", "#4b32c3", { r: "50%", fs: 6 }),
-      chip("P", "Prettier", "#f7b93e"),
-      chip("✓", "Tests (unitarios e integración)", "#0f8c89"),
-      chip("</>", "Code review", "#0b1d45", { fs: 5.5 }),
-      chip("◉", "Audit trail", "#0f8c89", { r: "50%" }),
+      { icon: "eslint", label: "ESLint" },
+      { icon: "prettier", label: "Prettier" },
+      { icon: "pi-check-square", label: "Tests", note: "(unitarios e integración)", color: "#0b1d45" },
+      { icon: "pi-file", label: "Code review", color: "#0b1d45" },
+      { icon: "pi-history", label: "Audit trail", color: "#0f8c89" },
     ],
   },
 ];
 
 export const PROCESS = [
-  { icon: "pi-pencil", title: "Diseño", desc: "Mockups y estados" },
-  { icon: "pi-file", title: "SPEC", desc: "Reglas y alcance" },
-  { icon: "pi-box", title: "Arquitectura", desc: "Contratos y datos" },
-  { icon: "pi-code", title: "Implementación", desc: "Frontend y backend" },
-  { icon: "pi-file-check", title: "Auditoría", desc: "QA, seguridad y accesibilidad" },
+  // "\n" marks the line break used in the design.
+  { icon: "pi-pencil", title: "Diseño", desc: "Mockups y\nestados" },
+  { icon: "pi-file", title: "SPEC", desc: "Reglas y\nalcance" },
+  { icon: "pi-box", title: "Arquitectura", desc: "Contratos y\ndatos" },
+  { icon: "pi-code", title: "Implementación", desc: "Frontend y\nbackend" },
+  { icon: "pi-file-check", title: "Auditoría", desc: "QA, seguridad\ny accesibilidad" },
 ];
 
 export const SPEC_ROWS = [

@@ -2,31 +2,31 @@ import { STEPS } from "@/app/landing.data";
 import { Icon } from "../mock-frames";
 
 const TONES = {
-  teal: { bg: "#e6f6f5", fg: "#0f8c89" },
-  blue: { bg: "#e8f0fd", fg: "#2563eb" },
+  teal: { bg: "#e8f6f5", fg: "#0f8c89" },
+  blue: { bg: "#eaf0fc", fg: "#2563eb" },
 };
 
 export function Flow() {
   return (
-    <section id="como-funciona" style={{ background: "#fff" }}>
-      <div className="fo-wrap" style={{ display: "flex", flexDirection: "column", gap: 44 }}>
-        <div style={{ textAlign: "center", display: "flex", flexDirection: "column", gap: 8, alignItems: "center" }}>
-          <h2 className="fo-h2" style={{ letterSpacing: "-0.03em" }}>De la solicitud al pago, todo conectado.</h2>
-          <p style={{ fontSize: 17, color: "#46557a" }}>Un flujo simple y completo para que nada se quede pendiente.</p>
-        </div>
-        <ol className="fo-steps" style={{ listStyle: "none", margin: 0, padding: 0 }}>
-          {STEPS.map((s, i) => (
-            <li key={s.title} style={{ display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center", gap: 10, position: "relative" }}>
-              <div style={{ width: 68, height: 68, borderRadius: "50%", background: TONES[s.tone].bg, color: TONES[s.tone].fg, display: "grid", placeItems: "center" }}>
-                <Icon name={s.icon} size={26} />
-              </div>
-              {i < STEPS.length - 1 && <i className="pi pi-arrow-right fo-step-arrow" aria-hidden="true" />}
-              <div style={{ fontSize: 16, fontWeight: 700, color: "#0b1d45", marginTop: 12 }}>{s.title}</div>
-              <div style={{ fontSize: 13.5, lineHeight: 1.4, color: "#46557a", maxWidth: 160, textWrap: "pretty" }}>{s.desc}</div>
-            </li>
-          ))}
-        </ol>
+    <section id="como-funciona" className="fo-flow">
+      <div className="fo-container" style={{ textAlign: "center" }}>
+        <h2 className="fo-title fo-title-md" style={{ fontSize: 36, lineHeight: 1.15, letterSpacing: "-0.035em" }}>
+          De la solicitud al pago, todo conectado.
+        </h2>
+        <p style={{ marginTop: 3, fontSize: 17.5, color: "#46557a" }}>Un flujo simple y completo para que nada se quede pendiente.</p>
       </div>
+      <ol className="fo-steps">
+        {STEPS.map((s, i) => (
+          <li key={s.title} className="fo-step">
+            <div style={{ width: 88, height: 88, borderRadius: "50%", background: TONES[s.tone].bg, color: TONES[s.tone].fg, display: "grid", placeItems: "center" }}>
+              <Icon name={s.icon} size={34} />
+            </div>
+            {i < STEPS.length - 1 && <i className="pi pi-arrow-right fo-step-arrow" aria-hidden="true" />}
+            <h3 style={{ marginTop: 13, fontSize: 17, fontWeight: 700, color: "#0b1d45" }}>{s.title}</h3>
+            <p style={{ marginTop: 5, fontSize: 14.5, lineHeight: 1.55, color: "#46557a", whiteSpace: "pre-line" }}>{s.desc}</p>
+          </li>
+        ))}
+      </ol>
     </section>
   );
 }
