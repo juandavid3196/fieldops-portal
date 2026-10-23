@@ -1,5 +1,8 @@
-import { GUIDE_ITEMS } from "@/app/landing.data";
+import { GUIDE_ICONS } from "@/content/landing.data";
+import { getDictionary, type Dictionary } from "@/i18n/dictionaries";
 import { Avatar, Bell, Icon, Leaf, StatusBar } from "../mock-frames";
+
+type Mock = Dictionary["mock"];
 
 /** Low-poly teal mountains at the bottom of the book cover. */
 function Mountains() {
@@ -17,7 +20,7 @@ function Mountains() {
   );
 }
 
-function Book() {
+function Book({ b }: { b: Mock["book"] }) {
   return (
     <div
       aria-hidden="true"
@@ -40,10 +43,10 @@ function Book() {
         <Leaf size={24} fill="#2cc2bd" />
         FieldOps
       </div>
-      <div style={{ marginTop: 26, fontSize: 8.5, letterSpacing: "0.2em", color: "#d5deea" }}>DOCUMENTACIÓN DEL PRODUCTO</div>
-      <div style={{ marginTop: 10, fontSize: 36, fontWeight: 700, color: "#fff", lineHeight: 1.05, letterSpacing: "-0.02em" }}>Guía de uso</div>
-      <div style={{ marginTop: 4, fontSize: 16, color: "#fff" }}>Tu operación, paso a paso.</div>
-      <div style={{ marginTop: 20, fontSize: 11, color: "#d5deea" }}>Inicio rápido · Roles · Operaciones</div>
+      <div style={{ marginTop: 26, fontSize: 8.5, letterSpacing: "0.2em", color: "#d5deea" }}>{b.kicker}</div>
+      <div style={{ marginTop: 10, fontSize: 36, fontWeight: 700, color: "#fff", lineHeight: 1.05, letterSpacing: "-0.02em" }}>{b.title}</div>
+      <div style={{ marginTop: 4, fontSize: 16, color: "#fff" }}>{b.subtitle}</div>
+      <div style={{ marginTop: 20, fontSize: 11, color: "#d5deea" }}>{b.topics}</div>
       <Mountains />
     </div>
   );
@@ -51,10 +54,11 @@ function Book() {
 
 const stat = { height: 38, border: "1px solid #e6ebf2", borderRadius: 5, display: "flex", alignItems: "center", justifyContent: "center", gap: 5 } as const;
 
-function GuideSheet() {
+function GuideSheet({ s }: { s: Mock["sheet"] }) {
   return (
     <div
       aria-hidden="true"
+      className="fo-mock"
       style={{
         position: "absolute",
         left: 310,
@@ -73,16 +77,16 @@ function GuideSheet() {
       <div style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 13, fontWeight: 700 }}>
         <Leaf size={15} />
         FieldOps
-        <span style={{ marginLeft: "auto", fontSize: 7.5, letterSpacing: ".16em", color: "#7b88a3", fontWeight: 500 }}>GUÍA DEL TÉCNICO</span>
+        <span style={{ marginLeft: "auto", fontSize: 7.5, letterSpacing: ".16em", color: "#7b88a3", fontWeight: 500 }}>{s.kicker}</span>
       </div>
-      <div style={{ marginTop: 20, fontSize: 8, fontWeight: 600, color: "#0f8c89", letterSpacing: ".1em" }}>03 / EJECUCIÓN EN CAMPO</div>
-      <div style={{ marginTop: 6, fontSize: 19.5, fontWeight: 700, lineHeight: 1.1, letterSpacing: "-0.02em" }}>Inicia tu próxima visita</div>
-      <div style={{ marginTop: 5, fontSize: 9.5, color: "#46557a" }}>Revisa el servicio asignado y avisa al cliente cuando estés en camino.</div>
+      <div style={{ marginTop: 20, fontSize: 8, fontWeight: 600, color: "#0f8c89", letterSpacing: ".1em" }}>{s.chapter}</div>
+      <div style={{ marginTop: 6, fontSize: 19.5, fontWeight: 700, lineHeight: 1.1, letterSpacing: "-0.02em" }}>{s.title}</div>
+      <div style={{ marginTop: 5, fontSize: 9.5, color: "#46557a" }}>{s.lead}</div>
       <div style={{ marginTop: 12, background: "#e8f6f5", borderRadius: 6, padding: "9px 11px", fontSize: 9, color: "#46557a", display: "flex", gap: 9, alignItems: "center" }}>
         <Icon name="pi-file" size={15} style={{ color: "#0f8c89" }} />
         <div>
-          <b style={{ color: "#0b5e5b", fontSize: 9.5 }}>Antes de empezar</b>
-          <div style={{ marginTop: 2 }}>Accede como técnico y abre una visita asignada.</div>
+          <b style={{ color: "#0b5e5b", fontSize: 9.5 }}>{s.tipTitle}</b>
+          <div style={{ marginTop: 2 }}>{s.tip}</div>
         </div>
       </div>
       <div style={{ margin: "14px 0 0 2px", width: 207, height: 300, background: "#0b0f19", borderRadius: 26, padding: 5 }}>
@@ -101,8 +105,8 @@ function GuideSheet() {
           <div style={{ padding: "9px 10px", display: "flex", flexDirection: "column", gap: 7 }}>
             <div style={{ display: "flex", alignItems: "flex-start" }}>
               <div>
-                <div style={{ fontSize: 11, fontWeight: 700 }}>Trabajos de hoy</div>
-                <div style={{ fontSize: 7.5, color: "#7b88a3", marginTop: 2 }}>Miércoles, 23 de sep de 2026</div>
+                <div style={{ fontSize: 11, fontWeight: 700 }}>{s.today}</div>
+                <div style={{ fontSize: 7.5, color: "#7b88a3", marginTop: 2 }}>{s.date}</div>
               </div>
               <Icon name="pi-filter" size={10} style={{ marginLeft: "auto" }} />
             </div>
@@ -110,33 +114,37 @@ function GuideSheet() {
               <div style={stat}>
                 <div style={{ textAlign: "center" }}>
                   <div style={{ fontSize: 11, fontWeight: 700 }}>4</div>
-                  <div style={{ fontSize: 6.5, color: "#7b88a3" }}>trabajos</div>
+                  <div style={{ fontSize: 6.5, color: "#7b88a3" }}>{s.stats[0]}</div>
                 </div>
               </div>
               <div style={stat}>
                 <Icon name="pi-clock" size={9} style={{ color: "#46557a" }} />
                 <div>
                   <div style={{ fontSize: 11, fontWeight: 700 }}>7.5</div>
-                  <div style={{ fontSize: 6, color: "#7b88a3" }}>horas programadas</div>
+                  <div style={{ fontSize: 6, color: "#7b88a3" }}>{s.stats[1]}</div>
                 </div>
               </div>
               <div style={stat}>
                 <Icon name="pi-car" size={9} style={{ color: "#46557a" }} />
                 <div>
                   <div style={{ fontSize: 11, fontWeight: 700 }}>52 min</div>
-                  <div style={{ fontSize: 6, color: "#7b88a3" }}>de traslado</div>
+                  <div style={{ fontSize: 6, color: "#7b88a3" }}>{s.stats[2]}</div>
                 </div>
               </div>
             </div>
-            <div style={{ fontSize: 7.5, color: "#7b88a3" }}>2:00 p. m. · WO-3091</div>
+            <div style={{ fontSize: 7.5, color: "#7b88a3" }}>{s.next}</div>
             <div style={{ border: "1px solid #e6ebf2", borderRadius: 6, padding: 8, display: "grid", gridTemplateColumns: "1fr auto", gap: 6 }}>
               <div>
-                <div style={{ fontSize: 10, fontWeight: 700, lineHeight: 1.2 }}>Reparación de fuga en fregadero</div>
+                <div style={{ fontSize: 10, fontWeight: 700, lineHeight: 1.2 }}>{s.job}</div>
                 <div style={{ fontSize: 7.5, color: "#7b88a3", marginTop: 3 }}>#WO-3091</div>
               </div>
               <div style={{ fontSize: 7, color: "#46557a", lineHeight: 1.6 }}>
-                <div><Icon name="pi-car" size={7} /> 22 min · 8.4 mi</div>
-                <div><Icon name="pi-clock" size={7} /> 2:00 – 3:30 p. m.</div>
+                <div>
+                  <Icon name="pi-car" size={7} /> 22 min · 8.4 mi
+                </div>
+                <div>
+                  <Icon name="pi-clock" size={7} /> {s.window}
+                </div>
               </div>
             </div>
           </div>
@@ -146,37 +154,39 @@ function GuideSheet() {
   );
 }
 
-export function Guide() {
+export async function Guide() {
+  const { guide: t, mock } = await getDictionary();
   return (
     <section id="guia" className="fo-guide">
       <div className="fo-container fo-guide-grid">
         <div className="fo-stage fo-guide-stage">
-          <Book />
-          <GuideSheet />
+          <Book b={mock.book} />
+          <GuideSheet s={mock.sheet} />
         </div>
         <div className="fo-guide-copy" style={{ minWidth: 0 }}>
-          <div className="fo-eyebrow" style={{ color: "#2b6f86" }}>Guía de uso</div>
+          <div className="fo-eyebrow" style={{ color: "var(--eyebrow-alt)" }}>{t.eyebrow}</div>
           <h2 className="fo-title fo-title-lg" style={{ marginTop: 13, fontSize: 38.5, lineHeight: 1.15, letterSpacing: "-0.04em", whiteSpace: "nowrap" }}>
-            Aprende FieldOps paso a paso.
+            {t.title}
           </h2>
-          <p style={{ marginTop: 12, fontSize: 19, lineHeight: "27px", color: "#46557a", maxWidth: 560 }}>
-            Recorre cada función por rol o descarga el manual completo para consultarlo cuando lo necesites.
-          </p>
+          <p style={{ marginTop: 12, fontSize: 19, lineHeight: "27px", color: "var(--body)", maxWidth: 560 }}>{t.lead}</p>
           <ul style={{ listStyle: "none", margin: "22px 0 0", padding: 0, display: "flex", flexDirection: "column", gap: 14 }}>
-            {GUIDE_ITEMS.map((g) => (
-              <li key={g.title} style={{ display: "flex", gap: 34, alignItems: "center", height: 22, fontSize: 15.5, color: g.strong ? "#0b1d45" : "#46557a", fontWeight: g.strong ? 500 : 400 }}>
-                <Icon name={g.icon} size={20} style={{ color: "#0f8c89", width: 20, textAlign: "center" }} />
-                {g.title}
+            {t.items.map((item, i) => (
+              <li
+                key={item}
+                style={{ display: "flex", gap: 34, alignItems: "center", height: 22, fontSize: 15.5, color: i < 2 ? "var(--ink-strong)" : "var(--body)", fontWeight: i < 2 ? 500 : 400 }}
+              >
+                <Icon name={GUIDE_ICONS[i]} size={20} style={{ color: "var(--icon-teal)", width: 20, textAlign: "center" }} />
+                {item}
               </li>
             ))}
           </ul>
           {/* Targets TBD: guide route and PDF asset. */}
           <div style={{ marginTop: 30, display: "flex", flexWrap: "wrap", gap: 15 }}>
-            <a href="#guia" className="fo-btn fo-btn-primary" style={{ width: 220, height: 48, fontSize: 16 }}>
-              Explorar la guía <Icon name="pi-arrow-right" size={13} />
+            <a href="#guia" className="fo-btn fo-btn-primary" style={{ minWidth: 220, height: 48, padding: "0 24px", fontSize: 16 }}>
+              {t.explore} <Icon name="pi-arrow-right" size={13} />
             </a>
-            <a href="#guia" className="fo-btn fo-btn-outline" style={{ width: 243, height: 48, fontSize: 16 }}>
-              <Icon name="pi-file" size={17} /> Descargar manual PDF
+            <a href="#guia" className="fo-btn fo-btn-outline" style={{ minWidth: 243, height: 48, padding: "0 24px", fontSize: 16 }}>
+              <Icon name="pi-file" size={17} /> {t.download}
             </a>
           </div>
         </div>

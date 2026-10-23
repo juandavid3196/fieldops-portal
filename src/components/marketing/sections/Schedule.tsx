@@ -1,4 +1,5 @@
-import { DAYS, HOURS, NAV_SCHED, PLAN_CHECKS } from "@/app/landing.data";
+import { DAYS, HOURS, NAV_SCHED } from "@/content/landing.data";
+import { getDictionary } from "@/i18n/dictionaries";
 import { Box, Icon, Sidebar, WINDOW_SHADOW, type SidebarSpec } from "../mock-frames";
 
 const SIDEBAR: SidebarSpec = {
@@ -13,7 +14,7 @@ const HEADER_H = 34;
 function ScheduleMock() {
   return (
     <div
-      className="fo-stage fo-sched-stage"
+      className="fo-stage fo-sched-stage fo-mock"
       aria-hidden="true"
       style={{ background: "#fff", borderRadius: 8, boxShadow: WINDOW_SHADOW, overflow: "hidden", display: "flex" }}
     >
@@ -126,31 +127,29 @@ function ScheduleMock() {
   );
 }
 
-export function Schedule() {
+export async function Schedule() {
+  const { schedule: t } = await getDictionary();
   return (
     <section className="fo-sched">
       <div className="fo-container">
         <div className="fo-sched-grid">
           <ScheduleMock />
           <div style={{ minWidth: 0 }}>
-            <h2 className="fo-title fo-title-lg" style={{ fontSize: 41, lineHeight: "48px", marginTop: -2, letterSpacing: "-0.04em" }}>
-              Planifica con claridad.
+            <h2 className="fo-title fo-title-lg fo-sched-title" style={{ fontSize: 41, lineHeight: "48px", marginTop: -2, letterSpacing: "-0.04em" }}>
+              {t.title1}
               <br />
-              <span className="teal">Ejecuta con confianza.</span>
+              <span className="teal">{t.title2}</span>
             </h2>
-            <p style={{ marginTop: 21, fontSize: 17, lineHeight: "24px", color: "#46557a", maxWidth: 472 }}>
-              Coordina personas, visitas y recursos desde un solo lugar. Mantén a tu equipo alineado, da seguimiento en tiempo real y asegura un cierre
-              completo de cada servicio.
-            </p>
+            <p style={{ marginTop: 21, fontSize: 17, lineHeight: "24px", color: "var(--body)", maxWidth: 472 }}>{t.lead}</p>
             <ul style={{ listStyle: "none", margin: "36px 0 0", padding: 0, display: "flex", flexDirection: "column", gap: 33 }}>
-              {PLAN_CHECKS.map((c) => (
+              {t.checks.map((c) => (
                 <li key={c.title} style={{ display: "flex", gap: 23, alignItems: "center" }}>
                   <div style={{ width: 32, height: 32, flex: "none", borderRadius: "50%", background: "#0f8c89", color: "#fff", display: "grid", placeItems: "center" }}>
                     <Icon name="pi-check" size={14} />
                   </div>
                   <div>
-                    <h3 style={{ fontSize: 16.5, fontWeight: 600, color: "#0b1d45" }}>{c.title}</h3>
-                    <div style={{ fontSize: 14, color: "#46557a", marginTop: 7 }}>{c.desc}</div>
+                    <h3 style={{ fontSize: 16.5, fontWeight: 600, color: "var(--ink-strong)" }}>{c.title}</h3>
+                    <div style={{ fontSize: 14, color: "var(--body)", marginTop: 7 }}>{c.desc}</div>
                   </div>
                 </li>
               ))}

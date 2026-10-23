@@ -1,19 +1,20 @@
 import type { CSSProperties, ReactNode } from "react";
 import {
   APPS,
-  ARCH_CHECKS,
   CONTRIB_LINKS,
-  DECISIONS,
+  DECISION_ICONS,
   LAYERS,
-  PILLARS,
+  PILLAR_ICONS,
   PIPELINE,
-  PROCESS,
-  QUAL_CHECKS,
+  PROCESS_ICONS,
   SPEC_ROWS,
   TECH,
-} from "@/app/caso-tecnico/case-study.data";
+} from "@/content/case-study.data";
+import { getDictionary, getLocale, type Dictionary } from "@/i18n/dictionaries";
 import { Icon } from "../marketing/mock-frames";
 import { DotnetMark, PostgresMark, TechIcon } from "./BrandIcons";
+
+type CaseCopy = Dictionary["caseStudy"];
 
 function Check({ size, icon }: { size: number; icon: number }) {
   return (
@@ -22,6 +23,14 @@ function Check({ size, icon }: { size: number; icon: number }) {
     </div>
   );
 }
+
+const lines = (parts: string[]) =>
+  parts.map((part, i) => (
+    <span key={part}>
+      {i > 0 && <br />}
+      {part}
+    </span>
+  ));
 
 function Title({ eyebrow, children, light }: { eyebrow: string; children: ReactNode; light?: boolean }) {
   return (
@@ -50,54 +59,53 @@ function Head({ eyebrow, title, lead, light }: { eyebrow: string; title: ReactNo
   );
 }
 
-export function Challenge() {
+export async function Challenge() {
+  const { caseStudy } = await getDictionary();
+  const t = caseStudy.challenge;
   return (
-    <section id="reto" className="cs-section" style={{ background: "#fff" }}>
+    <section id="reto" className="cs-section" style={{ background: "var(--bg)" }}>
       <div className="fo-container">
-        <Head
-          eyebrow="El reto"
-          title={<>Modelar una operación completa,<br />no solo una interfaz.</>}
-          lead="Gestionar solicitudes, cotizaciones, órdenes de trabajo, visitas, técnicos, facturas y pagos en un mismo sistema, manteniendo aislamiento por organización (tenant) y control de permisos por rol."
-        />
+        <Head eyebrow={t.eyebrow} title={lines(t.title)} lead={t.lead} />
         <div className="cs-reto">
-        {PILLARS.map((p) => (
-          <div key={p.title} className="cs-card" style={{ padding: "30px 28px" }}>
-            <Icon name={p.icon} size={36} style={{ color: "#0f8c89" }} />
-            <h3 style={{ marginTop: 22, fontSize: 19, fontWeight: 700, color: "#0b1d45", letterSpacing: "-0.01em" }}>{p.title}</h3>
-            <p style={{ marginTop: 10, fontSize: 15.5, lineHeight: 1.55, color: "#46557a" }}>{p.desc}</p>
-          </div>
-        ))}
+          {t.pillars.map((p, i) => (
+            <div key={p.title} className="cs-card" style={{ padding: "30px 28px" }}>
+              <Icon name={PILLAR_ICONS[i]} size={36} style={{ color: "var(--icon-teal)" }} />
+              <h3 style={{ marginTop: 22, fontSize: 19, fontWeight: 700, color: "var(--ink-strong)", letterSpacing: "-0.01em" }}>{p.title}</h3>
+              <p style={{ marginTop: 10, fontSize: 15.5, lineHeight: 1.55, color: "var(--body)" }}>{p.desc}</p>
+            </div>
+          ))}
         </div>
       </div>
     </section>
   );
 }
 
-const blueBox: CSSProperties = { position: "absolute", background: "#e9f1fc", border: "1px solid #c9daf4", borderRadius: 5, boxSizing: "border-box" };
-const arrow = (left: number, top: number) => <Icon name="pi-arrow-down" size={11} style={{ position: "absolute", left, top, color: "#2563eb" }} />;
+const blueBox: CSSProperties = { position: "absolute", background: "var(--diag-box)", border: "1px solid var(--diag-border)", borderRadius: 5, boxSizing: "border-box" };
+const arrow = (left: number, top: number) => <Icon name="pi-arrow-down" size={11} style={{ position: "absolute", left, top, color: "var(--diag-arrow)" }} />;
+const strong: CSSProperties = { fontWeight: 600, color: "var(--ink-strong)" };
 
-function LayerDiagram() {
+function LayerDiagram({ t }: { t: CaseCopy["architecture"] }) {
   return (
     <div className="fo-stage cs-arch-stage" aria-hidden="true">
       <div style={{ ...blueBox, left: 0, top: 0, width: 563, height: 90 }}>
-        <div style={{ height: 34, display: "flex", alignItems: "center", justifyContent: "center", gap: 9, fontSize: 12, fontWeight: 600, color: "#0b1d45" }}>
-          <Icon name="pi-desktop" size={20} style={{ color: "#2563eb" }} />
-          Angular applications <span style={{ color: "#46557a", fontWeight: 400 }}>(Angular 22.1)</span>
+        <div style={{ height: 34, display: "flex", alignItems: "center", justifyContent: "center", gap: 9, fontSize: 12, ...strong }}>
+          <Icon name="pi-desktop" size={20} style={{ color: "var(--diag-icon)" }} />
+          Angular applications <span style={{ color: "var(--body)", fontWeight: 400 }}>(Angular 22.1)</span>
         </div>
         <div style={{ position: "absolute", left: 6, right: 6, top: 33, display: "grid", gridTemplateColumns: "repeat(3,minmax(0,1fr))", gap: 5 }}>
-          {APPS.map((a) => (
-            <div key={a.title} style={{ height: 51, background: "#fff", border: "1px solid #dfe8f5", borderRadius: 4, padding: "0 10px", display: "flex", alignItems: "center", gap: 10 }}>
-              <Icon name={a.icon} size={18} style={{ color: "#0f8c89" }} />
-              <div style={{ whiteSpace: "nowrap" }}>
-                <div style={{ fontSize: 11.5, fontWeight: 600, color: "#0b1d45" }}>{a.title}</div>
-                <div style={{ fontSize: 10, color: "#46557a", marginTop: 2 }}>{a.desc}</div>
+          {APPS.map((a, i) => (
+            <div key={a.title} style={{ height: 51, background: "var(--diag-inner)", border: "1px solid var(--diag-inner-border)", borderRadius: 4, padding: "0 10px", display: "flex", alignItems: "center", gap: 10 }}>
+              <Icon name={a.icon} size={18} style={{ color: "var(--icon-teal)" }} />
+              <div style={{ whiteSpace: "nowrap", minWidth: 0 }}>
+                <div style={{ fontSize: 11.5, ...strong }}>{a.title}</div>
+                <div style={{ fontSize: 10, color: "var(--body)", marginTop: 2 }}>{t.apps[i]}</div>
               </div>
             </div>
           ))}
         </div>
       </div>
       {arrow(277, 95)}
-      <div style={{ ...blueBox, left: 0, top: 108, width: 563, height: 37, background: "#e2e3fb", borderColor: "#c9ccf5", display: "flex", alignItems: "center", justifyContent: "center", gap: 10, fontSize: 12.5, fontWeight: 600, color: "#0b1d45" }}>
+      <div style={{ ...blueBox, left: 0, top: 108, width: 563, height: 37, background: "var(--diag-api)", borderColor: "var(--diag-api-border)", display: "flex", alignItems: "center", justifyContent: "center", gap: 10, fontSize: 12.5, ...strong }}>
         <DotnetMark size={26} />
         .NET 10 Web API
       </div>
@@ -106,11 +114,11 @@ function LayerDiagram() {
       {arrow(470, 150)}
       {LAYERS.map((l, i) => (
         <div key={l.title} style={{ ...blueBox, left: [0, 193, 386][i], top: 164, width: [188, 187, 177][i], height: 68, display: "flex", alignItems: "center", gap: 11, padding: "0 11px" }}>
-          <Icon name={l.icon} size={22} style={{ color: "#0f8c89" }} />
-          <div>
-            <div style={{ fontSize: 11.5, fontWeight: 600, color: "#0b1d45" }}>{l.title}</div>
-            <div style={{ fontSize: 11, fontWeight: 600, color: "#0b1d45" }}>{l.key}</div>
-            <div style={{ fontSize: 9, color: "#46557a", marginTop: 2, whiteSpace: "nowrap" }}>{l.desc}</div>
+          <Icon name={l.icon} size={22} style={{ color: "var(--icon-teal)" }} />
+          <div style={{ minWidth: 0 }}>
+            <div style={{ fontSize: 11.5, ...strong }}>{l.title}</div>
+            <div style={{ fontSize: 11, ...strong }}>{l.key}</div>
+            <div style={{ fontSize: 9, color: "var(--body)", marginTop: 2, whiteSpace: "nowrap" }}>{t.layers[i]}</div>
           </div>
         </div>
       ))}
@@ -119,39 +127,37 @@ function LayerDiagram() {
       <div style={{ ...blueBox, left: 0, top: 247, width: 277, height: 62, display: "flex", alignItems: "center", justifyContent: "center", gap: 14 }}>
         <PostgresMark size={32} />
         <div>
-          <div style={{ fontSize: 12, fontWeight: 600, color: "#0b1d45" }}>PostgreSQL</div>
-          <div style={{ fontSize: 11, color: "#46557a", marginTop: 2 }}>Datos de la aplicación</div>
+          <div style={{ fontSize: 12, ...strong }}>PostgreSQL</div>
+          <div style={{ fontSize: 11, color: "var(--body)", marginTop: 2 }}>{t.storage[0]}</div>
         </div>
       </div>
       <div style={{ ...blueBox, left: 286, top: 247, width: 277, height: 62, display: "flex", alignItems: "center", justifyContent: "center", gap: 14 }}>
-        <Icon name="pi-folder" size={30} style={{ color: "#2563eb" }} />
+        <Icon name="pi-folder" size={30} style={{ color: "var(--diag-icon)" }} />
         <div>
-          <div style={{ fontSize: 12, fontWeight: 600, color: "#0b1d45" }}>File storage</div>
-          <div style={{ fontSize: 11, color: "#46557a", marginTop: 2 }}>Archivos y evidencias</div>
+          <div style={{ fontSize: 12, ...strong }}>File storage</div>
+          <div style={{ fontSize: 11, color: "var(--body)", marginTop: 2 }}>{t.storage[1]}</div>
         </div>
       </div>
     </div>
   );
 }
 
-export function Architecture() {
+export async function Architecture() {
+  const { caseStudy } = await getDictionary();
+  const t = caseStudy.architecture;
   return (
     <section id="arquitectura" className="cs-section cs-arch">
       <div className="fo-container">
-        <Head
-          eyebrow="Arquitectura"
-          title="Una base preparada para crecer."
-          lead="Una arquitectura en capas que separa claramente las responsabilidades, facilita el mantenimiento y permite evolucionar el sistema sin afectar el núcleo del negocio."
-        />
+        <Head eyebrow={t.eyebrow} title={t.title} lead={t.lead} />
         <div className="cs-arch-body">
-          <LayerDiagram />
+          <LayerDiagram t={t} />
           <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "flex", flexDirection: "column", gap: 26 }}>
-            {ARCH_CHECKS.map((c) => (
+            {t.checks.map((c) => (
               <li key={c.title} style={{ display: "flex", gap: 18, alignItems: "center" }}>
                 <Check size={32} icon={13} />
                 <div>
-                  <div style={{ fontSize: 16.5, fontWeight: 600, color: "#0b1d45" }}>{c.title}</div>
-                  <div style={{ fontSize: 14.5, color: "#46557a", marginTop: 4 }}>{c.desc}</div>
+                  <div style={{ fontSize: 16.5, fontWeight: 600, color: "var(--ink-strong)" }}>{c.title}</div>
+                  <div style={{ fontSize: 14.5, color: "var(--body)", marginTop: 4 }}>{c.desc}</div>
                 </div>
               </li>
             ))}
@@ -162,30 +168,29 @@ export function Architecture() {
   );
 }
 
-export function Technologies() {
+export async function Technologies() {
+  const { caseStudy } = await getDictionary();
+  const t = caseStudy.tech;
   return (
-    <section className="cs-section" style={{ background: "#fff" }}>
+    <section className="cs-section" style={{ background: "var(--bg)" }}>
       <div className="fo-container">
-        <Head
-          eyebrow="Tecnologías"
-          title="Elegidas por su capacidad, no por moda."
-        />
+        <Head eyebrow={t.eyebrow} title={t.title} />
         <div className="cs-tech">
           {TECH.map((g) => (
             <div key={g.title} className="cs-card" style={{ padding: "26px 26px 28px", minWidth: 0 }}>
-              <h3 style={{ display: "flex", alignItems: "center", gap: 14, fontSize: 17, fontWeight: 700, color: "#0b1d45", paddingBottom: 18, borderBottom: "1px solid #eef2f7" }}>
+              <h3 style={{ display: "flex", alignItems: "center", gap: 14, fontSize: 17, fontWeight: 700, color: "var(--ink-strong)", paddingBottom: 18, borderBottom: "1px solid var(--line-soft)" }}>
                 <Icon name={g.icon} size={26} style={{ color: g.iconColor, width: 28 }} />
                 {g.title}
               </h3>
               <ul style={{ listStyle: "none", margin: "18px 0 0", padding: 0, display: "flex", flexDirection: "column", gap: g.big ? 18 : 13 }}>
                 {g.items.map((x) => (
-                  <li key={x.label} style={{ display: "flex", alignItems: "center", gap: 14, fontSize: 15, color: "#46557a" }}>
+                  <li key={x.label} style={{ display: "flex", alignItems: "center", gap: 14, fontSize: 15, color: "var(--body)" }}>
                     <span style={{ width: 28, display: "grid", placeItems: "center", flex: "none" }}>
                       <TechIcon id={x.icon} size={g.big ? 28 : 22} color={x.color} />
                     </span>
                     <span>
                       {x.label}
-                      {x.note && <span style={{ fontSize: 13 }}> {x.note}</span>}
+                      {x.note && <span style={{ fontSize: 13 }}> {t.testsNote}</span>}
                     </span>
                   </li>
                 ))}
@@ -198,19 +203,16 @@ export function Technologies() {
   );
 }
 
-export function SpecDriven() {
+export async function SpecDriven() {
+  const { caseStudy } = await getDictionary();
+  const t = caseStudy.spec;
   return (
     <section id="proceso" className="cs-section cs-spec">
       <div className="fo-container">
-        <Head
-          light
-          eyebrow="Spec-driven development"
-          title={<>Cada feature comenzó con<br />decisiones explícitas.</>}
-          lead="Diseño, reglas de negocio y criterios de aceptación antes de escribir código."
-        />
+        <Head light eyebrow={t.eyebrow} title={lines(t.title)} lead={t.lead} />
         <div className="cs-spec-body">
           <ol className="cs-proc">
-            {PROCESS.map((p, i) => (
+            {t.steps.map((p, i) => (
               <li
                 key={p.title}
                 style={{
@@ -247,27 +249,27 @@ export function SpecDriven() {
                 >
                   {i + 1}
                 </span>
-                <Icon name={p.icon} size={30} style={{ color: "#2cc2bd" }} />
+                <Icon name={PROCESS_ICONS[i]} size={30} style={{ color: "#2cc2bd" }} />
                 <div style={{ marginTop: 14, fontSize: 16, fontWeight: 600, color: "#fff" }}>{p.title}</div>
                 <div style={{ marginTop: 6, fontSize: 14.5, lineHeight: 1.5, color: "#bfcadb", whiteSpace: "pre-line" }}>{p.desc}</div>
               </li>
             ))}
           </ol>
-          <div aria-hidden="true" style={{ background: "#fff", borderRadius: 8, overflow: "hidden", boxShadow: "0 24px 50px rgba(0,0,0,.28)", minWidth: 0 }}>
-            <div style={{ height: 52, display: "flex", alignItems: "center", gap: 12, padding: "0 20px", borderBottom: "1px solid #edf1f6" }}>
-              <span style={{ width: 16, height: 12, border: "1.5px solid #9aa5b8", borderRadius: 2 }} />
-              <span style={{ fontSize: 14.5, fontWeight: 600, color: "#0b1d45" }}>Solicitud de servicio – SPEC</span>
-              <span style={{ marginLeft: "auto", fontSize: 12, color: "#7b88a3" }}>‹ ›</span>
+          <div aria-hidden="true" style={{ background: "var(--surface)", borderRadius: 8, overflow: "hidden", boxShadow: "0 24px 50px rgba(0,0,0,.28)", border: "1px solid var(--mock-ring)", minWidth: 0 }}>
+            <div style={{ height: 52, display: "flex", alignItems: "center", gap: 12, padding: "0 20px", borderBottom: "1px solid var(--line-soft)" }}>
+              <span style={{ width: 16, height: 12, border: "1.5px solid var(--muted)", borderRadius: 2 }} />
+              <span style={{ fontSize: 14.5, fontWeight: 600, color: "var(--ink-strong)" }}>{t.card}</span>
+              <span style={{ marginLeft: "auto", fontSize: 12, color: "var(--muted)" }}>‹ ›</span>
             </div>
             <div style={{ padding: "6px 20px 10px" }}>
               {SPEC_ROWS.map((r, i) => (
-                <div key={r.title} style={{ padding: "13px 0", display: "flex", gap: 16, alignItems: "center", borderBottom: i < SPEC_ROWS.length - 1 ? "1px solid #f1f4f8" : undefined }}>
-                  <span style={{ width: 36, height: 36, flex: "none", borderRadius: 6, background: "#eef3fc", color: "#1d4ed8", display: "grid", placeItems: "center" }}>
+                <div key={r.title} style={{ padding: "13px 0", display: "flex", gap: 16, alignItems: "center", borderBottom: i < SPEC_ROWS.length - 1 ? "1px solid var(--line-soft)" : undefined }}>
+                  <span style={{ width: 36, height: 36, flex: "none", borderRadius: 6, background: "var(--tint-blue)", color: "var(--icon-blue)", display: "grid", placeItems: "center" }}>
                     <Icon name={r.icon} size={15} />
                   </span>
                   <div>
-                    <div style={{ fontSize: 14.5, fontWeight: 600, color: "#0b1d45" }}>{r.title}</div>
-                    <div style={{ fontSize: 13, color: "#46557a", marginTop: 2 }}>{r.desc}</div>
+                    <div style={{ fontSize: 14.5, fontWeight: 600, color: "var(--ink-strong)" }}>{r.title}</div>
+                    <div style={{ fontSize: 13, color: "var(--body)", marginTop: 2 }}>{t.rows[i]}</div>
                   </div>
                 </div>
               ))}
@@ -279,22 +281,21 @@ export function SpecDriven() {
   );
 }
 
-export function Decisions() {
+export async function Decisions() {
+  const { caseStudy } = await getDictionary();
+  const t = caseStudy.decisions;
   return (
-    <section id="decisiones" className="cs-section" style={{ background: "#fff" }}>
+    <section id="decisiones" className="cs-section" style={{ background: "var(--bg)" }}>
       <div className="fo-container">
-        <Head
-          eyebrow="Decisiones técnicas"
-          title="Los retos que definieron el proyecto."
-        />
+        <Head eyebrow={t.eyebrow} title={t.title} />
         <div className="cs-dec">
-          {DECISIONS.map((d) => (
+          {t.items.map((d, i) => (
             <div key={d.title} className="cs-card" style={{ padding: "26px 24px 22px", display: "flex", flexDirection: "column", minWidth: 0 }}>
-              <Icon name={d.icon} size={30} style={{ color: "#0f8c89" }} />
-              <h3 style={{ marginTop: 18, fontSize: 17, fontWeight: 700, color: "#0b1d45", letterSpacing: "-0.01em" }}>{d.title}</h3>
-              <p style={{ marginTop: 10, fontSize: 15, lineHeight: 1.55, color: "#46557a", flex: 1 }}>{d.desc}</p>
-              <div style={{ marginTop: 20, paddingTop: 14, borderTop: "1px solid #f1f4f8", display: "flex", alignItems: "center", gap: 7, fontSize: 13, color: "#46557a" }}>
-                Problema <Icon name="pi-arrow-right" size={8} /> decisión <Icon name="pi-arrow-right" size={8} /> resultado
+              <Icon name={DECISION_ICONS[i]} size={30} style={{ color: "var(--icon-teal)" }} />
+              <h3 style={{ marginTop: 18, fontSize: 17, fontWeight: 700, color: "var(--ink-strong)", letterSpacing: "-0.01em" }}>{d.title}</h3>
+              <p style={{ marginTop: 10, fontSize: 15, lineHeight: 1.55, color: "var(--body)", flex: 1 }}>{d.desc}</p>
+              <div style={{ marginTop: 20, paddingTop: 14, borderTop: "1px solid var(--line-soft)", display: "flex", alignItems: "center", gap: 7, fontSize: 13, color: "var(--body)" }}>
+                {t.path[0]} <Icon name="pi-arrow-right" size={8} /> {t.path[1]} <Icon name="pi-arrow-right" size={8} /> {t.path[2]}
               </div>
             </div>
           ))}
@@ -304,48 +305,47 @@ export function Decisions() {
   );
 }
 
-export function Quality() {
+export async function Quality() {
+  const { caseStudy } = await getDictionary();
+  const t = caseStudy.quality;
   return (
     <section id="calidad" className="cs-section cs-qual">
       <div className="fo-container">
-        <Head
-          eyebrow="Calidad y entrega"
-          title="Construido como si fuera a producción."
-        />
+        <Head eyebrow={t.eyebrow} title={t.title} />
         <div className="cs-qual-body">
-          <div aria-hidden="true" className="cs-card" style={{ overflow: "hidden", boxShadow: "0 8px 24px rgba(11,29,69,.06)" }}>
-            <div style={{ height: 56, display: "flex", alignItems: "center", gap: 12, padding: "0 22px", borderBottom: "1px solid #f1f4f8" }}>
-              <Icon name="pi-github" size={20} style={{ color: "#0b1d45" }} />
-              <span style={{ fontSize: 15, fontWeight: 600, color: "#0b1d45" }}>GitHub Actions</span>
+          <div aria-hidden="true" className="cs-card" style={{ overflow: "hidden" }}>
+            <div style={{ height: 56, display: "flex", alignItems: "center", gap: 12, padding: "0 22px", borderBottom: "1px solid var(--line-soft)" }}>
+              <Icon name="pi-github" size={20} style={{ color: "var(--ink-strong)" }} />
+              <span style={{ fontSize: 15, fontWeight: 600, color: "var(--ink-strong)" }}>GitHub Actions</span>
               <span style={{ marginLeft: "auto", height: 28, padding: "0 12px", fontSize: 13, fontWeight: 500, color: "#136f4a", background: "#e7f6ee", border: "1px solid #b8e5cd", borderRadius: 6, display: "flex", alignItems: "center", gap: 7 }}>
                 <Icon name="pi-check-circle" size={12} /> Success
               </span>
             </div>
             {PIPELINE.map((p, i) => (
-              <div key={p.title} style={{ height: 60, display: "flex", alignItems: "center", gap: 16, padding: "0 22px", borderTop: i ? "1px solid #f6f8fb" : undefined }}>
+              <div key={p.title} style={{ height: 60, display: "flex", alignItems: "center", gap: 16, padding: "0 22px", borderTop: i ? "1px solid var(--line-soft)" : undefined }}>
                 <span style={{ width: 22, height: 22, flex: "none", borderRadius: "50%", background: "#16a34a", color: "#fff", display: "grid", placeItems: "center" }}>
                   <Icon name="pi-check" size={10} />
                 </span>
                 <div style={{ flex: 1 }}>
-                  <div style={{ fontSize: 14.5, fontWeight: 600, color: "#0b1d45" }}>{p.title}</div>
-                  <div style={{ fontSize: 13, color: "#46557a", marginTop: 2 }}>{p.desc}</div>
+                  <div style={{ fontSize: 14.5, fontWeight: 600, color: "var(--ink-strong)" }}>{p.title}</div>
+                  <div style={{ fontSize: 13, color: "var(--body)", marginTop: 2 }}>{p.desc}</div>
                 </div>
-                <span style={{ fontSize: 13.5, color: "#46557a" }}>{p.time}</span>
+                <span style={{ fontSize: 13.5, color: "var(--body)" }}>{p.time}</span>
               </div>
             ))}
           </div>
           <div style={{ minWidth: 0 }}>
             <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "flex", flexDirection: "column", gap: 18 }}>
-              {QUAL_CHECKS.map((q) => (
-                <li key={q} style={{ display: "flex", gap: 16, alignItems: "center", fontSize: 16, color: "#1c2b55" }}>
+              {t.checks.map((q) => (
+                <li key={q} style={{ display: "flex", gap: 16, alignItems: "center", fontSize: 16, color: "var(--ink)" }}>
                   <Check size={28} icon={12} />
                   {q}
                 </li>
               ))}
             </ul>
-            <div style={{ marginTop: 32, display: "flex", gap: 14, alignItems: "center", fontSize: 15, color: "#1c2b55", background: "#e3ebf6", borderRadius: 8, padding: "16px 20px" }}>
+            <div style={{ marginTop: 32, display: "flex", gap: 14, alignItems: "center", fontSize: 15, color: "var(--ink)", background: "var(--info)", borderRadius: 8, padding: "16px 20px" }}>
               <span aria-hidden="true" style={{ width: 24, height: 24, flex: "none", borderRadius: "50%", background: "#46557a", color: "#fff", display: "grid", placeItems: "center", fontSize: 13, fontWeight: 700 }}>i</span>
-              Las decisiones y limitaciones también quedan documentadas.
+              {t.note}
             </div>
           </div>
         </div>
@@ -354,26 +354,26 @@ export function Quality() {
   );
 }
 
-export function Contribution() {
+export async function Contribution() {
+  const { caseStudy } = await getDictionary();
+  const locale = await getLocale();
+  const t = caseStudy.contribution;
   return (
-    <section id="contribucion" className="cs-section" style={{ background: "#fff" }}>
+    <section id="contribucion" className="cs-section" style={{ background: "var(--bg)" }}>
       <div className="fo-container">
-        <Head
-          eyebrow="Mi contribución"
-          title={<>Diseñé el producto y también<br />construí sus cimientos.</>}
-          lead="Definí los flujos, diseñé la experiencia, modelé el dominio y desarrollé la arquitectura Full Stack apoyándome en un proceso iterativo asistido por IA y validado mediante revisiones técnicas."
-        />
+        <Head eyebrow={t.eyebrow} title={lines(t.title)} lead={t.lead} />
         <div className="cs-contrib">
-          {CONTRIB_LINKS.map((l) => {
+          {CONTRIB_LINKS.map((l, i) => {
             const external = l.href.startsWith("http");
+            const href = external ? l.href : `/${locale}${l.href}`;
             return (
-              <a key={l.title} href={l.href} className="cs-link-card" {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}>
-                <Icon name={l.icon} size={34} style={{ color: "#0f8c89", width: 36, textAlign: "center" }} />
+              <a key={l.icon} href={href} className="cs-link-card" {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}>
+                <Icon name={l.icon} size={34} style={{ color: "var(--icon-teal)", width: 36, textAlign: "center" }} />
                 <div style={{ flex: 1, minWidth: 0 }}>
-                  <div style={{ fontSize: 17, fontWeight: 700, color: "#0b1d45" }}>{l.title}</div>
-                  <div style={{ fontSize: 14.5, lineHeight: 1.5, color: "#46557a", marginTop: 6 }}>{l.desc}</div>
+                  <div style={{ fontSize: 17, fontWeight: 700, color: "var(--ink-strong)" }}>{t.links[i].title}</div>
+                  <div style={{ fontSize: 14.5, lineHeight: 1.5, color: "var(--body)", marginTop: 6 }}>{t.links[i].desc}</div>
                 </div>
-                <Icon name="pi-arrow-right" size={15} style={{ color: "#0f8c89" }} />
+                <Icon name="pi-arrow-right" size={15} style={{ color: "var(--icon-teal)" }} />
               </a>
             );
           })}

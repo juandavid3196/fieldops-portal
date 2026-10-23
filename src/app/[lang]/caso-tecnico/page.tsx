@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { getDictionary, getLocale } from "@/i18n/dictionaries";
 import { CaseCta, CaseFooter } from "@/components/case-study/CaseCtaFooter";
 import { CaseHero } from "@/components/case-study/CaseHero";
 import {
@@ -11,18 +12,24 @@ import {
   Technologies,
 } from "@/components/case-study/CaseSections";
 import { MarketingNav } from "@/components/marketing/MarketingNav";
-import "./case-study.css";
+import "@/styles/case-study.css";
 
-export const metadata: Metadata = {
-  title: "Caso técnico — FieldOps",
-  description:
-    "Cómo se construyó FieldOps: el reto, la arquitectura en capas, el stack, el proceso spec-driven, las decisiones técnicas y la calidad de entrega.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getDictionary();
+  const locale = await getLocale();
+  return {
+    title: t.meta.caseTitle,
+    description: t.meta.caseDescription,
+    alternates: { canonical: `/${locale}/caso-tecnico`, languages: { es: "/es/caso-tecnico", en: "/en/caso-tecnico" } },
+  };
+}
 
-export default function CaseStudyPage() {
+export default async function CaseStudyPage() {
+  const t = await getDictionary();
+  const locale = await getLocale();
   return (
     <div className="fo cs">
-      <MarketingNav variant="case" />
+      <MarketingNav variant="case" locale={locale} t={t.nav} />
       <main>
         <CaseHero />
         <Challenge />

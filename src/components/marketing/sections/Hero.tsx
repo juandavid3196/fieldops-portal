@@ -1,4 +1,5 @@
-import { INVOICES, KPIS, NAV_HERO, PHONE_TABS_EN } from "@/app/landing.data";
+import { INVOICES, KPIS, NAV_HERO, PHONE_TABS_EN } from "@/content/landing.data";
+import { getDictionary } from "@/i18n/dictionaries";
 import { Avatar, Bell, Box, Chip, Icon, Leaf, PhoneShell, PhoneTabBar, Sidebar, type SidebarSpec } from "../mock-frames";
 
 const SIDEBAR: SidebarSpec = {
@@ -15,6 +16,7 @@ function DesktopMock() {
   return (
     <div
       aria-hidden="true"
+      className="fo-mock"
       style={{
         position: "absolute",
         left: 0,
@@ -256,16 +258,17 @@ function PhoneMock() {
   );
 }
 
-function Toast() {
+function Toast({ title, body }: { title: string; body: string }) {
   return (
     <div
       aria-hidden="true"
+      className="fo-mock"
       style={{
         position: "absolute",
         left: 297,
         top: 451,
         zIndex: 3,
-        width: 279,
+        minWidth: 279,
         height: 75,
         background: "#fff",
         borderRadius: 8,
@@ -280,47 +283,47 @@ function Toast() {
         <Icon name="pi-check" size={18} />
       </div>
       <div>
-        <div style={{ fontSize: 17.5, fontWeight: 600, color: "#0b5e5b" }}>Visita completada</div>
-        <div style={{ fontSize: 13.5, color: "#46557a", marginTop: 3 }}>Servicio finalizado con éxito.</div>
+        <div style={{ fontSize: 17.5, fontWeight: 600, color: "#0b5e5b" }}>{title}</div>
+        <div style={{ fontSize: 13.5, color: "#46557a", marginTop: 3, whiteSpace: "nowrap" }}>{body}</div>
       </div>
     </div>
   );
 }
 
-export function Hero() {
+export async function Hero() {
+  const { hero: t } = await getDictionary();
   return (
     <section id="producto" className="fo-hero">
       <div className="fo-container fo-hero-grid">
         <div className="fo-hero-copy">
-          <div className="fo-eyebrow" style={{ fontSize: 12, letterSpacing: "0.13em" }}>Gestión de servicios de campo</div>
+          <div className="fo-eyebrow" style={{ fontSize: 12, letterSpacing: "0.13em" }}>{t.eyebrow}</div>
           <h1 className="fo-h1" style={{ marginTop: 22 }}>
-            Todo tu equipo.
+            {t.line1}
             <br />
-            Cada servicio.
+            {t.line2}
             <br />
-            En <span className="teal">un solo lugar.</span>
+            {t.line3}
+            <span className="teal">{t.accent}</span>
           </h1>
-          <p style={{ marginTop: 26, fontSize: 18, lineHeight: 1.5, color: "#46557a", maxWidth: 360 }}>
-            Conecta solicitudes, cotizaciones, visitas y facturación para mantener tu operación bajo control.
-          </p>
-          <div style={{ marginTop: 33, display: "flex", flexWrap: "wrap", gap: 17 }}>
-            <a href="#demo" className="fo-btn fo-btn-primary" style={{ width: 193, height: 52, fontSize: 15.5, boxShadow: "0 6px 16px rgba(15,140,137,.25)" }}>
-              Explorar la demo <Icon name="pi-arrow-right" size={13} />
+          <p style={{ marginTop: 26, fontSize: 18, lineHeight: 1.5, color: "var(--body)", maxWidth: 360 }}>{t.lead}</p>
+          <div style={{ marginTop: 33, display: "flex", flexWrap: "wrap", gap: 12 }}>
+            <a href="#demo" className="fo-btn fo-btn-primary" style={{ minWidth: 193, height: 52, padding: "0 14px", fontSize: 15, boxShadow: "0 6px 16px rgba(15,140,137,.25)" }}>
+              {t.primary} <Icon name="pi-arrow-right" size={13} />
             </a>
-            <a href="#como-funciona" className="fo-btn fo-btn-secondary" style={{ width: 195, height: 52, fontSize: 15.5 }}>
+            <a href="#como-funciona" className="fo-btn fo-btn-secondary" style={{ minWidth: 195, height: 52, padding: "0 14px", fontSize: 15, gap: 10 }}>
               <span style={{ width: 19, height: 19, borderRadius: "50%", background: "#2563eb", color: "#fff", display: "grid", placeItems: "center" }}>
                 <Icon name="pi-play" size={8} style={{ marginLeft: 1 }} />
               </span>
-              Ver cómo funciona
+              {t.secondary}
             </a>
           </div>
-          <div style={{ fontSize: 13, color: "#7b88a3", marginTop: 22 }}>Proyecto demostrativo · Datos ficticios</div>
+          <div style={{ fontSize: 13, color: "var(--muted)", marginTop: 22 }}>{t.caption}</div>
         </div>
 
         <div className="fo-stage fo-hero-stage">
           <DesktopMock />
           <PhoneMock />
-          <Toast />
+          <Toast title={t.toastTitle} body={t.toastBody} />
         </div>
       </div>
     </section>

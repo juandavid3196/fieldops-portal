@@ -1,26 +1,29 @@
 import Link from "next/link";
+import { getDictionary, getLocale } from "@/i18n/dictionaries";
 import { Leaf } from "./mock-frames";
 
-const linkStyle = { color: "#1c2b55" } as const;
+const linkStyle = { color: "var(--ink)" } as const;
 
-export function MarketingFooter() {
+export async function MarketingFooter() {
+  const { footer: t } = await getDictionary();
+  const locale = await getLocale();
   return (
-    <footer style={{ background: "#fff" }}>
+    <footer style={{ background: "var(--bg)" }}>
       <div className="fo-container fo-footer-inner">
-        <Link href="/" style={{ display: "flex", alignItems: "center", gap: 8 }}>
+        <Link href={`/${locale}`} style={{ display: "flex", alignItems: "center", gap: 8 }}>
           <Leaf size={27} stroke />
-          <span style={{ fontWeight: 700, fontSize: 20, letterSpacing: "-0.03em", color: "#0b1d45" }}>FieldOps</span>
+          <span style={{ fontWeight: 700, fontSize: 20, letterSpacing: "-0.03em", color: "var(--ink-strong)" }}>FieldOps</span>
         </Link>
-        <nav aria-label="Pie de página" style={{ display: "flex", flexWrap: "wrap", gap: "8px 28px", fontSize: 13 }}>
-          <a href="#producto" style={linkStyle}>Producto</a>
-          <a href="#como-funciona" style={linkStyle}>Cómo funciona</a>
-          <a href="#demo" style={linkStyle}>Demo</a>
-          <Link href="/caso-tecnico" style={linkStyle}>Documentación</Link>
+        <nav aria-label={t.label} style={{ display: "flex", flexWrap: "wrap", gap: "8px 28px", fontSize: 13 }}>
+          <a href="#producto" style={linkStyle}>{t.product}</a>
+          <a href="#como-funciona" style={linkStyle}>{t.howItWorks}</a>
+          <a href="#demo" style={linkStyle}>{t.demo}</a>
+          <Link href={`/${locale}/caso-tecnico`} style={linkStyle}>{t.docs}</Link>
         </nav>
-        <div style={{ marginLeft: "auto", fontSize: 11.5, color: "#1c2b55", textAlign: "right", lineHeight: 1.45 }}>
-          Diseñado y desarrollado por Juan David Ríos.
+        <div style={{ marginLeft: "auto", fontSize: 11.5, color: "var(--ink)", textAlign: "right", lineHeight: 1.45 }}>
+          {t.credit}
           <br />
-          <span style={{ color: "#7b88a3" }}>Proyecto de portafolio · 2026</span>
+          <span style={{ color: "var(--muted)" }}>{t.portfolio}</span>
         </div>
       </div>
     </footer>

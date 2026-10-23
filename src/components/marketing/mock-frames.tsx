@@ -1,5 +1,5 @@
 import type { CSSProperties, ReactNode } from "react";
-import type { NavItem } from "@/app/landing.data";
+import type { NavItem } from "@/content/landing.data";
 
 export function Icon({ name, size, style }: { name: string; size: number; style?: CSSProperties }) {
   return <i className={`pi ${name}`} style={{ fontSize: size, ...style }} aria-hidden="true" />;
@@ -187,6 +187,7 @@ export function PhoneShell({
   return (
     <div
       aria-hidden="true"
+      className="fo-mock"
       style={{ width, height, background: "#0b0f19", borderRadius: radius, padding: bezel, boxShadow: shadow, boxSizing: "border-box", ...style }}
     >
       <div
