@@ -2,10 +2,12 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { REPO_URL } from "@/app/caso-tecnico/case-study.data";
 import { Icon, Leaf } from "./mock-frames";
 
 export function MarketingNav({ active = "producto" }: { active?: "producto" | "caso" }) {
   const [open, setOpen] = useState(false);
+  const caso = active === "caso";
 
   return (
     <header style={{ background: "#fff", borderBottom: "1px solid #edf1f6", position: "relative", zIndex: 2 }}>
@@ -22,14 +24,19 @@ export function MarketingNav({ active = "producto" }: { active?: "producto" | "c
             Caso técnico
           </Link>
         </nav>
-        <div style={{ marginLeft: "auto", display: "flex", gap: 10, alignItems: "center" }}>
-          <a
-            href="#demo"
+        <div style={{ marginLeft: "auto", display: "flex", gap: caso ? 12 : 10, alignItems: "center" }}>
+          {caso && (
+            <a href={REPO_URL} target="_blank" rel="noopener noreferrer" className="fo-btn fo-btn-repo fo-hide-tablet">
+              <Icon name="pi-github" size={16} /> Ver repositorio
+            </a>
+          )}
+          <Link
+            href={caso ? "/#demo" : "#demo"}
             className="fo-btn fo-btn-primary"
-            style={{ gap: 10, fontSize: 14, padding: "11px 18px", borderRadius: 6 }}
+            style={{ gap: 10, fontSize: 14, padding: "11px 18px", borderRadius: caso ? 5 : 6 }}
           >
-            Ver demo <Icon name="pi-arrow-right" size={12} />
-          </a>
+            {caso ? "Explorar demo" : "Ver demo"} <Icon name="pi-arrow-right" size={12} />
+          </Link>
           <button
             type="button"
             className="fo-burger"
@@ -49,9 +56,14 @@ export function MarketingNav({ active = "producto" }: { active?: "producto" | "c
         <Link href="/caso-tecnico" onClick={() => setOpen(false)}>
           Caso técnico
         </Link>
-        <a href="#demo" onClick={() => setOpen(false)}>
-          Ver demo
-        </a>
+        <Link href={caso ? "/#demo" : "#demo"} onClick={() => setOpen(false)}>
+          {caso ? "Explorar demo" : "Ver demo"}
+        </Link>
+        {caso && (
+          <a href={REPO_URL} target="_blank" rel="noopener noreferrer" onClick={() => setOpen(false)}>
+            Ver repositorio
+          </a>
+        )}
       </nav>
     </header>
   );

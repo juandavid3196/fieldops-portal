@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/primeicons@7.0.0/primeicons.css">
+<style>
+@font-face{font-family:'Inter';src:url('frontend/public/fonts/inter/Inter-Regular.woff2') format('woff2');font-weight:400;font-display:swap}
+@font-face{font-family:'Inter';src:url('frontend/public/fonts/inter/Inter-Medium.woff2') format('woff2');font-weight:500;font-display:swap}
+@font-face{font-family:'Inter';src:url('frontend/public/fonts/inter/Inter-SemiBold.woff2') format('woff2');font-weight:600;font-display:swap}
+@font-face{font-family:'Inter';src:url('frontend/public/fonts/inter/Inter-Bold.woff2') format('woff2');font-weight:700;font-display:swap}
+body{margin:0;background:#fff;-webkit-font-smoothing:antialiased}
+a{color:#0f766e;text-decoration:none}a:hover{color:#0b5f59}
+</style>
+</helmet>
+<div ref="{{ root }}" style="font-family:Inter,ui-sans-serif,system-ui,sans-serif;color:#0b1d45;background:#fff;min-width:0;overflow:hidden">
+
+<header data-screen-label="Nav" style="background:#fff;border-bottom:1px solid #edf1f6">
+  <div style="max-width:1200px;margin:0 auto;padding:14px {{ padX }};display:flex;align-items:center;gap:56px">
+    <a href="FieldOps Landing.dc.html" style="display:flex;align-items:center;gap:8px">
+      <svg width="28" height="28" viewBox="0 0 24 24"><path d="M3 21C3 11 9 3 21 3c0 11-7 18-18 18z" fill="#0f9d9a"></path><path d="M5.5 18.5L15 9" stroke="#fff" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      <span style="font-weight:700;font-size:22px;letter-spacing:-0.03em;color:#0b1d45">FieldOps</span>
+    </a>
+    <sc-if value="{{ wide }}" hint-placeholder-val="{{ true }}">
+      <nav style="display:flex;gap:30px;font-size:14px;flex:1">
+        <a href="FieldOps Landing.dc.html" style="color:#46557a;font-weight:500;padding:6px 0;border-bottom:2px solid transparent;white-space:nowrap">Producto</a>
+        <a href="FieldOps Case Study.dc.html" style="color:#0b1d45;font-weight:600;padding:6px 0;border-bottom:2px solid #0f9d9a;white-space:nowrap">Caso técnico</a>
+      </nav>
+    </sc-if>
+    <div style="margin-left:auto;display:flex;gap:12px;align-items:center">
+      <sc-if value="{{ desktopNav }}" hint-placeholder-val="{{ true }}">
+        <a href="https://github.com/juandavid3196/fieldops" style="display:flex;align-items:center;gap:10px;color:#0b1d45;font-weight:500;font-size:14px;padding:10px 18px;border-radius:5px;border:1px solid #0f8c89;white-space:nowrap" style-hover="background:#f0f9f9;color:#0b1d45"><i class="pi pi-github" style="font-size:16px"></i> Ver repositorio</a>
+      </sc-if>
+      <a href="FieldOps Landing.dc.html#demo" style="display:flex;align-items:center;gap:10px;background:#0f8c89;color:#fff;font-weight:600;font-size:14px;padding:11px 18px;border-radius:5px;white-space:nowrap" style-hover="background:#0b7471;color:#fff">Explorar demo <i class="pi pi-arrow-right" style="font-size:12px"></i></a>
+    </div>
+  </div>
+</header>
+
+<section data-screen-label="Hero" style="background:linear-gradient(180deg,#f3f7fb 0%,#f7fafd 100%)">
+  <div style="max-width:1200px;margin:0 auto;padding:{{ heroPadY }} {{ padX }} 32px;display:grid;grid-template-columns:{{ heroCols }};gap:44px;align-items:center">
+    <div style="display:flex;flex-direction:column;gap:18px;min-width:0">
+      <div style="font-size:12px;font-weight:500;letter-spacing:0.14em;color:#2b7b8c">ENGINEERING CASE STUDY</div>
+      <h1 style="margin:0;font-size:{{ h1 }};line-height:1.08;letter-spacing:-0.04em;font-weight:700;color:#0b1730">Cómo construí FieldOps: del problema a una <span style="color:#0f9d9a">plataforma completa.</span></h1>
+      <p style="margin:0;font-size:17px;line-height:1.5;color:#46557a;text-wrap:pretty">Un proyecto Full Stack diseñado para demostrar arquitectura, producto, calidad y decisiones técnicas en un sistema de operaciones reales.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:10px">
+        <sc-for list="{{ tags }}" as="t" hint-placeholder-count="4">
+          <span style="font-size:12.5px;color:#1c2b55;background:#e6edf7;padding:7px 14px;border-radius:999px">{{ t }}</span>
+        </sc-for>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:10px">
+        <a href="#arquitectura" style="display:flex;align-items:center;gap:12px;background:#0f8c89;color:#fff;font-weight:500;font-size:15px;padding:14px 22px;border-radius:5px;box-shadow:0 6px 16px rgba(15,140,137,.22)" style-hover="background:#0b7471;color:#fff">Explorar la arquitectura <i class="pi pi-arrow-right" style="font-size:13px"></i></a>
+        <a href="FieldOps Landing.dc.html" style="display:flex;align-items:center;gap:10px;background:#fff;color:#1d4ed8;font-weight:500;font-size:15px;padding:13px 22px;border-radius:5px;border:1px solid #2563eb" style-hover="background:#f1f6ff;color:#1d4ed8"><span style="width:18px;height:18px;border-radius:50%;background:#2563eb;color:#fff;display:grid;place-items:center"><i class="pi pi-play" style="font-size:8px;margin-left:1px"></i></span> Ver la aplicación</a>
+      </div>
+    </div>
+
+    <div style="background:linear-gradient(160deg,#0d2440 0%,#0a1c33 100%);border-radius:8px;padding:18px 16px 16px;box-shadow:0 24px 60px rgba(11,29,69,.28);min-width:0;position:relative">
+      <div style="display:grid;grid-template-columns:{{ archCols }};gap:{{ archGap }};align-items:stretch">
+        <sc-for list="{{ archCols3 }}" as="col" hint-placeholder-count="3">
+          <div style="border:1px solid rgba(95,211,207,.35);border-radius:6px;padding:12px 10px;display:flex;flex-direction:column;gap:10px;position:relative">
+            <div style="display:flex;align-items:center;gap:9px;color:#fff;font-size:13.5px;font-weight:500"><span style="width:22px;height:22px;border-radius:{{ col.badgeR }};background:{{ col.badgeBg }};color:#fff;font-size:{{ col.badgeFs }};font-weight:700;display:grid;place-items:center">{{ col.badge }}</span>{{ col.title }}</div>
+            <sc-for list="{{ col.items }}" as="i" hint-placeholder-count="3">
+              <div style="display:flex;flex-direction:column;align-items:center;gap:4px;flex:1">
+                <div style="width:100%;box-sizing:border-box;display:flex;align-items:center;gap:12px;border:1px solid rgba(95,211,207,.3);border-radius:4px;padding:10px;background:rgba(255,255,255,.035);flex:1"><i class="pi {{ i.icon }}" style="font-size:{{ i.size }};color:#e8f1fb;width:22px;text-align:center"></i><div><div style="font-size:11.5px;font-weight:500;color:#fff">{{ i.t }}</div><div style="font-size:9.5px;color:#9fb0c8;margin-top:2px">{{ i.d }}</div></div></div>
+                <sc-if value="{{ i.down }}" hint-placeholder-val="{{ false }}"><i class="pi pi-arrow-down" style="font-size:9px;color:#9fb0c8"></i></sc-if>
+              </div>
+            </sc-for>
+            <sc-if value="{{ col.arrow }}" hint-placeholder-val="{{ false }}"><i class="pi pi-arrow-right" style="position:absolute;right:-22px;top:46%;font-size:13px;color:#9fb0c8"></i></sc-if>
+          </div>
+        </sc-for>
+      </div>
+      <div style="height:14px;margin:6px 8% 0;border:1px dashed rgba(159,176,200,.45);border-bottom:none"></div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:10px">
+        <sc-for list="{{ ops }}" as="o" hint-placeholder-count="4">
+          <div style="border:1px dashed rgba(159,176,200,.5);border-radius:4px;padding:10px 12px;display:flex;align-items:center;gap:10px"><i class="pi {{ o.icon }}" style="font-size:18px;color:#e8f1fb"></i><div><div style="font-size:11.5px;font-weight:500;color:#fff">{{ o.t }}</div><div style="font-size:9.5px;color:#9fb0c8;margin-top:2px">{{ o.d }}</div></div></div>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="Stack" style="background:#fff;border-top:1px solid #edf1f6;border-bottom:1px solid #edf1f6">
+  <div style="max-width:1200px;margin:0 auto;padding:18px {{ padX }};display:grid;grid-template-columns:{{ statCols }};gap:16px 0">
+    <sc-for list="{{ stats }}" as="s" hint-placeholder-count="5">
+      <div style="display:flex;align-items:center;gap:14px;padding:4px 18px;border-left:{{ s.border }}"><div style="width:34px;height:34px;flex:none;border-radius:{{ s.r }};background:{{ s.bg }};color:{{ s.fg }};display:grid;place-items:center;font-size:{{ s.fs }};font-weight:700"><i class="pi {{ s.icon }}" style="font-size:22px"></i>{{ s.mark }}</div><div><div style="font-size:14px;font-weight:600;color:#0b1d45">{{ s.t }}</div><div style="font-size:11.5px;color:#46557a;margin-top:2px">{{ s.d }}</div></div></div>
+    </sc-for>
+  </div>
+</section>
+
+<section id="reto" data-screen-label="El reto" style="background:#fff">
+  <div style="max-width:1200px;margin:0 auto;padding:{{ secPadY }} {{ padX }};display:grid;grid-template-columns:{{ retoCols }};gap:28px;align-items:start">
+    <div style="display:flex;flex-direction:column;gap:12px;min-width:0">
+      <div style="font-size:11.5px;font-weight:500;letter-spacing:0.14em;color:#2b7b8c">EL RETO</div>
+      <h2 style="margin:0;font-size:{{ h2 }};line-height:1.12;letter-spacing:-0.03em;font-weight:700;color:#0b1d45">Modelar una operación completa, no solo una interfaz.</h2>
+      <p style="margin:0;font-size:15px;line-height:1.55;color:#46557a;text-wrap:pretty">Gestionar solicitudes, cotizaciones, órdenes de trabajo, visitas, técnicos, facturas y pagos en un mismo sistema, manteniendo aislamiento por organización (tenant) y control de permisos por rol.</p>
+    </div>
+    <sc-for list="{{ pillars }}" as="p" hint-placeholder-count="3">
+      <div style="border:1px solid #e3e9f2;border-radius:6px;padding:22px 18px;display:flex;flex-direction:column;gap:8px;background:#fff;box-shadow:0 2px 8px rgba(11,29,69,.03)"><i class="pi {{ p.icon }}" style="font-size:26px;color:#0f8c89"></i><div style="font-size:15.5px;font-weight:600;color:#0b1d45;margin-top:10px">{{ p.t }}</div><div style="font-size:13.5px;line-height:1.5;color:#46557a">{{ p.d }}</div></div>
+    </sc-for>
+  </div>
+</section>
+
+<section id="arquitectura" data-screen-label="Arquitectura" style="background:linear-gradient(180deg,#eef4fb 0%,#f2f7fc 100%)">
+  <div style="max-width:1200px;margin:0 auto;padding:{{ secPadY }} {{ padX }};display:grid;grid-template-columns:{{ archSplit }};gap:32px;align-items:center">
+    <div style="display:flex;flex-direction:column;gap:14px;min-width:0">
+      <div style="font-size:11.5px;font-weight:500;letter-spacing:0.14em;color:#2b7b8c">ARQUITECTURA</div>
+      <h2 style="margin:0;font-size:{{ h2 }};line-height:1.12;letter-spacing:-0.03em;font-weight:700;color:#0b1d45">Una base preparada para crecer.</h2>
+      <p style="margin:0;font-size:15px;line-height:1.6;color:#46557a;text-wrap:pretty">Una arquitectura en capas que separa claramente las responsabilidades, facilita el mantenimiento y permite evolucionar el sistema sin afectar el núcleo del negocio.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;align-items:stretch;gap:4px;min-width:0">
+      <div style="background:#e9f1fc;border:1px solid #c9daf4;border-radius:6px;padding:8px;display:flex;flex-direction:column;gap:8px">
+        <div style="display:flex;align-items:center;justify-content:center;gap:8px;font-size:11px;font-weight:600;color:#0b1d45"><i class="pi pi-desktop" style="font-size:15px;color:#2563eb"></i>Angular applications <span style="color:#46557a;font-weight:400">(Angular 22.1)</span></div>
+        <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px">
+          <sc-for list="{{ apps }}" as="a" hint-placeholder-count="3">
+            <div style="background:#fff;border:1px solid #dfe8f5;border-radius:4px;padding:9px;display:flex;align-items:center;gap:9px"><i class="pi {{ a.icon }}" style="font-size:15px;color:#2563eb"></i><div><div style="font-size:10.5px;font-weight:600;color:#1d4ed8">{{ a.t }}</div><div style="font-size:8.5px;color:#46557a;margin-top:1px">{{ a.d }}</div></div></div>
+          </sc-for>
+        </div>
+      </div>
+      <div style="text-align:center;color:#2563eb;line-height:1"><i class="pi pi-arrow-down" style="font-size:10px"></i></div>
+      <div style="background:#e7e8fc;border:1px solid #c9ccf5;border-radius:6px;padding:9px;display:flex;align-items:center;justify-content:center;gap:9px;font-size:11.5px;font-weight:600;color:#0b1d45"><span style="width:22px;height:22px;border-radius:50%;background:#5b3fd4;color:#fff;font-size:6.5px;font-weight:700;display:grid;place-items:center">.NET</span>.NET 10 Web API</div>
+      <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;color:#2563eb;text-align:center;line-height:1"><i class="pi pi-arrow-down" style="font-size:10px"></i><i class="pi pi-arrow-down" style="font-size:10px"></i><i class="pi pi-arrow-down" style="font-size:10px"></i></div>
+      <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px">
+        <sc-for list="{{ layers }}" as="l" hint-placeholder-count="3">
+          <div style="background:#e9f1fc;border:1px solid #c9daf4;border-radius:4px;padding:10px;display:flex;gap:10px;align-items:center"><i class="pi {{ l.icon }}" style="font-size:18px;color:#0f8c89"></i><div><div style="font-size:10.5px;font-weight:600;color:#1d4ed8">{{ l.t }}</div><div style="font-size:10px;font-weight:600;color:#1d4ed8">{{ l.k }}</div><div style="font-size:8.5px;color:#46557a;margin-top:2px">{{ l.d }}</div></div></div>
+        </sc-for>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;color:#2563eb;line-height:1"><i class="pi pi-arrow-down" style="font-size:10px;text-align:center"></i><i class="pi pi-arrow-down" style="font-size:10px;text-align:center"></i></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+        <div style="background:#e9f1fc;border:1px solid #c9daf4;border-radius:4px;padding:12px;display:flex;align-items:center;justify-content:center;gap:12px"><i class="pi pi-database" style="font-size:22px;color:#336791"></i><div><div style="font-size:11px;font-weight:600;color:#0b1d45">PostgreSQL</div><div style="font-size:9.5px;color:#46557a">Datos de la aplicación</div></div></div>
+        <div style="background:#e9f1fc;border:1px solid #c9daf4;border-radius:4px;padding:12px;display:flex;align-items:center;justify-content:center;gap:12px"><i class="pi pi-folder" style="font-size:22px;color:#2563eb"></i><div><div style="font-size:11px;font-weight:600;color:#0b1d45">File storage</div><div style="font-size:9.5px;color:#46557a">Archivos y evidencias</div></div></div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:20px;min-width:0">
+      <sc-for list="{{ archChecks }}" as="c" hint-placeholder-count="5">
+        <div style="display:flex;gap:16px;align-items:center"><div style="width:24px;height:24px;flex:none;border-radius:50%;background:#0f8c89;color:#fff;display:grid;place-items:center"><i class="pi pi-check" style="font-size:10px"></i></div><div><div style="font-size:13px;font-weight:600;color:#0b1d45">{{ c.t }}</div><div style="font-size:11px;color:#46557a;margin-top:3px">{{ c.d }}</div></div></div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="Tecnologías" style="background:#fff">
+  <div style="max-width:1200px;margin:0 auto;padding:{{ secPadY }} {{ padX }};display:grid;grid-template-columns:{{ techCols }};gap:18px;align-items:start">
+    <div style="display:flex;flex-direction:column;gap:12px;min-width:0">
+      <div style="font-size:11.5px;font-weight:500;letter-spacing:0.14em;color:#2b7b8c">TECNOLOGÍAS</div>
+      <h2 style="margin:0;font-size:{{ h2 }};line-height:1.12;letter-spacing:-0.03em;font-weight:700;color:#0b1d45">Elegidas por su capacidad, no por moda.</h2>
+    </div>
+    <sc-for list="{{ tech }}" as="g" hint-placeholder-count="4">
+      <div style="border:1px solid #e3e9f2;border-radius:6px;padding:14px 16px 16px;display:flex;flex-direction:column;gap:12px;min-width:0">
+        <div style="display:flex;align-items:center;gap:12px;font-size:13px;font-weight:600;color:#0b1d45"><i class="pi {{ g.icon }}" style="font-size:20px;color:{{ g.iconColor }}"></i>{{ g.t }}</div>
+        <div style="display:flex;flex-direction:column;gap:8px;padding-left:2px">
+          <sc-for list="{{ g.items }}" as="x" hint-placeholder-count="5">
+            <div style="font-size:12.5px;color:#46557a;display:flex;align-items:center;gap:12px"><span style="width:{{ x.size }};height:{{ x.size }};flex:none;border-radius:{{ x.r }};background:{{ x.bg }};color:#fff;font-size:{{ x.fs }};font-weight:700;display:grid;place-items:center">{{ x.m }}</span>{{ x.t }}</div>
+          </sc-for>
+        </div>
+      </div>
+    </sc-for>
+  </div>
+</section>
+
+<section id="proceso" data-screen-label="Spec-driven" style="background:linear-gradient(135deg,#0a1f3d 0%,#0c2a4f 60%,#0a223f 100%);position:relative;z-index:1">
+  <div style="max-width:1200px;margin:0 auto;padding:{{ specPadY }} {{ padX }};display:grid;grid-template-columns:{{ specCols }};gap:28px;align-items:center">
+    <div style="display:flex;flex-direction:column;gap:12px;min-width:0">
+      <div style="font-size:11.5px;font-weight:500;letter-spacing:0.14em;color:#d5deea">SPEC-DRIVEN DEVELOPMENT</div>
+      <h2 style="margin:0;font-size:{{ h2 }};line-height:1.12;letter-spacing:-0.03em;font-weight:700;color:#fff">Cada feature comenzó con decisiones explícitas.</h2>
+      <p style="margin:0;font-size:15px;line-height:1.55;color:#d5deea">Diseño, reglas de negocio y criterios de aceptación antes de escribir código.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:{{ procCols }};gap:22px 12px;padding-top:14px;min-width:0">
+      <sc-for list="{{ process }}" as="p" hint-placeholder-count="5">
+        <div style="position:relative;border:1px solid rgba(95,211,207,.35);border-radius:6px;padding:24px 8px 12px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px;background:rgba(255,255,255,.03)">
+          <span style="position:absolute;top:-13px;left:50%;transform:translateX(-50%);width:24px;height:24px;border-radius:50%;background:#0a223f;border:1.5px solid #2cc2bd;color:#fff;font-size:11px;font-weight:600;display:grid;place-items:center">{{ p.n }}</span>
+          <i class="pi {{ p.icon }}" style="font-size:20px;color:#2cc2bd;margin-bottom:4px"></i>
+          <div style="font-size:12.5px;font-weight:600;color:#fff">{{ p.t }}</div>
+          <div style="font-size:11px;line-height:1.4;color:#bfcadb">{{ p.d }}</div>
+          <sc-if value="{{ p.arrow }}" hint-placeholder-val="{{ false }}"><i class="pi pi-arrow-right" style="position:absolute;right:-12px;top:-10px;font-size:8px;color:#bfcadb"></i></sc-if>
+        </div>
+      </sc-for>
+    </div>
+    <div style="background:#fff;border-radius:6px;overflow:hidden;box-shadow:0 24px 50px rgba(0,0,0,.28);margin-bottom:{{ specOverlap }};min-width:0;align-self:start">
+      <div style="display:flex;align-items:center;gap:8px;padding:9px 12px;border-bottom:1px solid #edf1f6"><span style="width:12px;height:9px;border:1px solid #9aa5b8;border-radius:2px"></span><span style="font-size:10.5px;font-weight:600;color:#0b1d45">Solicitud de servicio – SPEC</span><span style="margin-left:auto;font-size:8px;color:#7b88a3">‹ ›</span></div>
+      <div style="padding:6px 12px 10px;display:flex;flex-direction:column">
+        <sc-for list="{{ specRows }}" as="r" hint-placeholder-count="4">
+          <div style="display:flex;gap:12px;padding:7px 0;border-bottom:1px solid #f1f4f8;align-items:center"><i class="pi {{ r.icon }}" style="font-size:14px;color:#1d4ed8;width:16px"></i><div><div style="font-size:10px;font-weight:600;color:#0b1d45">{{ r.t }}</div><div style="font-size:8.5px;color:#46557a;margin-top:1px">{{ r.d }}</div></div></div>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="Decisiones" style="background:#fff">
+  <div style="max-width:1200px;margin:0 auto;padding:{{ secPadY }} {{ padX }};display:grid;grid-template-columns:{{ decCols }};gap:18px;align-items:start">
+    <div style="display:flex;flex-direction:column;gap:12px;min-width:0">
+      <div style="font-size:11.5px;font-weight:500;letter-spacing:0.14em;color:#2b7b8c">DECISIONES TÉCNICAS</div>
+      <h2 style="margin:0;font-size:{{ h2 }};line-height:1.12;letter-spacing:-0.035em;font-weight:700;color:#0b1d45">Los retos que definieron el proyecto.</h2>
+    </div>
+    <sc-for list="{{ decisions }}" as="d" hint-placeholder-count="4">
+      <div style="border:1px solid #e3e9f2;border-radius:6px;padding:16px;display:flex;flex-direction:column;gap:10px;min-width:0;height:100%;box-sizing:border-box">
+        <div style="display:flex;align-items:center;gap:12px"><i class="pi {{ d.icon }}" style="font-size:20px;color:#0f8c89"></i><div style="font-size:12.5px;font-weight:600;color:#0b1d45">{{ d.t }}</div></div>
+        <div style="font-size:12px;line-height:1.45;color:#46557a;flex:1">{{ d.d }}</div>
+        <div style="display:flex;align-items:center;gap:6px;font-size:10.5px;color:#46557a;border-top:1px solid #f1f4f8;padding-top:10px">Problema <i class="pi pi-arrow-right" style="font-size:8px"></i> decisión <i class="pi pi-arrow-right" style="font-size:8px"></i> resultado</div>
+      </div>
+    </sc-for>
+  </div>
+</section>
+
+<section id="calidad" data-screen-label="Calidad" style="background:linear-gradient(180deg,#eef4fb 0%,#f3f8fc 100%)">
+  <div style="max-width:1200px;margin:0 auto;padding:{{ secPadY }} {{ padX }};display:grid;grid-template-columns:{{ qualCols }};gap:28px;align-items:start">
+    <div style="display:flex;flex-direction:column;gap:12px;min-width:0">
+      <div style="font-size:11.5px;font-weight:500;letter-spacing:0.14em;color:#2b7b8c">CALIDAD Y ENTREGA</div>
+      <h2 style="margin:0;font-size:{{ h2 }};line-height:1.12;letter-spacing:-0.035em;font-weight:700;color:#0b1d45">Construido como si fuera a producción.</h2>
+    </div>
+    <div style="background:#fff;border:1px solid #e3e9f2;border-radius:6px;overflow:hidden;min-width:0;box-shadow:0 8px 24px rgba(11,29,69,.06)">
+      <div style="display:flex;align-items:center;gap:10px;padding:10px 14px"><i class="pi pi-github" style="font-size:16px;color:#0b1d45"></i><span style="font-size:11.5px;font-weight:600;color:#0b1d45">GitHub Actions</span><span style="margin-left:auto;font-size:9.5px;font-weight:500;color:#136f4a;background:#e7f6ee;border:1px solid #b8e5cd;padding:3px 9px;border-radius:5px;display:flex;align-items:center;gap:5px"><i class="pi pi-check-circle" style="font-size:9px"></i> Success</span></div>
+      <sc-for list="{{ pipeline }}" as="p" hint-placeholder-count="4">
+        <div style="display:flex;align-items:center;gap:14px;padding:8px 14px;border-top:1px solid #f1f4f8"><span style="width:16px;height:16px;border-radius:50%;background:#16a34a;color:#fff;display:grid;place-items:center"><i class="pi pi-check" style="font-size:8px"></i></span><div style="flex:1"><div style="font-size:11px;font-weight:600;color:#0b1d45">{{ p.t }}</div><div style="font-size:9.5px;color:#46557a">{{ p.d }}</div></div><span style="font-size:10px;color:#46557a">{{ p.time }}</span></div>
+      </sc-for>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:9px;min-width:0">
+      <sc-for list="{{ qualChecks }}" as="q" hint-placeholder-count="5">
+        <div style="display:flex;gap:12px;align-items:center;font-size:12.5px;color:#46557a"><div style="width:18px;height:18px;flex:none;border-radius:50%;background:#0f8c89;color:#fff;display:grid;place-items:center"><i class="pi pi-check" style="font-size:8px"></i></div>{{ q }}</div>
+      </sc-for>
+      <div style="display:flex;gap:12px;align-items:center;font-size:12px;color:#1c2b55;background:#e3ebf6;border-radius:5px;padding:11px 14px;margin-top:8px"><span style="width:18px;height:18px;flex:none;border-radius:50%;background:#46557a;color:#fff;display:grid;place-items:center;font-size:10px;font-weight:700">i</span>Las decisiones y limitaciones también quedan documentadas.</div>
+    </div>
+  </div>
+</section>
+
+<section id="contribucion" data-screen-label="Contribución" style="background:#fff">
+  <div style="max-width:1200px;margin:0 auto;padding:{{ secPadY }} {{ padX }} 28px;display:grid;grid-template-columns:{{ contribCols }};gap:20px;align-items:center">
+    <div style="display:flex;flex-direction:column;gap:10px;min-width:0">
+      <div style="font-size:11.5px;font-weight:500;letter-spacing:0.14em;color:#2b7b8c">MI CONTRIBUCIÓN</div>
+      <h2 style="margin:0;font-size:{{ h2 }};line-height:1.12;letter-spacing:-0.035em;font-weight:700;color:#0b1d45">Diseñé el producto y también construí sus cimientos.</h2>
+      <p style="margin:0;font-size:13px;line-height:1.5;color:#46557a;text-wrap:pretty">Definí los flujos, diseñé la experiencia, modelé el dominio y desarrollé la arquitectura Full Stack apoyándome en un proceso iterativo asistido por IA y validado mediante revisiones técnicas.</p>
+    </div>
+    <sc-for list="{{ links }}" as="l" hint-placeholder-count="3">
+      <a href="https://github.com/juandavid3196/fieldops" style="border:1px solid #e3e9f2;border-radius:6px;padding:20px 16px;display:flex;gap:16px;align-items:center;color:#0b1d45;background:#fff;box-shadow:0 2px 8px rgba(11,29,69,.03)" style-hover="border-color:#0f9d9a;color:#0b1d45"><i class="pi {{ l.icon }}" style="font-size:26px;color:#0f8c89"></i><div style="flex:1"><div style="font-size:13.5px;font-weight:600;color:#0b1d45">{{ l.t }}</div><div style="font-size:11.5px;line-height:1.45;color:#46557a;margin-top:4px">{{ l.d }}</div></div><i class="pi pi-arrow-right" style="font-size:13px;color:#0f8c89"></i></a>
+    </sc-for>
+  </div>
+</section>
+
+<section data-screen-label="CTA" style="padding:0 {{ ctaPadX }} 18px;background:#fff">
+  <div style="max-width:1240px;margin:0 auto;background:linear-gradient(135deg,#0a1f3d 0%,#0c2a4f 70%);border-radius:6px;padding:16px 28px;display:flex;flex-wrap:wrap;align-items:center;gap:16px 40px;position:relative;overflow:hidden">
+    <div style="position:absolute;right:0;top:0;bottom:0;width:360px;background:#14b8b0;opacity:.85;clip-path:polygon(10% 100%,45% 30%,65% 60%,85% 10%,100% 40%,100% 100%)"></div>
+    <div style="position:absolute;right:0;top:0;bottom:0;width:360px;background:#0d8f8a;clip-path:polygon(25% 100%,55% 55%,75% 80%,100% 50%,100% 100%)"></div>
+    <div style="position:absolute;right:0;top:0;bottom:0;width:360px;background:#2dd4cc;opacity:.5;clip-path:polygon(45% 30%,65% 60%,48% 100%,30% 100%)"></div>
+    <div style="position:relative;flex:1;min-width:220px;padding-left:{{ ctaInnerPad }}"><div style="font-size:18px;font-weight:600;color:#fff">¿Quieres ver el resultado funcionando?</div><div style="font-size:11.5px;color:#d5deea;margin-top:4px">Explora FieldOps en acción o revisa el código fuente.</div></div>
+    <div style="position:relative;display:flex;flex-wrap:wrap;gap:40px">
+      <a href="FieldOps Landing.dc.html#demo" style="display:flex;align-items:center;justify-content:center;gap:12px;background:#0f8c89;color:#fff;font-weight:500;font-size:13px;padding:11px 30px;border-radius:4px;min-width:110px" style-hover="background:#13a29e;color:#fff">Abrir demo <i class="pi pi-arrow-right" style="font-size:11px"></i></a>
+      <a href="https://github.com/juandavid3196/fieldops" style="display:flex;align-items:center;justify-content:center;gap:12px;color:#fff;font-weight:500;font-size:13px;padding:10px 40px;border-radius:4px;border:1px solid #fff" style-hover="background:rgba(255,255,255,.08);color:#fff"><i class="pi pi-github" style="font-size:15px"></i> Ver repositorio</a>
+    </div>
+    <div style="position:relative;font-size:10.5px;color:#fff;line-height:1.4;margin-left:auto;padding-right:8px">Proyecto demostrativo<br>con datos ficticios.</div>
+  </div>
+</section>
+
+<footer style="background:#fff">
+  <div style="max-width:1200px;margin:0 auto;padding:6px {{ padX }} 18px;display:flex;flex-wrap:wrap;align-items:center;gap:12px 40px">
+    <div style="display:flex;align-items:center;gap:7px"><svg width="20" height="20" viewBox="0 0 24 24"><path d="M3 21C3 11 9 3 21 3c0 11-7 18-18 18z" fill="#0f9d9a"></path><path d="M5.5 18.5L15 9" stroke="#fff" stroke-width="1.6" stroke-linecap="round"></path></svg><span style="font-weight:700;font-size:16px;letter-spacing:-0.03em;color:#0b1d45">FieldOps</span></div>
+    <div style="display:flex;flex-wrap:wrap;gap:32px;font-size:11.5px"><a href="FieldOps Landing.dc.html" style="color:#1c2b55">Producto</a><a href="#reto" style="color:#1c2b55">Case study</a><a href="#proceso" style="color:#1c2b55">Documentación</a><a href="FieldOps Landing.dc.html#demo" style="color:#1c2b55">Demo</a></div>
+    <div style="margin-left:auto;font-size:11px;color:#46557a">Diseñado y desarrollado por Juan David Ríos · 2026</div>
+  </div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { w: 1280 };
+  root = React.createRef();
+  componentDidMount() {
+    const el = this.root.current; if (!el) return;
+    this.ro = new ResizeObserver(e => { const w = Math.round(e[0].contentRect.width); if (Math.abs(w - this.state.w) > 4) this.setState({ w }); });
+    this.ro.observe(el);
+  }
+  componentWillUnmount() { this.ro && this.ro.disconnect(); }
+  renderVals() {
+    const w = this.state.w, n = w < 760, m = w < 1100;
+    const one = 'minmax(0,1fr)';
+    const chip = (m, t, bg, o = {}) => ({ m, t, bg, size: o.size || '16px', r: o.r || '4px', fs: o.fs || '7px' });
+    return {
+      root: this.root, wide: !n, desktopNav: !m, mobileNav: n,
+      padX: n ? '20px' : m ? '36px' : '40px', ctaPadX: n ? '12px' : '20px', ctaInnerPad: n ? '0' : '100px',
+      h1: n ? '36px' : m ? '44px' : '44px', h2: n ? '26px' : '24px',
+      heroPadY: n ? '40px' : '36px', secPadY: n ? '48px' : '36px', specPadY: n ? '48px' : '28px',
+      specOverlap: m ? '0' : '-70px',
+      heroCols: m ? one : 'minmax(0,0.78fr) minmax(0,1fr)',
+      archCols: n ? one : 'repeat(3,minmax(0,1fr))', archGap: n ? '12px' : '30px',
+      statCols: n ? one : m ? 'repeat(3,minmax(0,1fr))' : 'repeat(5,minmax(0,1fr))',
+      retoCols: m ? one : 'minmax(0,1.9fr) repeat(3,minmax(0,1fr))',
+      archSplit: m ? one : 'minmax(0,0.85fr) minmax(0,1.25fr) minmax(0,0.75fr)',
+      techCols: m ? one : 'minmax(0,1fr) repeat(4,minmax(0,1fr))',
+      specCols: m ? one : 'minmax(0,0.8fr) minmax(0,1.3fr) minmax(0,0.65fr)',
+      procCols: n ? 'repeat(2,minmax(0,1fr))' : 'repeat(5,minmax(0,1fr))',
+      decCols: m ? one : 'minmax(0,1.05fr) repeat(4,minmax(0,1fr))',
+      qualCols: m ? one : 'minmax(0,0.85fr) minmax(0,1.05fr) minmax(0,1.05fr)',
+      contribCols: m ? one : 'minmax(0,1.05fr) repeat(3,minmax(0,0.68fr))',
+      tags: ['Full Stack', 'Product design', 'System design', 'Spec-driven development'],
+      archCols3: [
+        { badge: 'A', badgeBg: '#dd0031', badgeR: '4px', badgeFs: '12px', title: 'Angular applications', arrow: !n, items: [{ icon: 'pi-desktop', size: '18px', t: 'Staff portal', d: 'Gestión completa' }, { icon: 'pi-wrench', size: '17px', t: 'Technician experience', d: 'Trabajo en campo' }, { icon: 'pi-user', size: '17px', t: 'Customer portal', d: 'Consulta y pagos' }] },
+        { badge: '.NET', badgeBg: '#5b3fd4', badgeR: '50%', badgeFs: '6.5px', title: '.NET 10 API', arrow: !n, items: [{ icon: 'pi-verified', size: '17px', t: 'Application', d: 'CQRS (Use cases)', down: true }, { icon: 'pi-database', size: '17px', t: 'Domain', d: 'DDD (Entities)', down: true }, { icon: 'pi-server', size: '17px', t: 'Infrastructure', d: 'EF Core (Repositories)' }] },
+        { badge: '', badgeBg: 'transparent', badgeR: '0', badgeFs: '0', title: 'Data & storage', items: [{ icon: 'pi-database', size: '22px', t: 'PostgreSQL', d: 'Datos de la aplicación' }, { icon: 'pi-file', size: '22px', t: 'File storage', d: 'Archivos y evidencias' }] }
+      ],
+      ops: [{ icon: 'pi-cog', t: 'CI/CD', d: 'GitHub Actions' }, { icon: 'pi-box', t: 'Docker', d: 'Entornos de desarrollo' }, { icon: 'pi-file-check', t: 'Audit', d: 'Trazabilidad' }, { icon: 'pi-shield', t: 'RBAC', d: 'Permisos por rol' }],
+      stats: [
+        { mark: 'A', icon: '', bg: '#dd0031', fg: '#fff', r: '6px', fs: '16px', t: 'Angular 22.1', d: 'Frontend moderno y reactivo', border: 'none' },
+        { mark: '.NET', icon: '', bg: '#5b3fd4', fg: '#fff', r: '50%', fs: '10px', t: '.NET 10', d: 'API robusta y escalable', border: '1px solid #e3e9f2' },
+        { mark: '', icon: 'pi-database', bg: 'transparent', fg: '#336791', r: '0', fs: '0', t: 'PostgreSQL', d: 'Datos relacionales confiables', border: '1px solid #e3e9f2' },
+        { mark: '', icon: 'pi-database', bg: 'transparent', fg: '#0f8c89', r: '0', fs: '0', t: '50 domain entities', d: 'Modelo de dominio completo', border: '1px solid #e3e9f2' },
+        { mark: '', icon: 'pi-users', bg: 'transparent', fg: '#0f8c89', r: '0', fs: '0', t: '3 user experiences', d: 'Equipo, técnicos y clientes', border: '1px solid #e3e9f2' }
+      ].map((s, i) => ({ ...s, border: n || (m && i === 3) ? 'none' : s.border })),
+      pillars: [{ icon: 'pi-desktop', t: 'Producto', d: 'Flujos completos de principio a fin.' }, { icon: 'pi-box', t: 'Arquitectura', d: 'Separación clara entre dominio, aplicación e infraestructura.' }, { icon: 'pi-users', t: 'Experiencia', d: 'Portales adaptados al equipo, técnicos y clientes.' }],
+      apps: [{ icon: 'pi-desktop', t: 'Staff portal', d: 'Gestión y administración' }, { icon: 'pi-wrench', t: 'Technician experience', d: 'Trabajo en campo' }, { icon: 'pi-users', t: 'Customer portal', d: 'Consulta y pagos' }],
+      layers: [{ icon: 'pi-list', t: 'Application', k: 'CQRS', d: 'Casos de uso y orquestación' }, { icon: 'pi-box', t: 'Domain', k: 'DDD', d: 'Entidades y reglas de negocio' }, { icon: 'pi-database', t: 'Infrastructure', k: 'EF Core', d: 'Repositorios y persistencia' }],
+      archChecks: [{ t: 'Clean Architecture', d: 'Capas bien definidas y bajo acoplamiento.' }, { t: 'Tenant isolation', d: 'Datos aislados por organización.' }, { t: 'Role-based access', d: 'Control de acceso por rol y sucursal.' }, { t: 'Auditable actions', d: 'Registro de eventos importantes.' }, { t: 'Versioned database migrations', d: 'Migraciones versionadas y revisadas.' }],
+      tech: [
+        { icon: 'pi-desktop', iconColor: '#0f8c89', t: 'Frontend', items: [chip('A', 'Angular 22.1', '#dd0031'), chip('TS', 'TypeScript', '#3178c6'), chip('((·))', 'Signals', '#7c3aed', { fs: '5px' }), chip('Rx', 'RxJS', '#d6247f', { r: '50%' }), chip('P', 'PrimeNG', '#dd0031', { r: '50% 50% 4px 4px' }), chip('S', 'SCSS', '#cd6799', { r: '50%' })] },
+        { icon: 'pi-cog', iconColor: '#0b1d45', t: 'Backend', items: [chip('.NET', '.NET 10', '#5b3fd4', { r: '50%', fs: '5px' }), chip('C#', 'C#', '#68217a'), chip('◎', 'CQRS', '#0b1d45', { r: '50%' }), chip('⬡', 'DDD', '#0f8c89'), chip('EF', 'EF Core', '#1e3a8a', { fs: '6px' }), chip('{ }', 'REST APIs', '#0b1d45', { fs: '6px' })] },
+        { icon: 'pi-database', iconColor: '#0f8c89', t: 'Data & infrastructure', items: [chip('PG', 'PostgreSQL', '#336791', { size: '22px', r: '50%', fs: '8px' }), chip('🐳', 'Docker Compose', '#2496ed', { size: '22px', fs: '11px' }), chip('', 'GitHub Actions', '#0b1d45', { size: '22px', r: '50%' })] },
+        { icon: 'pi-shield', iconColor: '#0f8c89', t: 'Quality', items: [chip('ES', 'ESLint', '#4b32c3', { r: '50%', fs: '6px' }), chip('P', 'Prettier', '#f7b93e'), chip('✓', 'Tests (unitarios e integración)', '#0f8c89'), chip('</>', 'Code review', '#0b1d45', { fs: '5.5px' }), chip('◉', 'Audit trail', '#0f8c89', { r: '50%' })] }
+      ],
+      process: [{ icon: 'pi-pencil', t: 'Diseño', d: 'Mockups y estados' }, { icon: 'pi-file', t: 'SPEC', d: 'Reglas y alcance' }, { icon: 'pi-box', t: 'Arquitectura', d: 'Contratos y datos' }, { icon: 'pi-code', t: 'Implementación', d: 'Frontend y backend' }, { icon: 'pi-file-check', t: 'Auditoría', d: 'QA, seguridad y accesibilidad' }].map((p, i) => ({ ...p, n: i + 1, arrow: !n && i < 4 })),
+      specRows: [{ icon: 'pi-list', t: 'Business rules', d: 'Reglas de negocio y validaciones' }, { icon: 'pi-code', t: 'API contract', d: 'Endpoints, payloads y respuestas' }, { icon: 'pi-database', t: 'Data impact', d: 'Entidades y cambios en la base de datos' }, { icon: 'pi-check-square', t: 'Acceptance criteria', d: 'Criterios de aceptación y casos de prueba' }],
+      decisions: [{ icon: 'pi-building', t: 'Multi-tenancy', d: 'Evitar cruces de información entre organizaciones.' }, { icon: 'pi-arrow-right-arrow-left', t: 'Estados y transiciones', d: 'Mantener consistencia entre solicitudes, cotizaciones, trabajos y visitas.' }, { icon: 'pi-shield', t: 'Permisos por rol y sucursal', d: 'Autorizar tanto la interfaz como cada operación del servidor.' }, { icon: 'pi-file-check', t: 'Trazabilidad', d: 'Registrar cambios importantes sin exponer información sensible.' }],
+      pipeline: [{ t: 'Format', d: 'Check code formatting', time: '12s' }, { t: 'Lint', d: 'Run linters', time: '38s' }, { t: 'Tests', d: 'Execute unit and integration tests', time: '2m 14s' }, { t: 'Build', d: 'Build application', time: '1m 27s' }],
+      qualChecks: ['CI para frontend y backend', 'Migraciones revisadas y no aplicadas automáticamente', 'Validación de aislamiento por organización', 'Pruebas de permisos y flujos críticos', 'Revisión visual, responsive y accesibilidad'],
+      links: [{ icon: 'pi-file', t: 'Explorar los SPECs', d: 'Requisitos, reglas de negocio y criterios de aceptación.' }, { icon: 'pi-box', t: 'Revisar la arquitectura', d: 'Diagramas, estructura del proyecto y decisiones técnicas.' }, { icon: 'pi-book', t: 'Leer la guía de uso', d: 'Recorrido paso a paso por la aplicación.' }]
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,292 @@
+/* Case study — layout on top of landing.css tokens. Breakpoints: mobile < 760, tablet < 1100. */
+
+.fo.cs {
+  --padx: 40px;
+  --h1: 44px;
+  --h2: 24px;
+  --sec-pad: 36px;
+  --hero-pad-top: 36px;
+  --spec-pad: 28px;
+  --spec-overlap: -70px;
+}
+
+.cs-eyebrow {
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  color: #2b7b8c;
+}
+
+.cs-h2 {
+  font-size: var(--h2);
+  line-height: 1.12;
+  letter-spacing: -0.035em;
+  font-weight: 700;
+  color: #0b1d45;
+}
+
+.cs-wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--sec-pad) var(--padx);
+  display: grid;
+  gap: 28px;
+}
+
+.cs-intro {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+}
+
+.cs-intro p {
+  font-size: 15px;
+  line-height: 1.55;
+  color: #46557a;
+  text-wrap: pretty;
+}
+
+.cs-card {
+  border: 1px solid #e3e9f2;
+  border-radius: 6px;
+  background: #fff;
+}
+
+/* ---------- nav extras ---------- */
+.fo a.fo-btn-repo {
+  gap: 10px;
+  color: #0b1d45;
+  font-weight: 500;
+  font-size: 14px;
+  padding: 10px 18px;
+  border-radius: 5px;
+  border: 1px solid #0f8c89;
+}
+.fo a.fo-btn-repo:hover {
+  background: #f0f9f9;
+  color: #0b1d45;
+}
+
+/* ---------- hero ---------- */
+.cs-hero {
+  background: linear-gradient(180deg, #f3f7fb 0%, #f7fafd 100%);
+}
+.cs-hero-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--hero-pad-top) var(--padx) 32px;
+  display: grid;
+  grid-template-columns: minmax(0, 0.78fr) minmax(0, 1fr);
+  gap: 44px;
+  align-items: center;
+}
+.cs-h1 {
+  font-size: var(--h1);
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+  font-weight: 700;
+  color: #0b1730;
+}
+.cs-diagram {
+  background: linear-gradient(160deg, #0d2440 0%, #0a1c33 100%);
+  border-radius: 8px;
+  padding: 18px 16px 16px;
+  box-shadow: 0 24px 60px rgba(11, 29, 69, 0.28);
+  min-width: 0;
+  position: relative;
+}
+.cs-diagram-cols {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 30px;
+  align-items: stretch;
+}
+.cs-diagram-arrow {
+  position: absolute;
+  right: -22px;
+  top: 46%;
+  font-size: 13px;
+  color: #9fb0c8;
+}
+.cs-ops {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  gap: 10px;
+}
+
+/* ---------- stack strip ---------- */
+.cs-stats {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 18px var(--padx);
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 16px 0;
+}
+.cs-stat {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 4px 18px;
+  border-left: 1px solid #e3e9f2;
+}
+.cs-stat:first-child {
+  border-left: none;
+}
+
+/* ---------- grids ---------- */
+.cs-reto {
+  grid-template-columns: minmax(0, 1.9fr) repeat(3, minmax(0, 1fr));
+  align-items: start;
+}
+.cs-arch-split {
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.25fr) minmax(0, 0.75fr);
+  gap: 32px;
+  align-items: center;
+}
+.cs-tech {
+  grid-template-columns: minmax(0, 1fr) repeat(4, minmax(0, 1fr));
+  gap: 18px;
+  align-items: start;
+}
+.cs-spec {
+  padding: var(--spec-pad) var(--padx);
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.3fr) minmax(0, 0.65fr);
+  align-items: center;
+}
+.cs-spec-card {
+  margin-bottom: var(--spec-overlap);
+  align-self: start;
+}
+.cs-proc {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 22px 12px;
+  padding-top: 14px;
+  min-width: 0;
+}
+.cs-proc-arrow {
+  position: absolute;
+  right: -12px;
+  top: -10px;
+  font-size: 8px;
+  color: #bfcadb;
+}
+.cs-dec {
+  grid-template-columns: minmax(0, 1.05fr) repeat(4, minmax(0, 1fr));
+  gap: 18px;
+  align-items: start;
+}
+.cs-qual {
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.05fr) minmax(0, 1.05fr);
+  align-items: start;
+}
+.cs-contrib {
+  padding-bottom: 28px;
+  grid-template-columns: minmax(0, 1.05fr) repeat(3, minmax(0, 0.68fr));
+  gap: 20px;
+  align-items: center;
+}
+.fo a.cs-link-card {
+  border: 1px solid #e3e9f2;
+  border-radius: 6px;
+  padding: 20px 16px;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  color: #0b1d45;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(11, 29, 69, 0.03);
+}
+.fo a.cs-link-card:hover {
+  border-color: #0f9d9a;
+  color: #0b1d45;
+}
+
+/* ---------- CTA bar ---------- */
+.cs-cta {
+  padding: 0 20px 18px;
+  background: #fff;
+}
+.cs-cta-bar {
+  max-width: 1240px;
+  margin: 0 auto;
+  background: linear-gradient(135deg, #0a1f3d 0%, #0c2a4f 70%);
+  border-radius: 6px;
+  padding: 16px 28px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px 40px;
+  position: relative;
+  overflow: hidden;
+}
+.cs-cta-text {
+  position: relative;
+  flex: 1;
+  min-width: 220px;
+  padding-left: 100px;
+}
+
+/* ---------- tablet ---------- */
+@media (max-width: 1099.98px) {
+  .fo.cs {
+    --padx: 36px;
+    --spec-overlap: 0px;
+  }
+  .fo-hide-tablet {
+    display: none !important;
+  }
+  .cs-hero-grid,
+  .cs-reto,
+  .cs-arch-split,
+  .cs-tech,
+  .cs-spec,
+  .cs-dec,
+  .cs-qual,
+  .cs-contrib {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .cs-stats {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .cs-stat:nth-child(4) {
+    border-left: none;
+  }
+}
+
+/* ---------- mobile ---------- */
+@media (max-width: 759.98px) {
+  .fo.cs {
+    --padx: 20px;
+    --h1: 36px;
+    --h2: 26px;
+    --sec-pad: 48px;
+    --hero-pad-top: 40px;
+    --spec-pad: 48px;
+  }
+  .cs-diagram-cols {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+  }
+  .cs-diagram-arrow,
+  .cs-proc-arrow {
+    display: none;
+  }
+  .cs-stats {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .cs-stat {
+    border-left: none;
+  }
+  .cs-proc {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .cs-cta {
+    padding: 0 12px 18px;
+  }
+  .cs-cta-text {
+    padding-left: 0;
+  }
+}
