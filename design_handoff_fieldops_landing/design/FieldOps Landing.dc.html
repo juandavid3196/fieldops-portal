@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/primeicons@7.0.0/primeicons.css">
+<style>
+@font-face{font-family:'Inter';src:url('frontend/public/fonts/inter/Inter-Regular.woff2') format('woff2');font-weight:400;font-display:swap}
+@font-face{font-family:'Inter';src:url('frontend/public/fonts/inter/Inter-Medium.woff2') format('woff2');font-weight:500;font-display:swap}
+@font-face{font-family:'Inter';src:url('frontend/public/fonts/inter/Inter-SemiBold.woff2') format('woff2');font-weight:600;font-display:swap}
+@font-face{font-family:'Inter';src:url('frontend/public/fonts/inter/Inter-Bold.woff2') format('woff2');font-weight:700;font-display:swap}
+body{margin:0;background:#fff;-webkit-font-smoothing:antialiased}
+a{color:#0f766e;text-decoration:none}a:hover{color:#0b5f59}
+</style>
+</helmet>
+<div ref="{{ root }}" style="font-family:Inter,ui-sans-serif,system-ui,sans-serif;color:#0b1d45;background:#fff;min-width:0;overflow:hidden">
+
+<header data-screen-label="Nav" style="background:#fff;border-bottom:1px solid #edf1f6;position:relative;z-index:2">
+  <div style="max-width:1200px;margin:0 auto;padding:14px {{ padX }};display:flex;align-items:center;gap:56px">
+    <div style="display:flex;align-items:center;gap:8px">
+      <svg width="28" height="28" viewBox="0 0 24 24"><path d="M3 21C3 11 9 3 21 3c0 11-7 18-18 18z" fill="#0f9d9a"></path><path d="M5.5 18.5L15 9" stroke="#fff" stroke-width="1.6" stroke-linecap="round"></path></svg>
+      <div style="font-weight:700;font-size:22px;letter-spacing:-0.03em;color:#0b1d45">FieldOps</div>
+    </div>
+    <sc-if value="{{ wide }}" hint-placeholder-val="{{ true }}">
+      <nav style="display:flex;gap:30px;font-size:14px;flex:1">
+        <a href="FieldOps Landing.dc.html" style="color:#0b1d45;font-weight:600;padding:6px 0;border-bottom:2px solid #0f9d9a;white-space:nowrap">Producto</a>
+        <a href="FieldOps Case Study.dc.html" style="color:#46557a;font-weight:500;padding:6px 0;border-bottom:2px solid transparent;white-space:nowrap">Caso técnico</a>
+      </nav>
+    </sc-if>
+    <div style="margin-left:auto;display:flex;gap:10px;align-items:center">
+      <a href="#demo" style="display:flex;align-items:center;gap:10px;background:#0f8c89;color:#fff;font-weight:600;font-size:14px;padding:11px 18px;border-radius:6px;white-space:nowrap" style-hover="background:#0b7471;color:#fff">Ver demo <i class="pi pi-arrow-right" style="font-size:12px"></i></a>
+      <sc-if value="{{ mobileNav }}" hint-placeholder-val="{{ false }}">
+        <div style="width:44px;height:44px;display:grid;place-items:center;color:#0b1d45"><i class="pi pi-bars" style="font-size:18px"></i></div>
+      </sc-if>
+    </div>
+  </div>
+</header>
+
+<section id="producto" data-screen-label="Hero" style="background:linear-gradient(180deg,#eef3f8 0%,#f5f8fb 70%,#fff 100%)">
+  <div style="max-width:1200px;margin:0 auto;padding:{{ heroPadY }} {{ padX }} {{ heroPadB }};display:grid;grid-template-columns:{{ heroCols }};gap:40px;align-items:center">
+    <div style="display:flex;flex-direction:column;gap:22px;min-width:0">
+      <div style="font-size:12px;font-weight:500;letter-spacing:0.14em;color:#46557a">GESTIÓN DE SERVICIOS DE CAMPO</div>
+      <h1 style="margin:0;font-size:{{ h1 }};line-height:1.06;letter-spacing:-0.04em;font-weight:700;color:#0b1730">Todo tu equipo.<br>Cada servicio.<br>En <span style="color:#0f9d9a">un solo lugar.</span></h1>
+      <p style="margin:0;font-size:18px;line-height:1.5;color:#46557a;max-width:440px;text-wrap:pretty">Conecta solicitudes, cotizaciones, visitas y facturación para mantener tu operación bajo control.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:6px">
+        <a href="#demo" style="display:flex;align-items:center;gap:12px;background:#0f8c89;color:#fff;font-weight:600;font-size:15px;padding:15px 22px;border-radius:5px;box-shadow:0 6px 16px rgba(15,140,137,.25)" style-hover="background:#0b7471;color:#fff">Explorar la demo <i class="pi pi-arrow-right" style="font-size:13px"></i></a>
+        <a href="#como-funciona" style="display:flex;align-items:center;gap:10px;background:#fff;color:#0b1d45;font-weight:500;font-size:15px;padding:14px 20px;border-radius:5px;border:1px solid #2563eb" style-hover="background:#f1f6ff;color:#0b1d45"><span style="width:18px;height:18px;border-radius:50%;background:#2563eb;color:#fff;display:grid;place-items:center"><i class="pi pi-play" style="font-size:8px;margin-left:1px"></i></span> Ver cómo funciona</a>
+      </div>
+      <div style="font-size:13px;color:#7b88a3;margin-top:10px">Proyecto demostrativo · Datos ficticios</div>
+    </div>
+
+    <div style="position:relative;height:{{ heroMockH }};min-width:0">
+      <sc-if value="{{ wide }}" hint-placeholder-val="{{ true }}">
+        <div style="position:absolute;left:0;top:0;width:96%;height:372px;background:#fff;border-radius:8px;box-shadow:0 30px 70px rgba(11,29,69,.18),0 0 0 1px rgba(11,29,69,.06);overflow:hidden;display:flex">
+          <div style="width:96px;flex:none;background:#0b1d33;padding:12px 8px;display:flex;flex-direction:column;gap:3px">
+            <div style="display:flex;align-items:center;gap:5px;color:#fff;font-weight:700;font-size:12.5px;padding:0 4px 12px"><svg width="13" height="13" viewBox="0 0 24 24"><path d="M3 21C3 11 9 3 21 3c0 11-7 18-18 18z" fill="#2cc2bd"></path></svg>FieldOps</div>
+            <sc-for list="{{ navHero }}" as="it" hint-placeholder-count="10">
+              <div style="display:flex;align-items:center;gap:7px;padding:5px 6px;border-radius:3px;font-size:8.5px;color:{{ it.color }};background:{{ it.bg }}"><i class="pi {{ it.icon }}" style="font-size:8.5px"></i>{{ it.label }}</div>
+            </sc-for>
+          </div>
+          <div style="flex:1;min-width:0;display:flex;flex-direction:column">
+            <div style="height:34px;border-bottom:1px solid #edf1f6;display:flex;align-items:center;padding:0 10px;gap:8px">
+              <div style="width:170px;height:20px;border:1px solid #dfe5ee;border-radius:4px;font-size:7.5px;color:#9aa5b8;display:flex;align-items:center;gap:5px;padding:0 6px"><i class="pi pi-search" style="font-size:7.5px"></i>Search customers, jobs, quotes...</div>
+              <div style="margin-left:auto;height:20px;border:1px solid #dfe5ee;border-radius:4px;font-size:7.5px;color:#1c2b55;display:flex;align-items:center;gap:6px;padding:0 6px">All branches <i class="pi pi-chevron-down" style="font-size:6px"></i></div>
+              <div style="position:relative;color:#1c2b55"><i class="pi pi-bell" style="font-size:10px"></i><span style="position:absolute;top:-1px;right:-2px;width:5px;height:5px;border-radius:50%;background:#e5484d"></span></div>
+              <div style="display:flex;align-items:center;gap:5px;border-left:1px solid #edf1f6;padding-left:8px"><div style="width:20px;height:20px;border-radius:50%;background:#0b1d45;color:#fff;font-size:7px;display:grid;place-items:center;font-weight:600">DK</div><div><div style="font-size:7.5px;font-weight:600">Daniel Kim</div><div style="font-size:6.5px;color:#7b88a3">Accountant</div></div></div>
+            </div>
+            <div style="padding:10px 12px;display:flex;flex-direction:column;gap:8px;min-width:0">
+              <div style="display:flex;align-items:flex-end;gap:6px">
+                <div><div style="font-size:7px;color:#2563eb">← Invoicing</div><div style="font-size:13px;font-weight:700;margin-top:2px">Invoices &amp; payments</div><div style="font-size:7px;color:#7b88a3">Track invoices, outstanding balances, due dates, and customer payments.</div></div>
+                <div style="margin-left:auto;font-size:7.5px;color:#2563eb;border:1px solid #2563eb;padding:4px 8px;border-radius:4px">Export <i class="pi pi-chevron-down" style="font-size:5px"></i></div>
+                <div style="font-size:7.5px;color:#fff;background:#2563eb;padding:5px 9px;border-radius:4px;font-weight:500">+ New invoice</div>
+              </div>
+              <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px">
+                <sc-for list="{{ kpis }}" as="k" hint-placeholder-count="4">
+                  <div style="border:1px solid #e6ebf2;border-radius:6px;padding:7px;display:flex;gap:7px;align-items:center"><div style="width:22px;height:22px;border-radius:5px;background:{{ k.bg }};color:{{ k.fg }};display:grid;place-items:center"><i class="pi {{ k.icon }}" style="font-size:10px"></i></div><div><div style="font-size:6.5px;color:#7b88a3">{{ k.label }}</div><div style="font-size:11.5px;font-weight:700">{{ k.value }}</div></div></div>
+                </sc-for>
+              </div>
+              <div style="display:flex;gap:14px;font-size:7.5px;color:#46557a;border-bottom:1px solid #e6ebf2">
+                <span style="color:#2563eb;font-weight:600;border-bottom:1.5px solid #2563eb;padding-bottom:5px">Invoices</span><span>Payments</span><span>Completed jobs ready to invoice <span style="background:#e5484d;color:#fff;border-radius:999px;padding:0 4px;font-size:6.5px">6</span></span>
+              </div>
+              <div style="display:flex;gap:6px;font-size:7px;color:#46557a">
+                <div style="flex:1;border:1px solid #dfe5ee;border-radius:4px;padding:4px 6px;color:#9aa5b8"><i class="pi pi-search" style="font-size:6.5px"></i> Search invoices, customers, or work orders...</div>
+                <div style="border:1px solid #dfe5ee;border-radius:4px;padding:4px 6px"><i class="pi pi-calendar" style="font-size:6.5px"></i> Sep 1, 2026 - Sep 20, 2026</div>
+                <div style="border:1px solid #dfe5ee;border-radius:4px;padding:4px 6px">Status <i class="pi pi-chevron-down" style="font-size:5px"></i></div>
+                <div style="border:1px solid #dfe5ee;border-radius:4px;padding:4px 6px">Customer <i class="pi pi-chevron-down" style="font-size:5px"></i></div>
+              </div>
+              <div style="display:grid;grid-template-columns:10px 44px minmax(0,1.2fr) 40px 52px 44px 40px 36px 52px;gap:6px;font-size:6.5px;font-weight:600;color:#46557a;padding:3px 2px;border-bottom:1px solid #e6ebf2"><span style="width:7px;height:7px;border:1px solid #bcc6d6;border-radius:2px"></span><span>Invoice #</span><span>Customer</span><span>Work order</span><span>Invoice date</span><span>Due date</span><span>Amount</span><span>Balance</span><span>Status</span></div>
+              <sc-for list="{{ invoices }}" as="r" hint-placeholder-count="6">
+                <div style="display:grid;grid-template-columns:10px 44px minmax(0,1.2fr) 40px 52px 44px 40px 36px 52px;gap:6px;font-size:6.8px;color:#46557a;padding:4px 2px;border-bottom:1px solid #f1f4f8;align-items:center"><span style="width:7px;height:7px;border:1px solid #bcc6d6;border-radius:2px"></span><span style="color:#2563eb">{{ r.id }}</span><span style="color:#2563eb;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ r.customer }}</span><span style="color:#2563eb">{{ r.wo }}</span><span>{{ r.date }}</span><span>{{ r.due }}</span><span>{{ r.amount }}</span><span>{{ r.balance }}</span><span><span style="padding:1px 5px;border-radius:999px;background:{{ r.bg }};color:{{ r.fg }};font-weight:600;white-space:nowrap">● {{ r.status }}</span></span></div>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+      </sc-if>
+
+      <div style="position:{{ phonePos }};right:{{ phoneRight }};top:{{ phoneTop }};margin:{{ phoneMargin }};width:200px;height:400px;background:#0b0f19;border-radius:30px;padding:6px;box-shadow:0 30px 60px rgba(11,29,69,.3);z-index:2">
+        <div style="width:100%;height:100%;border-radius:25px;background:#fff;overflow:hidden;display:flex;flex-direction:column;position:relative">
+          <div style="position:absolute;top:6px;left:50%;transform:translateX(-50%);width:62px;height:16px;border-radius:10px;background:#0b0f19"></div>
+          <div style="background:#0b1d33;color:#fff;padding:26px 10px 9px;display:flex;align-items:center;gap:5px;font-size:9.5px;font-weight:700"><svg width="11" height="11" viewBox="0 0 24 24"><path d="M3 21C3 11 9 3 21 3c0 11-7 18-18 18z" fill="#2cc2bd"></path></svg>FieldOps<span style="font-weight:500;margin-left:8px">Today's jobs</span><i class="pi pi-bell" style="margin-left:auto;font-size:9px"></i><span style="width:17px;height:17px;border-radius:50%;background:#e6f7f6;color:#0b7471;font-size:6.5px;display:grid;place-items:center;border:1.5px solid #2cc2bd">CR</span></div>
+          <div style="padding:8px 9px;display:flex;flex-direction:column;gap:6px;flex:1">
+            <div style="display:flex;align-items:flex-start"><div><div style="font-size:10px;font-weight:700">Good morning, Carlos</div><div style="font-size:6.5px;color:#7b88a3">Wednesday, Sep 23, 2026</div></div><span style="margin-left:auto;font-size:6px;font-weight:600;color:#136f4a;border:1px solid #b8e5cd;background:#effaf4;padding:2px 5px;border-radius:999px">● Clocked in · 7:42 AM</span></div>
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:4px">
+              <sc-for list="{{ phoneStats }}" as="p" hint-placeholder-count="3">
+                <div style="border:1px solid #e6ebf2;border-radius:5px;padding:4px 5px;display:flex;gap:4px;align-items:center"><i class="pi {{ p.icon }}" style="font-size:7.5px;color:#46557a"></i><div><div style="font-size:9px;font-weight:700">{{ p.v }}</div><div style="font-size:5.5px;color:#7b88a3">{{ p.l }}</div></div></div>
+              </sc-for>
+            </div>
+            <div style="display:flex;align-items:center;gap:5px;font-size:5.8px;color:#46557a">1 of 4 completed<div style="flex:1;height:3px;background:#e6ebf2;border-radius:3px"><div style="width:25%;height:100%;background:#0f9d9a;border-radius:3px"></div></div>25%</div>
+            <div style="border:1px solid #9edbd8;border-radius:7px;padding:7px;display:flex;flex-direction:column;gap:5px">
+              <div style="display:flex;align-items:center;font-size:6.2px;font-weight:600;color:#0b7471">NEXT · 9:30 AM – 11:30 AM<span style="margin-left:auto;color:#b45309;background:#fff1e0;padding:1px 4px;border-radius:999px">⚑ High priority</span></div>
+              <div style="font-size:9.5px;font-weight:700">Kitchen sink leak repair</div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:3px 6px;font-size:6.2px;color:#46557a">
+                <span>#WO-3091</span><span><i class="pi pi-car" style="font-size:6px"></i> 22 min away · 8.4 mi</span>
+                <span><i class="pi pi-user" style="font-size:6px"></i> Sofia Martinez</span><span><i class="pi pi-clock" style="font-size:6px"></i> 9:30 AM – 11:30 AM</span>
+                <span><i class="pi pi-map-marker" style="font-size:6px"></i> 1842 Oak Street, Austin</span><span style="color:#7b88a3">Arrival window</span>
+              </div>
+              <div style="display:flex;gap:4px;font-size:5.8px"><span style="background:#eaf1fd;color:#1d4ed8;padding:2px 5px;border-radius:999px">🔧 Plumbing</span><span style="background:#effaf4;color:#136f4a;padding:2px 5px;border-radius:999px">3 planned materials · Ready ✓</span></div>
+              <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:4px;font-size:6.2px;color:#2563eb;text-align:center"><span style="border:1px solid #c9d8f6;border-radius:4px;padding:3px"><i class="pi pi-phone" style="font-size:6px"></i> Call</span><span style="border:1px solid #c9d8f6;border-radius:4px;padding:3px"><i class="pi pi-comment" style="font-size:6px"></i> Message</span><span style="border:1px solid #c9d8f6;border-radius:4px;padding:3px"><i class="pi pi-send" style="font-size:6px"></i> Directions</span></div>
+              <div style="background:#0f8c89;color:#fff;font-size:7.5px;font-weight:600;text-align:center;padding:6px;border-radius:5px"><i class="pi pi-send" style="font-size:6.5px"></i> Start travel</div>
+            </div>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid #e6ebf2;padding:5px 2px 10px;font-size:5.8px;color:#46557a;text-align:center">
+            <sc-for list="{{ phoneTabs }}" as="t" hint-placeholder-count="5">
+              <div style="color:{{ t.color }};font-weight:{{ t.weight }}"><i class="pi {{ t.icon }}" style="font-size:9px;display:block;margin-bottom:2px"></i>{{ t.l }}</div>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+
+      <div style="position:absolute;left:{{ toastLeft }};bottom:{{ toastBottom }};background:#fff;border-radius:8px;box-shadow:0 14px 34px rgba(11,29,69,.16);padding:12px 18px 12px 14px;display:flex;align-items:center;gap:14px;z-index:3">
+        <div style="width:32px;height:32px;border-radius:50%;background:#0f8c89;color:#fff;display:grid;place-items:center"><i class="pi pi-check" style="font-size:14px;font-weight:700"></i></div>
+        <div><div style="font-size:14px;font-weight:600;color:#0b5e5b">Visita completada</div><div style="font-size:11.5px;color:#46557a;margin-top:2px">Servicio finalizado con éxito.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="como-funciona" data-screen-label="Flujo" style="background:#fff">
+  <div style="max-width:1200px;margin:0 auto;padding:{{ secPadY }} {{ padX }};display:flex;flex-direction:column;gap:44px">
+    <div style="text-align:center;display:flex;flex-direction:column;gap:8px;align-items:center">
+      <h2 style="margin:0;font-size:{{ h2 }};line-height:1.1;letter-spacing:-0.03em;font-weight:700;color:#0b1d45;text-wrap:balance">De la solicitud al pago, todo conectado.</h2>
+      <p style="margin:0;font-size:17px;color:#46557a">Un flujo simple y completo para que nada se quede pendiente.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:{{ stepCols }};gap:32px 0">
+      <sc-for list="{{ steps }}" as="s" hint-placeholder-count="6">
+        <div style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px;position:relative">
+          <div style="width:68px;height:68px;border-radius:50%;background:{{ s.bg }};color:{{ s.fg }};display:grid;place-items:center"><i class="pi {{ s.icon }}" style="font-size:26px"></i></div>
+          <sc-if value="{{ s.arrow }}" hint-placeholder-val="{{ true }}"><i class="pi pi-arrow-right" style="position:absolute;right:-10px;top:26px;font-size:16px;color:#6b7ba1"></i></sc-if>
+          <div style="font-size:16px;font-weight:700;color:#0b1d45;margin-top:12px">{{ s.t }}</div>
+          <div style="font-size:13.5px;line-height:1.4;color:#46557a;max-width:160px;text-wrap:pretty">{{ s.d }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="Agenda" style="background:linear-gradient(180deg,#f3f7fc 0%,#edf3fa 100%)">
+  <div style="max-width:1200px;margin:0 auto;padding:{{ secPadY }} {{ padX }};display:grid;grid-template-columns:{{ schedCols }};gap:52px;align-items:center">
+    <div style="background:#fff;border-radius:8px;box-shadow:0 22px 50px rgba(11,29,69,.12),0 0 0 1px rgba(11,29,69,.06);overflow:hidden;display:flex;min-width:0">
+      <sc-if value="{{ wide }}" hint-placeholder-val="{{ true }}">
+        <div style="width:92px;flex:none;background:#0b1d33;padding:12px 7px;display:flex;flex-direction:column;gap:3px">
+          <div style="display:flex;align-items:center;gap:5px;color:#fff;font-weight:700;font-size:12px;padding:0 4px 12px"><svg width="12" height="12" viewBox="0 0 24 24"><path d="M3 21C3 11 9 3 21 3c0 11-7 18-18 18z" fill="#2cc2bd"></path></svg>FieldOps</div>
+          <sc-for list="{{ navSched }}" as="it" hint-placeholder-count="8">
+            <div style="display:flex;align-items:center;gap:7px;padding:5px 6px;border-radius:3px;font-size:8.5px;color:{{ it.color }};background:{{ it.bg }}"><i class="pi {{ it.icon }}" style="font-size:8.5px"></i>{{ it.label }}</div>
+          </sc-for>
+        </div>
+      </sc-if>
+      <div style="flex:1;min-width:0;padding:12px 12px 6px">
+        <div style="display:flex;align-items:center;margin-bottom:10px"><div style="font-size:13px;font-weight:700">Schedule</div><div style="margin-left:auto;font-size:8px;color:#fff;background:#2563eb;padding:5px 10px;border-radius:4px;font-weight:500">+ New job</div></div>
+        <div style="display:flex;align-items:center;gap:6px;font-size:8px;color:#1c2b55;margin-bottom:8px">
+          <span style="border:1px solid #dfe5ee;border-radius:4px;padding:4px 8px">Today</span><span style="border:1px solid #dfe5ee;border-radius:4px;padding:4px 5px">‹</span><span style="border:1px solid #dfe5ee;border-radius:4px;padding:4px 5px">›</span><span style="margin-left:4px">Sep 21 – Sep 27, 2026</span>
+          <span style="margin-left:auto;display:flex;border:1px solid #dfe5ee;border-radius:4px;overflow:hidden"><span style="padding:4px 10px;color:#7b88a3">Day</span><span style="padding:4px 10px;background:#eef3fc;color:#1c2b55;font-weight:600">Week</span><span style="padding:4px 10px;color:#7b88a3">Month</span></span>
+        </div>
+        <div style="display:flex;gap:6px;font-size:7.5px;color:#1c2b55;margin-bottom:8px">
+          <span style="border:1px solid #dfe5ee;border-radius:4px;padding:4px 7px;width:64px">All teams <i class="pi pi-chevron-down" style="font-size:5px;float:right;margin-top:2px"></i></span>
+          <span style="border:1px solid #dfe5ee;border-radius:4px;padding:4px 7px;width:64px">All statuses <i class="pi pi-chevron-down" style="font-size:5px;float:right;margin-top:2px"></i></span>
+          <span style="flex:1;border:1px solid #dfe5ee;border-radius:4px;padding:4px 7px;color:#9aa5b8"><i class="pi pi-search" style="font-size:6.5px"></i> Search jobs, customers, or addresses...</span>
+        </div>
+        <div style="display:grid;grid-template-columns:34px repeat(5,minmax(0,1fr));font-size:8px;border:1px solid #e6ebf2;border-radius:4px;overflow:hidden">
+          <div style="border-bottom:1px solid #e6ebf2"></div>
+          <sc-for list="{{ days }}" as="d" hint-placeholder-count="5">
+            <div style="padding:7px 4px;text-align:center;border-bottom:1px solid #e6ebf2;border-left:1px solid #e6ebf2;font-weight:500;color:{{ d.color }};background:{{ d.bg }}">{{ d.label }}</div>
+          </sc-for>
+          <div style="display:flex;flex-direction:column">
+            <sc-for list="{{ hours }}" as="h" hint-placeholder-count="10">
+              <div style="height:20px;font-size:6.5px;color:#7b88a3;text-align:right;padding:2px 5px 0 0">{{ h }}</div>
+            </sc-for>
+          </div>
+          <sc-for list="{{ days }}" as="d" hint-placeholder-count="5">
+            <div style="position:relative;height:200px;border-left:1px solid #e6ebf2;background:{{ d.bg }};background-image:repeating-linear-gradient(180deg,transparent 0 19px,#f1f4f8 19px 20px)">
+              <sc-for list="{{ d.events }}" as="e" hint-placeholder-count="2">
+                <div style="position:absolute;left:3px;right:3px;top:{{ e.top }};height:{{ e.h }};border-radius:3px;background:{{ e.bg }};border-left:2.5px solid {{ e.bar }};padding:3px 4px;overflow:hidden"><div style="font-weight:600;color:#0b1d45;font-size:7px;line-height:1.2">{{ e.t }}</div><div style="color:#46557a;font-size:6.5px">{{ e.p }}</div></div>
+              </sc-for>
+              <sc-if value="{{ d.today }}" hint-placeholder-val="{{ false }}"><span style="position:absolute;left:-3px;top:-3px;width:6px;height:6px;border-radius:50%;background:#2563eb"></span></sc-if>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:20px;min-width:0">
+      <h2 style="margin:0;font-size:{{ h2b }};line-height:1.08;letter-spacing:-0.035em;font-weight:700;color:#0b1d45">Planifica con claridad.<br><span style="color:#0f9d9a">Ejecuta con confianza.</span></h2>
+      <p style="margin:0;font-size:16.5px;line-height:1.5;color:#46557a;text-wrap:pretty">Coordina personas, visitas y recursos desde un solo lugar. Mantén a tu equipo alineado, da seguimiento en tiempo real y asegura un cierre completo de cada servicio.</p>
+      <div style="display:flex;flex-direction:column;gap:22px;margin-top:6px">
+        <sc-for list="{{ planChecks }}" as="c" hint-placeholder-count="3">
+          <div style="display:flex;gap:18px;align-items:center"><div style="width:26px;height:26px;flex:none;border-radius:50%;background:#0f8c89;color:#fff;display:grid;place-items:center"><i class="pi pi-check" style="font-size:11px"></i></div><div><div style="font-size:15.5px;font-weight:600;color:#0b1d45">{{ c.t }}</div><div style="font-size:13.5px;color:#46557a;margin-top:4px">{{ c.d }}</div></div></div>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="roles" data-screen-label="Roles" style="background:linear-gradient(135deg,#0a1f3d 0%,#0c2a4f 55%,#0a223f 100%)">
+  <div style="max-width:1200px;margin:0 auto;padding:{{ secPadY }} {{ padX }};display:flex;flex-direction:column;gap:28px">
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div style="font-size:12px;font-weight:500;letter-spacing:0.16em;color:#d5deea">UNA PLATAFORMA, CUATRO EXPERIENCIAS</div>
+      <h2 style="margin:0;font-size:{{ h2b }};line-height:1.06;letter-spacing:-0.035em;font-weight:700;color:#fff;text-wrap:balance">Cada persona ve exactamente <span style="color:#2cc2bd">lo que necesita.</span></h2>
+      <p style="margin:0;font-size:18px;color:#d5deea">Herramientas claras para administrar, coordinar, ejecutar y consultar el trabajo.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px">
+      <sc-for list="{{ roles }}" as="r" hint-placeholder-count="4">
+        <div style="background:#fff;border-radius:6px;padding:22px 22px 26px;display:flex;flex-direction:column;gap:8px;box-shadow:0 10px 30px rgba(0,0,0,.18)">
+          <i class="pi {{ r.icon }}" style="font-size:30px;color:#0f9d9a"></i>
+          <div style="font-size:17px;font-weight:700;color:#0b1d45;margin-top:10px">{{ r.t }}</div>
+          <div style="font-size:14.5px;line-height:1.45;color:#46557a">{{ r.d }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="Conectado" style="background:#fff">
+  <div style="max-width:1200px;margin:0 auto;padding:{{ secPadY }} {{ padX }};display:flex;flex-direction:column;gap:36px">
+    <div style="text-align:center;display:flex;flex-direction:column;gap:8px;align-items:center">
+      <h2 style="margin:0;font-size:{{ h2 }};line-height:1.1;letter-spacing:-0.035em;font-weight:700;color:#0b1d45;text-wrap:balance">Del escritorio al campo, <span style="color:#0f9d9a">todo permanece conectado.</span></h2>
+      <p style="margin:0;font-size:18px;color:#46557a">La información correcta llega a cada persona en el momento adecuado.</p>
+    </div>
+    <div style="position:relative;height:{{ compH }};display:flex;flex-direction:column;gap:24px;align-items:center">
+      <sc-if value="{{ wide }}" hint-placeholder-val="{{ true }}">
+        <div style="position:absolute;left:0;top:0;width:58%;height:300px;background:#fff;border-radius:8px;box-shadow:0 22px 50px rgba(11,29,69,.12),0 0 0 1px rgba(11,29,69,.06);overflow:hidden;display:flex">
+          <div style="width:94px;flex:none;background:#0b1d33;padding:12px 7px;display:flex;flex-direction:column;gap:3px">
+            <div style="display:flex;align-items:center;gap:5px;color:#fff;font-weight:700;font-size:12px;padding:0 4px 12px"><svg width="12" height="12" viewBox="0 0 24 24"><path d="M3 21C3 11 9 3 21 3c0 11-7 18-18 18z" fill="#2cc2bd"></path></svg>FieldOps</div>
+            <sc-for list="{{ navJobs }}" as="it" hint-placeholder-count="10">
+              <div style="display:flex;align-items:center;gap:7px;padding:5px 6px;border-radius:3px;font-size:8.5px;color:{{ it.color }};background:{{ it.bg }}"><i class="pi {{ it.icon }}" style="font-size:8.5px"></i>{{ it.label }}</div>
+            </sc-for>
+          </div>
+          <div style="flex:1;min-width:0;display:flex;flex-direction:column">
+            <div style="height:32px;border-bottom:1px solid #edf1f6;display:flex;align-items:center;padding:0 10px;gap:8px">
+              <div style="width:210px;height:20px;border:1px solid #dfe5ee;border-radius:4px;font-size:7.5px;color:#9aa5b8;display:flex;align-items:center;gap:5px;padding:0 6px"><i class="pi pi-search" style="font-size:7.5px"></i>Buscar clientes, trabajos, cotizaciones...</div>
+              <div style="margin-left:auto;height:20px;border:1px solid #dfe5ee;border-radius:4px;font-size:7.5px;display:flex;align-items:center;gap:14px;padding:0 6px">Todos los estados <i class="pi pi-chevron-down" style="font-size:6px"></i></div>
+              <div style="position:relative"><i class="pi pi-bell" style="font-size:10px"></i><span style="position:absolute;top:-1px;right:-2px;width:5px;height:5px;border-radius:50%;background:#e5484d"></span></div>
+              <div style="width:20px;height:20px;border-radius:50%;background:#0b1d45;color:#fff;font-size:7px;display:grid;place-items:center;font-weight:600">DK</div>
+            </div>
+            <div style="padding:10px 12px;display:flex;flex-direction:column;gap:7px">
+              <div style="display:flex;align-items:flex-start"><div><div style="font-size:13px;font-weight:700">Trabajos de campo</div><div style="font-size:7px;color:#7b88a3">Gestiona y da seguimiento a todos los trabajos asignados.</div></div><div style="margin-left:auto;font-size:7.5px;color:#fff;background:#2563eb;padding:5px 9px;border-radius:4px;font-weight:500">+ Nuevo trabajo</div></div>
+              <div style="display:flex;gap:16px;font-size:7.5px;color:#46557a;border-bottom:1px solid #e6ebf2"><span style="color:#2563eb;font-weight:600;border-bottom:1.5px solid #2563eb;padding-bottom:5px">Todos</span><span>En proceso</span><span>Programados</span><span>Completados</span><span>Cancelados</span></div>
+              <div style="display:flex;gap:6px;font-size:7px;color:#46557a"><div style="flex:1;border:1px solid #dfe5ee;border-radius:4px;padding:4px 6px;color:#9aa5b8"><i class="pi pi-search" style="font-size:6.5px"></i> Buscar trabajos, clientes, direcciones...</div><div style="border:1px solid #dfe5ee;border-radius:4px;padding:4px 6px"><i class="pi pi-calendar" style="font-size:6.5px"></i> 1 sep 2026 - 30 sep 2026</div><div style="border:1px solid #dfe5ee;border-radius:4px;padding:4px 6px">Estado <i class="pi pi-chevron-down" style="font-size:5px"></i></div></div>
+              <div style="display:grid;grid-template-columns:38px minmax(0,1fr) minmax(0,1fr) minmax(0,1fr) 40px 54px 58px;gap:6px;font-size:6.8px;font-weight:600;color:#46557a;padding:5px 4px;background:#f6f8fb;border-radius:3px"><span># Trabajo</span><span>Cliente</span><span>Dirección</span><span>Servicio</span><span>Fecha</span><span>Técnico</span><span>Estado</span></div>
+              <sc-for list="{{ jobs }}" as="j" hint-placeholder-count="5">
+                <div style="display:grid;grid-template-columns:38px minmax(0,1fr) minmax(0,1fr) minmax(0,1fr) 40px 54px 58px;gap:6px;font-size:7px;color:#46557a;padding:5px 4px;border-bottom:1px solid #f1f4f8;align-items:center"><span style="color:#2563eb">{{ j.id }}</span><span style="color:#2563eb;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ j.customer }}</span><span style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ j.addr }}</span><span style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ j.service }}</span><span>{{ j.date }}</span><span style="color:#2563eb;white-space:nowrap">{{ j.tech }}</span><span><span style="padding:2px 6px;border-radius:999px;background:{{ j.bg }};color:{{ j.fg }};font-weight:600;white-space:nowrap">● {{ j.status }}</span></span></div>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+      </sc-if>
+
+      <div style="position:{{ cPos }};left:{{ cPhoneLeft }};top:{{ cPhoneTop }};width:172px;height:360px;background:#0b0f19;border-radius:28px;padding:6px;box-shadow:0 30px 60px rgba(11,29,69,.28);z-index:2">
+        <div style="width:100%;height:100%;border-radius:23px;background:#fff;overflow:hidden;display:flex;flex-direction:column;position:relative">
+          <div style="position:absolute;top:5px;left:50%;transform:translateX(-50%);width:54px;height:14px;border-radius:10px;background:#0b0f19"></div>
+          <div style="background:#0b1d33;color:#fff;padding:22px 9px 8px;display:flex;align-items:center;gap:5px;font-size:9px;font-weight:700"><svg width="10" height="10" viewBox="0 0 24 24"><path d="M3 21C3 11 9 3 21 3c0 11-7 18-18 18z" fill="#2cc2bd"></path></svg>FieldOps<i class="pi pi-bell" style="margin-left:auto;font-size:8.5px"></i><span style="width:15px;height:15px;border-radius:50%;background:#e6f7f6;color:#0b7471;font-size:6px;display:grid;place-items:center;border:1.5px solid #2cc2bd">CR</span></div>
+          <div style="padding:8px 9px;display:flex;flex-direction:column;gap:6px;flex:1">
+            <div style="display:flex;align-items:flex-start"><div><div style="font-size:11px;font-weight:700">Mis trabajos</div><div style="font-size:6.5px;color:#7b88a3">Miércoles, 23 de sep de 2026</div></div><i class="pi pi-filter" style="margin-left:auto;font-size:9px"></i></div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;border:1px solid #dfe5ee;border-radius:4px;font-size:6.5px;text-align:center;overflow:hidden"><span style="background:#eef3fc;color:#2563eb;font-weight:600;padding:3px">Hoy</span><span style="padding:3px;color:#46557a">Esta semana</span></div>
+            <sc-for list="{{ myJobs }}" as="m" hint-placeholder-count="3">
+              <div style="border-bottom:1px solid #f1f4f8;padding-bottom:6px"><div style="display:flex;align-items:center;font-size:6.5px;color:#46557a">{{ m.time }}<span style="margin-left:auto;font-weight:600;padding:1px 5px;border-radius:999px;background:{{ m.bg }};color:{{ m.fg }}">● {{ m.status }}</span></div><div style="font-size:8.5px;font-weight:700;margin-top:2px;line-height:1.2">{{ m.t }}</div><div style="font-size:6.3px;color:#7b88a3;margin-top:1px">{{ m.p }}</div><div style="font-size:6.3px;color:#7b88a3"><i class="pi pi-map-marker" style="font-size:6px"></i> {{ m.a }}</div></div>
+            </sc-for>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid #e6ebf2;padding:4px 2px 9px;font-size:5.5px;color:#46557a;text-align:center">
+            <sc-for list="{{ phoneTabsEs }}" as="t" hint-placeholder-count="5">
+              <div style="color:{{ t.color }};font-weight:{{ t.weight }}"><i class="pi {{ t.icon }}" style="font-size:8.5px;display:block;margin-bottom:2px"></i>{{ t.l }}</div>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+
+      <div style="position:{{ cPos }};right:0;top:{{ cPortalTop }};width:{{ cPortalW }};max-width:100%;background:#fff;border-radius:8px;box-shadow:0 22px 50px rgba(11,29,69,.12),0 0 0 1px rgba(11,29,69,.06);overflow:hidden">
+        <div style="padding:11px 13px;border-bottom:1px solid #edf1f6;display:flex;align-items:center;gap:7px;font-size:10px"><svg width="13" height="13" viewBox="0 0 24 24"><path d="M3 21C3 11 9 3 21 3c0 11-7 18-18 18z" fill="#0f9d9a"></path></svg><b style="font-size:11px">FieldOps</b><span style="color:#46557a;border-left:1px solid #dfe5ee;padding-left:7px">Portal del cliente</span><i class="pi pi-bars" style="margin-left:auto;color:#46557a;font-size:10px"></i></div>
+        <div style="padding:12px 13px;display:flex;flex-direction:column;gap:10px">
+          <div style="font-size:13px;font-weight:700">Mis servicios</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;border:1px solid #dfe5ee;border-radius:4px;font-size:8px;text-align:center;overflow:hidden"><span style="background:#eef3fc;color:#2563eb;font-weight:600;padding:5px;border:1px solid #2563eb;border-radius:4px">En curso</span><span style="padding:5px;color:#46557a">Historial</span></div>
+          <div style="border:1px solid #e6ebf2;border-radius:6px;padding:10px;display:flex;flex-direction:column;gap:6px">
+            <div style="display:flex;align-items:center;font-size:10px;font-weight:700">WO-3091<span style="margin-left:auto;font-size:7px;font-weight:600;color:#136f4a;background:#e7f6ee;padding:2px 6px;border-radius:999px">● En proceso</span></div>
+            <div style="font-size:10px;font-weight:500">Reparación de fuga en fregadero</div>
+            <div style="font-size:7.5px;color:#46557a">Mié, 23 de sep de 2026 · 9:30 a. m. – 11:30 a. m.</div>
+            <div style="display:flex;align-items:center;gap:7px;border-top:1px solid #f1f4f8;padding-top:7px;margin-top:2px"><div style="width:22px;height:22px;border-radius:50%;background:#0b1d45;color:#fff;font-size:7.5px;font-weight:600;display:grid;place-items:center">SM</div><div><div style="font-size:6.5px;color:#7b88a3">Técnico</div><div style="font-size:8.5px;font-weight:600">Sofía Martínez</div></div></div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;font-size:7.5px;color:#2563eb"><span style="border:1px solid #dfe5ee;border-radius:4px;padding:5px;text-align:center"><i class="pi pi-phone" style="font-size:7px"></i> Ver detalles</span><span style="border:1px solid #dfe5ee;border-radius:4px;padding:5px;text-align:center"><i class="pi pi-comment" style="font-size:7px"></i> Mensajes</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:{{ featCols }};gap:28px">
+      <sc-for list="{{ surfaces }}" as="f" hint-placeholder-count="3">
+        <div style="display:flex;gap:20px;align-items:flex-start;padding-left:{{ f.pad }}"><div style="width:62px;height:62px;flex:none;border-radius:50%;background:#e8f6f5;color:#0f8c89;display:grid;place-items:center"><i class="pi {{ f.icon }}" style="font-size:26px"></i></div><div><div style="font-size:16px;font-weight:700;color:#0b1d45">{{ f.t }}</div><div style="font-size:13.5px;line-height:1.5;color:#46557a;margin-top:6px">{{ f.d }}</div></div></div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="Datos" style="background:linear-gradient(180deg,#eef5fc 0%,#e8f1fb 100%)">
+  <div style="max-width:1200px;margin:0 auto;padding:{{ secPadY }} {{ padX }};display:grid;grid-template-columns:{{ dataCols }};gap:52px;align-items:center">
+    <div style="display:flex;flex-direction:column;gap:20px;min-width:0">
+      <div style="font-size:12px;font-weight:500;letter-spacing:0.16em;color:#46557a">CONTROL Y TRAZABILIDAD</div>
+      <h2 style="margin:0;font-size:{{ h2b }};line-height:1.06;letter-spacing:-0.035em;font-weight:700;color:#0b1d45">Decide con datos.<br><span style="color:#0f9d9a">Revisa cada cambio.</span></h2>
+      <p style="margin:0;font-size:17px;line-height:1.5;color:#46557a;text-wrap:pretty">Reportes operativos y financieros para entender el rendimiento, junto con un historial de auditoría que conserva la trazabilidad.</p>
+      <div style="display:flex;flex-direction:column;gap:16px;margin-top:4px">
+        <sc-for list="{{ dataChecks }}" as="c" hint-placeholder-count="3">
+          <div style="display:flex;gap:20px;align-items:center;font-size:15.5px;color:#46557a"><div style="width:26px;height:26px;flex:none;border-radius:50%;background:#0f8c89;color:#fff;display:grid;place-items:center"><i class="pi pi-check" style="font-size:11px"></i></div><div><b style="color:#0b1d45;font-weight:600">{{ c.b }}</b> {{ c.t }}</div></div>
+        </sc-for>
+      </div>
+      <div style="font-size:12.5px;font-style:italic;color:#7b88a3">Datos de demostración.</div>
+    </div>
+    <div style="background:#fff;border-radius:8px;box-shadow:0 22px 50px rgba(11,29,69,.12),0 0 0 1px rgba(11,29,69,.06);overflow:hidden;display:flex;min-width:0">
+      <sc-if value="{{ wide }}" hint-placeholder-val="{{ true }}">
+        <div style="width:84px;flex:none;background:#0b1d33;padding:12px 6px;display:flex;flex-direction:column;gap:3px">
+          <div style="display:flex;align-items:center;gap:5px;color:#fff;font-weight:700;font-size:11.5px;padding:0 4px 12px"><svg width="12" height="12" viewBox="0 0 24 24"><path d="M3 21C3 11 9 3 21 3c0 11-7 18-18 18z" fill="#2cc2bd"></path></svg>FieldOps</div>
+          <sc-for list="{{ navReports }}" as="it" hint-placeholder-count="10">
+            <div style="display:flex;align-items:center;gap:7px;padding:5px 6px;border-radius:3px;font-size:8px;color:{{ it.color }};background:{{ it.bg }}"><i class="pi {{ it.icon }}" style="font-size:8px"></i>{{ it.label }}</div>
+          </sc-for>
+        </div>
+      </sc-if>
+      <div style="flex:1;min-width:0;display:flex;flex-direction:column">
+        <div style="height:32px;border-bottom:1px solid #edf1f6;display:flex;align-items:center;padding:0 10px;gap:8px">
+          <div style="flex:1;max-width:260px;height:20px;border:1px solid #dfe5ee;border-radius:4px;font-size:7.5px;color:#9aa5b8;display:flex;align-items:center;gap:5px;padding:0 6px"><i class="pi pi-search" style="font-size:7.5px"></i>Buscar clientes, trabajos, cotizaciones...</div>
+          <div style="margin-left:auto;height:20px;border:1px solid #dfe5ee;border-radius:4px;font-size:7.5px;display:flex;align-items:center;gap:10px;padding:0 6px">Todos los estados <i class="pi pi-chevron-down" style="font-size:6px"></i></div>
+          <div style="position:relative;color:#2563eb"><i class="pi pi-bell" style="font-size:10px"></i><span style="position:absolute;top:-1px;right:-2px;width:5px;height:5px;border-radius:50%;background:#e5484d"></span></div>
+          <div style="width:20px;height:20px;border-radius:50%;background:#0b1d45;color:#fff;font-size:7px;display:grid;place-items:center;font-weight:600">DK</div>
+        </div>
+        <div style="padding:12px;display:flex;flex-direction:column;gap:8px;min-width:0">
+          <div><div style="font-size:13px;font-weight:700">Reportes</div><div style="font-size:7.5px;color:#7b88a3">Analiza el rendimiento de tu operación.</div></div>
+          <div style="display:flex;gap:16px;font-size:7.5px;color:#46557a;border-bottom:1px solid #e6ebf2;white-space:nowrap;overflow:hidden"><span style="padding-bottom:5px">Resumen</span><span>Trabajos</span><span>Facturación</span><span>Clientes</span><span>Equipo</span><span style="color:#2563eb;font-weight:600;border-bottom:1.5px solid #2563eb;padding-bottom:5px">Auditoría</span></div>
+          <div style="display:flex;gap:6px;font-size:7px;color:#1c2b55;flex-wrap:wrap"><div style="border:1px solid #dfe5ee;border-radius:4px;padding:4px 6px;min-width:80px">Todos los usuarios <i class="pi pi-chevron-down" style="font-size:5px"></i></div><div style="flex:1;border:1px solid #dfe5ee;border-radius:4px;padding:4px 6px"><i class="pi pi-calendar" style="font-size:6.5px"></i> 1 sep 2026 - 30 sep 2026</div><div style="border:1px solid #dfe5ee;border-radius:4px;padding:4px 6px;min-width:70px">Todos los tipos <i class="pi pi-chevron-down" style="font-size:5px"></i></div><div style="border:1px solid #dfe5ee;border-radius:4px;padding:4px 8px;color:#2563eb"><i class="pi pi-download" style="font-size:6.5px"></i> Exportar</div></div>
+          <div style="border:1px solid #e6ebf2;border-radius:4px;overflow:hidden">
+            <div style="display:grid;grid-template-columns:88px 70px 90px minmax(0,1fr);gap:6px;font-size:7px;font-weight:600;color:#1c2b55;padding:6px 8px;background:#f6f8fb"><span>Fecha y hora</span><span>Usuario</span><span>Acción</span><span>Detalle</span></div>
+            <sc-for list="{{ audit }}" as="a" hint-placeholder-count="6">
+              <div style="display:grid;grid-template-columns:88px 70px 90px minmax(0,1fr);gap:6px;font-size:7px;color:#46557a;padding:6px 8px;border-top:1px solid #f1f4f8"><span>{{ a.when }}</span><span style="color:#2563eb">{{ a.who }}</span><span>{{ a.what }}</span><span style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ a.detail }}</span></div>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="guia" data-screen-label="Guía" style="background:linear-gradient(180deg,#fff 0%,#f6f9fc 100%)">
+  <div style="max-width:1200px;margin:0 auto;padding:{{ secPadY }} {{ padX }};display:grid;grid-template-columns:{{ guideCols }};gap:40px;align-items:center">
+    <div style="position:relative;height:{{ guideH }};min-width:0">
+      <div style="position:absolute;left:{{ bookLeft }};top:30px;width:230px;height:300px;transform:rotate(-12deg);border-radius:3px 8px 8px 3px;background:linear-gradient(170deg,#12305a 0%,#0a1f3d 60%);box-shadow:-8px 0 0 #081830 inset,0 30px 50px rgba(11,29,69,.3);overflow:hidden;padding:24px 22px;display:flex;flex-direction:column;gap:8px;z-index:1">
+        <div style="display:flex;align-items:center;gap:6px;color:#fff;font-weight:700;font-size:17px"><svg width="16" height="16" viewBox="0 0 24 24"><path d="M3 21C3 11 9 3 21 3c0 11-7 18-18 18z" fill="#2cc2bd"></path></svg>FieldOps</div>
+        <div style="font-size:7px;letter-spacing:0.18em;color:#d5deea;margin-top:16px">DOCUMENTACIÓN DEL PRODUCTO</div>
+        <div style="font-size:27px;font-weight:700;color:#fff;line-height:1.05;margin-top:4px">Guía de uso</div>
+        <div style="font-size:12px;color:#fff">Tu operación, paso a paso.</div>
+        <div style="font-size:8px;color:#d5deea;margin-top:8px">Inicio rápido · Roles · Operaciones</div>
+        <div style="position:absolute;left:0;right:0;bottom:0;height:120px;background:#14b8b0;clip-path:polygon(0 60%,30% 20%,55% 55%,80% 10%,100% 35%,100% 100%,0 100%)"></div>
+        <div style="position:absolute;left:0;right:0;bottom:0;height:120px;background:#0d8f8a;clip-path:polygon(0 85%,25% 55%,45% 80%,70% 45%,100% 70%,100% 100%,0 100%)"></div>
+        <div style="position:absolute;left:0;right:0;bottom:0;height:120px;background:#2dd4cc;opacity:.6;clip-path:polygon(30% 20%,55% 55%,38% 100%,10% 100%)"></div>
+      </div>
+      <sc-if value="{{ wide }}" hint-placeholder-val="{{ true }}">
+        <div style="position:absolute;left:220px;top:0;width:260px;height:330px;background:#fff;border-radius:4px;box-shadow:0 20px 50px rgba(11,29,69,.16),0 0 0 1px rgba(11,29,69,.05);transform:rotate(3deg);padding:16px 18px;display:flex;flex-direction:column;gap:6px;overflow:hidden;z-index:2">
+          <div style="display:flex;align-items:center;gap:5px;font-size:10px;font-weight:700"><svg width="11" height="11" viewBox="0 0 24 24"><path d="M3 21C3 11 9 3 21 3c0 11-7 18-18 18z" fill="#0f9d9a"></path></svg>FieldOps<span style="margin-left:auto;font-size:5.5px;letter-spacing:.14em;color:#7b88a3;font-weight:500">GUÍA DEL TÉCNICO</span></div>
+          <div style="font-size:6.5px;font-weight:600;color:#0f8c89;letter-spacing:.08em;margin-top:8px">03 / EJECUCIÓN EN CAMPO</div>
+          <div style="font-size:15px;font-weight:700;line-height:1.1">Inicia tu próxima visita</div>
+          <div style="font-size:7px;color:#46557a">Revisa el servicio asignado y avisa al cliente cuando estés en camino.</div>
+          <div style="background:#e8f6f5;border-radius:4px;padding:6px 8px;font-size:6.5px;color:#46557a;display:flex;gap:6px"><i class="pi pi-mobile" style="font-size:8px;color:#0f8c89"></i><div><b style="color:#0b5e5b">Antes de empezar</b><br>Accede como técnico y abre una visita asignada.</div></div>
+          <div style="margin:6px auto 0;width:120px;height:200px;background:#0b0f19;border-radius:18px;padding:4px">
+            <div style="background:#fff;height:100%;border-radius:14px;overflow:hidden">
+              <div style="padding:14px 7px 5px;font-size:6.5px;font-weight:700;display:flex;gap:3px;align-items:center;border-bottom:1px solid #f1f4f8"><svg width="7" height="7" viewBox="0 0 24 24"><path d="M3 21C3 11 9 3 21 3c0 11-7 18-18 18z" fill="#0f9d9a"></path></svg>FieldOps<span style="margin-left:auto;width:11px;height:11px;border-radius:50%;background:#e6f7f6;font-size:4px;display:grid;place-items:center">CR</span></div>
+              <div style="padding:6px 7px;display:flex;flex-direction:column;gap:5px">
+                <div style="font-size:7.5px;font-weight:700">Trabajos de hoy</div>
+                <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:2px;text-align:center"><div style="border:1px solid #e6ebf2;border-radius:3px;padding:2px;font-size:7px;font-weight:700">4<div style="font-size:4px;color:#7b88a3;font-weight:400">trabajos</div></div><div style="border:1px solid #e6ebf2;border-radius:3px;padding:2px;font-size:7px;font-weight:700">7.5<div style="font-size:4px;color:#7b88a3;font-weight:400">horas</div></div><div style="border:1px solid #e6ebf2;border-radius:3px;padding:2px;font-size:7px;font-weight:700">52 min<div style="font-size:4px;color:#7b88a3;font-weight:400">traslado</div></div></div>
+                <div style="font-size:5px;color:#7b88a3">2:00 p. m. · WO-3091</div>
+                <div style="font-size:7px;font-weight:700;line-height:1.15">Reparación de fuga en fregadero</div>
+                <div style="font-size:4.5px;color:#7b88a3">23 min · 8.4 mi · 2:00–3:30 p. m.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </sc-if>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:20px;min-width:0">
+      <div style="font-size:12px;font-weight:500;letter-spacing:0.16em;color:#46557a">GUÍA DE USO</div>
+      <h2 style="margin:0;font-size:{{ h2b }};line-height:1.06;letter-spacing:-0.035em;font-weight:700;color:#0b1d45">Aprende FieldOps paso a paso.</h2>
+      <p style="margin:0;font-size:17px;line-height:1.5;color:#46557a">Recorre cada función por rol o descarga el manual completo para consultarlo cuando lo necesites.</p>
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <sc-for list="{{ guide }}" as="g" hint-placeholder-count="4">
+          <div style="display:flex;gap:18px;align-items:center;font-size:15px;color:{{ g.color }};font-weight:{{ g.weight }}"><i class="pi {{ g.icon }}" style="font-size:17px;color:#0f8c89;width:20px"></i>{{ g.t }}</div>
+        </sc-for>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:6px">
+        <a href="#guia" style="display:flex;align-items:center;gap:12px;background:#0f8c89;color:#fff;font-weight:600;font-size:15px;padding:14px 30px;border-radius:5px" style-hover="background:#0b7471;color:#fff">Explorar la guía <i class="pi pi-arrow-right" style="font-size:13px"></i></a>
+        <a href="#guia" style="display:flex;align-items:center;gap:12px;background:#fff;color:#0b1d45;font-weight:500;font-size:15px;padding:13px 22px;border-radius:5px;border:1px solid #1c2b55" style-hover="background:#f4f7fb;color:#0b1d45"><i class="pi pi-file" style="font-size:15px"></i> Descargar manual PDF</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="demo" data-screen-label="CTA" style="background:linear-gradient(135deg,#0a1f3d 0%,#0c2a4f 60%,#0a223f 100%);position:relative;overflow:hidden">
+  <svg viewBox="0 0 1440 260" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%"><path d="M0 230 L120 230 L210 150 L330 150" fill="none" stroke="#1fb5ae" stroke-width="1.5" opacity=".7"></path><path d="M1110 260 L1230 150 L1290 150 L1440 40" fill="none" stroke="#1fb5ae" stroke-width="1.5" opacity=".7"></path><circle cx="1290" cy="150" r="6" fill="#0a223f" stroke="#2cc2bd" stroke-width="1.5"></circle></svg>
+  <div style="position:relative;max-width:1200px;margin:0 auto;padding:44px {{ padX }} 22px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px">
+    <h2 style="margin:0;font-size:{{ h2 }};line-height:1.1;letter-spacing:-0.035em;font-weight:700;color:#fff;text-wrap:balance">Descubre cómo se siente una operación <span style="color:#2cc2e0">bajo control.</span></h2>
+    <p style="margin:0;font-size:17px;color:#d5deea">Explora la demo con datos ficticios y conoce FieldOps desde cada rol.</p>
+    <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:14px;margin-top:16px">
+      <a href="#demo" style="display:flex;align-items:center;gap:12px;background:#0f8c89;color:#fff;font-weight:600;font-size:15px;padding:14px 32px;border-radius:5px" style-hover="background:#13a29e;color:#fff">Explorar la demo <i class="pi pi-arrow-right" style="font-size:13px"></i></a>
+      <a href="#guia" style="display:flex;align-items:center;gap:12px;color:#fff;font-weight:500;font-size:15px;padding:13px 26px;border-radius:5px;border:1px solid #fff" style-hover="background:rgba(255,255,255,.08);color:#fff"><span style="width:20px;height:20px;border-radius:50%;background:#fff;color:#0a1f3d;display:grid;place-items:center"><i class="pi pi-play" style="font-size:8px;margin-left:1px"></i></span> Ver documentación</a>
+    </div>
+    <div style="font-size:12px;color:#d5deea;margin-top:10px">Proyecto demostrativo · No utiliza datos reales</div>
+  </div>
+</section>
+
+<footer style="background:#fff">
+  <div style="max-width:1200px;margin:0 auto;padding:18px {{ padX }};display:flex;flex-wrap:wrap;align-items:center;gap:16px 56px">
+    <div style="display:flex;align-items:center;gap:8px"><svg width="24" height="24" viewBox="0 0 24 24"><path d="M3 21C3 11 9 3 21 3c0 11-7 18-18 18z" fill="#0f9d9a"></path><path d="M5.5 18.5L15 9" stroke="#fff" stroke-width="1.6" stroke-linecap="round"></path></svg><span style="font-weight:700;font-size:19px;letter-spacing:-0.03em;color:#0b1d45">FieldOps</span></div>
+    <div style="display:flex;flex-wrap:wrap;gap:40px;font-size:13px"><a href="#producto" style="color:#1c2b55">Producto</a><a href="#como-funciona" style="color:#1c2b55">Cómo funciona</a><a href="#demo" style="color:#1c2b55">Demo</a><a href="FieldOps Case Study.dc.html" style="color:#1c2b55">Documentación</a></div>
+    <div style="margin-left:auto;font-size:12px;color:#1c2b55;text-align:right;line-height:1.5">Diseñado y desarrollado por Juan David Ríos.<br><span style="color:#46557a">Proyecto de portafolio · 2026</span></div>
+  </div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { w: 1280 };
+  root = React.createRef();
+  componentDidMount() {
+    const el = this.root.current; if (!el) return;
+    this.ro = new ResizeObserver(e => { const w = Math.round(e[0].contentRect.width); if (Math.abs(w - this.state.w) > 4) this.setState({ w }); });
+    this.ro.observe(el);
+  }
+  componentWillUnmount() { this.ro && this.ro.disconnect(); }
+  renderVals() {
+    const w = this.state.w, n = w < 760, m = w < 1100;
+    const one = 'minmax(0,1fr)';
+    const st = {
+      paid: ['Paid', '#e7f6ee', '#136f4a'], sent: ['Sent', '#eaf1fd', '#1d4ed8'], over: ['Overdue', '#fdecec', '#c2410c'],
+      part: ['Partially paid', '#fff1e0', '#b45309'], draft: ['Draft', '#eef2f6', '#46557a'],
+      prog: ['En proceso', '#fff1e0', '#c2410c'], sched: ['Programado', '#eaf1fd', '#1d4ed8'], done: ['Completado', '#e7f6ee', '#136f4a'], route: ['En camino', '#eaf1fd', '#1d4ed8']
+    };
+    const s = (k, o) => ({ ...o, status: st[k][0], bg: st[k][1], fg: st[k][2] });
+    const nav = (items, active) => items.map(([label, icon]) => ({ label, icon, color: label === active ? '#fff' : '#c9d3e3', bg: label === active ? '#2563eb' : 'transparent' }));
+    const enNav = [['Dashboard','pi-th-large'],['Requests','pi-inbox'],['Quotes','pi-file-edit'],['Jobs','pi-wrench'],['Schedule','pi-calendar'],['Customers','pi-users'],['Team','pi-id-card']];
+    const esNav = [['Dashboard','pi-th-large'],['Solicitudes','pi-inbox'],['Cotizaciones','pi-file-edit'],['Trabajos','pi-wrench'],['Agenda','pi-calendar'],['Clientes','pi-users'],['Equipo','pi-id-card'],['Facturación','pi-receipt'],['Reportes','pi-chart-bar'],['Configuración','pi-cog']];
+    const tone = { teal: ['#dcf3ee', '#14a38b'], blue: ['#dde8fd', '#2f6fec'], gray: ['#eceff4', '#8792a8'] };
+    const ev = (start, dur, t, p, k) => ({ top: (start - 8) * 20 + 3 + 'px', h: dur * 20 * 1.6 - 3 + 'px', t, p, bg: tone[k][0], bar: tone[k][1] });
+    const days = [
+      { label: 'Mon 21', events: [ev(9, 1, 'Toilet repair', 'Westlake Dr', 'teal')] },
+      { label: 'Tue 22', events: [ev(10, 1, 'Sink leak repair', 'Oak Street', 'blue'), ev(13, 1, 'HVAC inspection', 'Cedar Park', 'gray')] },
+      { label: 'Wed 23', today: true, events: [ev(11, 1, 'Water heater', 'Maple Ave', 'blue'), ev(14, 1, 'Pipe inspection', 'Riverside Ave', 'blue')] },
+      { label: 'Thu 24', events: [ev(9, 1, 'AC maintenance', 'Downtown', 'teal'), ev(12, 0.9, 'Follow up', 'South Congress', 'gray')] },
+      { label: 'Fri 25', events: [ev(10, 1, 'Estimate visit', 'Lamar Blvd', 'gray'), ev(15, 0.9, 'Install water heater', 'Pine Street', 'teal')] }
+    ].map(d => ({ ...d, color: d.today ? '#2563eb' : '#1c2b55', bg: d.today ? '#f3f7ff' : '#fff' }));
+    const tab = (arr) => arr.map(([l, icon], i) => ({ l, icon, color: i === 0 ? '#0f8c89' : '#46557a', weight: i === 0 ? 600 : 400 }));
+    return {
+      root: this.root, wide: !n, desktopNav: !m, mobileNav: n, narrow: n,
+      padX: n ? '20px' : m ? '40px' : '48px',
+      h1: n ? '44px' : m ? '56px' : '60px', h2: n ? '28px' : m ? '32px' : '34px', h2b: n ? '32px' : m ? '38px' : '42px',
+      heroPadY: n ? '44px' : '56px', heroPadB: n ? '56px' : '64px', secPadY: n ? '56px' : '72px',
+      heroCols: m ? one : 'minmax(0,0.62fr) minmax(0,1fr)',
+      heroMockH: n ? '420px' : '420px',
+      phonePos: n ? 'relative' : 'absolute', phoneRight: n ? 'auto' : '-24px', phoneTop: n ? '0' : '58px', phoneMargin: n ? '0 auto' : '0',
+      toastLeft: n ? '0' : '37%', toastBottom: n ? '-6px' : '14px',
+      stepCols: n ? 'repeat(2,minmax(0,1fr))' : m ? 'repeat(3,minmax(0,1fr))' : 'repeat(6,minmax(0,1fr))',
+      schedCols: m ? one : 'minmax(0,1.3fr) minmax(0,1fr)',
+      dataCols: m ? one : 'minmax(0,0.8fr) minmax(0,1.2fr)',
+      guideCols: m ? one : 'minmax(0,1fr) minmax(0,0.95fr)',
+      guideH: n ? '360px' : '380px', bookLeft: n ? 'calc(50% - 115px)' : '20px',
+      compH: n ? 'auto' : '400px', cPos: n ? 'relative' : 'absolute', cPhoneLeft: n ? 'auto' : '52%', cPhoneTop: n ? 'auto' : '-12px',
+      cPortalTop: n ? 'auto' : '20px', cPortalW: n ? '320px' : '22%',
+      featCols: n ? one : 'repeat(3,minmax(0,1fr))',
+      navHero: nav([...enNav, ['Billing','pi-receipt'],['Reports','pi-chart-bar'],['Settings','pi-cog']], 'Billing'),
+      navSched: nav([...enNav, ['Settings','pi-cog']], 'Schedule'),
+      navJobs: nav(esNav, 'Trabajos'), navReports: nav(esNav, 'Reportes'),
+      kpis: [{ label: 'Outstanding', value: '$18,760', icon: 'pi-file', bg: '#eaf1fd', fg: '#2563eb' }, { label: 'Overdue', value: '$4,320', icon: 'pi-clock', bg: '#fdecec', fg: '#e5484d' }, { label: 'Draft', value: '$2,845', icon: 'pi-file-edit', bg: '#eef2f6', fg: '#46557a' }, { label: 'Paid this month', value: '$118,140', icon: 'pi-credit-card', bg: '#e7f6ee', fg: '#168a5b' }],
+      invoices: [s('paid', { id: 'INV-1048', customer: 'Sofia Martinez', wo: 'WO-1048', date: 'Sep 20, 2026', due: 'Oct 4, 2026', amount: '$357.28', balance: '$0.00' }), s('sent', { id: 'INV-1049', customer: 'Daniel Kim', wo: 'WO-1042', date: 'Sep 19, 2026', due: 'Oct 3, 2026', amount: '$149.00', balance: '$149.00' }), s('over', { id: 'INV-1045', customer: 'Jennifer Walsh', wo: 'WO-1037', date: 'Sep 2, 2026', due: 'Sep 16, 2026', amount: '$325.00', balance: '$325.00' }), s('part', { id: 'INV-1044', customer: 'BrightLine Offices', wo: 'WO-1035', date: 'Sep 1, 2026', due: 'Sep 30, 2026', amount: '$1,560.00', balance: '$780.00' }), s('draft', { id: 'INV-1050', customer: 'Robert Chen', wo: 'WO-1053', date: '—', due: '—', amount: '$485.00', balance: '$485.00' })],
+      phoneStats: [{ icon: 'pi-briefcase', v: '4', l: 'jobs' }, { icon: 'pi-clock', v: '7.5', l: 'scheduled hours' }, { icon: 'pi-car', v: '52 min', l: 'travel' }],
+      phoneTabs: tab([['Today','pi-home'],['Schedule','pi-calendar'],['Time','pi-clock'],['Messages','pi-comment'],['More','pi-ellipsis-h']]),
+      phoneTabsEs: tab([['Hoy','pi-home'],['Agenda','pi-calendar'],['Registro','pi-clock'],['Mensajes','pi-comment'],['Más','pi-ellipsis-h']]),
+      steps: [['pi-file', 'Solicitud', 'Registra y organiza las solicitudes de servicio.', 't'], ['pi-file-edit', 'Cotización', 'Crea y envía cotizaciones en minutos.', 'b'], ['pi-clipboard', 'Orden', 'Convierte en una orden de trabajo.', 't'], ['pi-calendar', 'Visita', 'Agenda y asigna a tu equipo.', 't'], ['pi-dollar', 'Factura', 'Genera la factura automáticamente.', 'b'], ['pi-credit-card', 'Pago', 'Recibe pagos en línea o fuera de FieldOps.', 't']].map(([icon, t, d, c], i) => ({ icon, t, d, bg: c === 't' ? '#e6f6f5' : '#e8f0fd', fg: c === 't' ? '#0f8c89' : '#2563eb', arrow: !m && i < 5 })),
+      days, hours: ['8 AM', '9 AM', '10 AM', '11 AM', '12 PM', '1 PM', '2 PM', '3 PM', '4 PM', '5 PM'],
+      planChecks: [{ t: 'Agenda y asignación de técnicos', d: 'Visualiza la carga de trabajo y asigna visitas fácilmente.' }, { t: 'Seguimiento del trabajo en campo', d: 'Conoce el estado de cada servicio en tiempo real.' }, { t: 'Evidencias y cierre del servicio', d: 'Registra notas, fotos y confirma la finalización del trabajo.' }],
+      roles: [{ icon: 'pi-home', t: 'Propietario', d: 'Control total de la operación, las finanzas y el equipo.' }, { icon: 'pi-users', t: 'Coordinador', d: 'Organiza solicitudes, agenda visitas y mantiene el trabajo en movimiento.' }, { icon: 'pi-wrench', t: 'Técnico', d: 'Consulta su ruta, registra avances y documenta el servicio desde el móvil.' }, { icon: 'pi-user', t: 'Cliente', d: 'Aprueba cotizaciones, sigue el servicio y consulta sus facturas.' }],
+      jobs: [s('prog', { id: 'WO-3091', customer: 'Sofía Martínez', addr: '1842 Oak Street...', service: 'Reparación de fuga', date: 'Sep 23, 2026', tech: 'Daniel Kim' }), s('sched', { id: 'WO-3092', customer: 'Robert Chen', addr: '77 Pine Street...', service: 'Mantenimiento AC', date: 'Sep 23, 2026', tech: 'Jennifer Walsh' }), s('sched', { id: 'WO-3093', customer: 'Carlos Ruiz', addr: '1200 Maple Ave...', service: 'Instalación', date: 'Sep 24, 2026', tech: 'Michael Torres' }), s('prog', { id: 'WO-3094', customer: 'Amanda Lewis', addr: '56 Cedar Park...', service: 'Inspección HVAC', date: 'Sep 24, 2026', tech: 'Robert Chen' }), s('done', { id: 'WO-3095', customer: 'David Kim', addr: '901 Lakeview Dr...', service: 'Reparación', date: 'Sep 25, 2026', tech: 'Daniel Kim' })],
+      myJobs: [s('route', { time: '9:30 a. m.', t: 'Reparación de fuga en fregadero', p: 'WO-3091 · Sofía Martínez', a: '1842 Oak Street, Austin' }), s('sched', { time: '11:30 a. m.', t: 'Mantenimiento AC', p: 'WO-3092 · Robert Chen', a: '77 Pine Street, Austin' }), s('sched', { time: '2:00 p. m.', t: 'Inspección HVAC', p: 'WO-3094 · Amanda Lewis', a: '56 Cedar Park, Austin' })],
+      surfaces: [{ icon: 'pi-desktop', t: 'Operación centralizada', d: 'Toda la información en un solo lugar y actualizada en tiempo real.', pad: '0' }, { icon: 'pi-mobile', t: 'Trabajo móvil', d: 'El técnico lleva su agenda, registra avances y consulta detalles desde cualquier lugar.', pad: '0' }, { icon: 'pi-users', t: 'Portal del cliente', d: 'Tus clientes pueden seguir el estado del servicio y consultar su historial de forma simple y segura.', pad: '0' }],
+      dataChecks: [{ b: 'Indicadores', t: 'de cotizaciones, trabajos y facturación.' }, { b: 'Rentabilidad,', t: 'antigüedad de saldos y utilización del equipo.' }, { b: 'Registro', t: 'de acciones importantes por usuario y fecha.' }],
+      audit: [{ when: 'Sep 23, 2026 9:14 a. m.', who: 'Daniel Kim', what: 'Trabajo actualizado', detail: 'Se cambió el estado a En proceso (WO-3091)' }, { when: 'Sep 23, 2026 8:57 a. m.', who: 'Sofía Martínez', what: 'Nota agregada', detail: 'Se agregó una nota al trabajo (WO-3091)' }, { when: 'Sep 22, 2026 4:31 p. m.', who: 'Jennifer Walsh', what: 'Cotización enviada', detail: 'Se envió la cotización COT-1042 por email' }, { when: 'Sep 22, 2026 3:18 p. m.', who: 'Robert Chen', what: 'Trabajo completado', detail: 'Se marcó como completado el trabajo (WO-3090)' }, { when: 'Sep 21, 2026 11:03 a. m.', who: 'Daniel Kim', what: 'Cliente actualizado', detail: 'Se actualizó la información de contacto' }, { when: 'Sep 20, 2026 2:16 p. m.', who: 'Admin', what: 'Usuario creado', detail: 'Se creó el usuario Michael Torres' }],
+      guide: [{ icon: 'pi-file', t: 'Inicio rápido', color: '#0b1d45', weight: 500 }, { icon: 'pi-sitemap', t: 'Flujos completos por rol', color: '#0b1d45', weight: 500 }, { icon: 'pi-image', t: 'Instrucciones con capturas reales', color: '#46557a', weight: 400 }, { icon: 'pi-lightbulb', t: 'Consejos y resultados esperados', color: '#46557a', weight: 400 }]
+    };
+  }
+}
+</script>
+</body>
+</html>
