@@ -182,13 +182,13 @@ export async function Guide() {
               </li>
             ))}
           </ul>
-          {/* Targets TBD: guide route and PDF asset. */}
+          {/* PDFs live in public/guides; the browser viewer lets people read or download them. */}
           <div className="fo-stagger" style={{ ...order(6), marginTop: 30, display: "flex", flexWrap: "wrap", gap: 15 }}>
-            <a href="#guia" className="fo-btn fo-btn-primary" style={{ minWidth: 220, height: 48, padding: "0 24px", fontSize: 16 }}>
-              {t.explore} <Icon name="pi-arrow-right" size={13} />
+            <a href="/guides/fieldops-guia-es.pdf" target="_blank" rel="noopener noreferrer" lang="es" className="fo-btn fo-btn-primary" style={{ minWidth: 220, height: 48, padding: "0 24px", fontSize: 16 }}>
+              {t.guideEs} <Icon name="pi-external-link" size={13} />
             </a>
-            <a href="#guia" className="fo-btn fo-btn-outline" style={{ minWidth: 243, height: 48, padding: "0 24px", fontSize: 16 }}>
-              <Icon name="pi-file" size={17} /> {t.download}
+            <a href="/guides/fieldops-guide-en.pdf" target="_blank" rel="noopener noreferrer" lang="en" className="fo-btn fo-btn-outline" style={{ minWidth: 243, height: 48, padding: "0 24px", fontSize: 16 }}>
+              {t.guideEn} <Icon name="pi-external-link" size={13} />
             </a>
           </div>
         </div>

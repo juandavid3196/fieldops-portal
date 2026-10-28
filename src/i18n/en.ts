@@ -117,10 +117,10 @@ export const en: Dictionary = {
   guide: {
     eyebrow: "User guide",
     title: "Learn FieldOps step by step.",
-    lead: "Walk through every feature by role, or download the full manual to keep it at hand.",
+    lead: "Learn to use FieldOps with step-by-step instructions, flows by role and real screenshots. Read or download the manual in Spanish or English.",
     items: ["Quick start", "End-to-end flows by role", "Instructions with real screenshots", "Tips and expected results"],
-    explore: "Explore the guide",
-    download: "Download PDF manual",
+    guideEs: "Ver guía en español",
+    guideEn: "View English guide",
   },
 
   cta: {

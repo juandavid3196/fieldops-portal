@@ -123,10 +123,10 @@ export const es = {
   guide: {
     eyebrow: "Guía de uso",
     title: "Aprende FieldOps paso a paso.",
-    lead: "Recorre cada función por rol o descarga el manual completo para consultarlo cuando lo necesites.",
+    lead: "Aprende a usar FieldOps con instrucciones paso a paso, flujos por rol y capturas reales. Consulta o descarga el manual en español o inglés.",
     items: ["Inicio rápido", "Flujos completos por rol", "Instrucciones con capturas reales", "Consejos y resultados esperados"],
-    explore: "Explorar la guía",
-    download: "Descargar manual PDF",
+    guideEs: "Ver guía en español",
+    guideEn: "View English guide",
   },
 
   cta: {
