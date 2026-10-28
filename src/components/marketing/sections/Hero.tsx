@@ -309,7 +309,7 @@ export async function Hero() {
             <a href="#demo" className="fo-btn fo-btn-primary" style={{ minWidth: 193, height: 52, padding: "0 14px", fontSize: 15, boxShadow: "0 6px 16px rgba(15,140,137,.25)" }}>
               {t.primary} <Icon name="pi-arrow-right" size={13} />
             </a>
-            <a href="#como-funciona" className="fo-btn fo-btn-secondary" style={{ minWidth: 195, height: 52, padding: "0 14px", fontSize: 15, gap: 10 }}>
+            <a href="#video" className="fo-btn fo-btn-secondary" style={{ minWidth: 195, height: 52, padding: "0 14px", fontSize: 15, gap: 10 }}>
               <span style={{ width: 19, height: 19, borderRadius: "50%", background: "#2563eb", color: "#fff", display: "grid", placeItems: "center" }}>
                 <Icon name="pi-play" size={8} style={{ marginLeft: 1 }} />
               </span>
