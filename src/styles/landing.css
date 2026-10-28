@@ -553,82 +553,177 @@ html {
 
 /* ---------- video ---------- */
 .fo-video {
-  background: var(--bg);
-  padding: 80px 0 72px;
+  background: var(--guide-bg);
+  padding: 72px 0 80px;
 }
 .fo-video-inner {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  justify-items: center;
-  row-gap: 36px;
-}
-.fo-video-inner > * {
-  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 44px;
 }
 .fo-video-copy {
-  max-width: 640px;
-  margin: 0 auto;
+  max-width: 760px;
   text-align: center;
+}
+.fo-video-rule {
+  display: block;
+  width: 48px;
+  height: 2px;
+  margin: 0 auto 22px;
+  background: var(--icon-teal);
 }
 .fo-video-frame {
   position: relative;
-  max-width: 960px;
+  container-type: inline-size;
+  width: 100%;
+  max-width: 1004px;
   margin: 0 auto;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 1004 / 527;
   border-radius: 12px;
   overflow: hidden;
   background: #0a1f3d;
-  box-shadow: 0 30px 70px rgba(11, 29, 69, 0.18), 0 0 0 1px rgba(11, 29, 69, 0.06);
+  box-shadow: 0 30px 80px rgba(20, 184, 176, 0.28), 0 8px 24px rgba(11, 29, 69, 0.12);
 }
-.fo-video-frame iframe,
-.fo-video-poster,
-.fo-video-poster img {
+.fo-video-frame iframe {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   border: 0;
-  object-fit: cover;
 }
 .fo-video-poster {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   padding: 0;
+  border: 0;
   cursor: pointer;
-  background: none;
+  overflow: hidden;
+  background: radial-gradient(ellipse 60% 55% at 50% 62%, #08c2bc 0%, #028a89 45%, #03585a 80%, #022b30 100%);
+}
+.fo-video-brand {
+  position: absolute;
+  left: 4.1%;
+  top: 7.4%;
+  font-size: clamp(16px, 2.9cqw, 30px);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  color: #fff;
+}
+.fo-video-brand span {
+  color: #2cd3c9;
+}
+.fo-video-word {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  text-align: center;
+  font-size: clamp(48px, 14.5cqw, 150px);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.05em;
+  color: #04202e;
 }
 .fo-video-play {
   position: absolute;
   left: 50%;
   top: 50%;
-  width: 76px;
-  height: 76px;
-  margin: -38px 0 0 -38px;
+  width: 9.6%;
+  aspect-ratio: 1;
+  min-width: 48px;
+  transform: translate(-50%, -50%);
   border-radius: 50%;
   display: grid;
   place-items: center;
-  background: #0f8c89;
-  color: #fff;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  background: #fff;
+  color: #04202e;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.3);
   transition: transform 0.2s ease;
+}
+.fo-video-play svg {
+  width: 42%;
+  height: 42%;
+  margin-left: 6%;
+}
+.fo-video-pill {
+  position: absolute;
+  left: 3.5%;
+  bottom: 6.5%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 7px 22px 7px 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  backdrop-filter: blur(6px);
+}
+.fo-video-pill span {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: rgba(255, 255, 255, 0.35);
 }
 .fo-video-poster:hover .fo-video-play,
 .fo-video-poster:focus-visible .fo-video-play {
-  transform: scale(1.08);
+  transform: translate(-50%, -50%) scale(1.08);
 }
 .fo-video-poster:focus-visible {
-  outline: 3px solid #2cc2bd;
-  outline-offset: -3px;
+  outline: 3px solid #fff;
+  outline-offset: -6px;
 }
-@media (max-width: 640px) {
+.fo-video-aud {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+.fo-video-aud li {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 4px 48px;
+  font-size: 15.5px;
+  color: var(--body);
+}
+.fo-video-aud li + li {
+  border-left: 1px solid rgba(11, 29, 69, 0.14);
+}
+@media (max-width: 760px) {
   .fo-video {
-    padding: 56px 0 48px;
+    padding: 56px 0;
   }
   .fo-video-copy .fo-title {
-    font-size: 30px !important;
+    font-size: 32px !important;
   }
-  .fo-video-play {
-    width: 60px;
-    height: 60px;
-    margin: -30px 0 0 -30px;
+  .fo-video-copy p {
+    font-size: 17px !important;
+  }
+  .fo-video-pill {
+    font-size: 12px;
+    gap: 8px;
+    padding: 4px 12px 4px 5px;
+  }
+  .fo-video-pill span {
+    width: 24px;
+    height: 24px;
+  }
+  .fo-video-aud li {
+    padding: 4px 18px;
+    gap: 10px;
+    font-size: 14px;
   }
 }
 

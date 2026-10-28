@@ -116,11 +116,15 @@ export const en: Dictionary = {
   },
 
   video: {
-    eyebrow: "Overview",
-    title: "See FieldOps in a video.",
-    lead: "A walkthrough of the platform: from request to report, seen from every role.",
+    eyebrow: "FieldOps in action",
+    title: "Your operation, connected.",
+    lead: "From request to finished work. See how office, technicians and customers connect.",
     videoTitle: "FieldOps: project overview",
     play: "Play video",
+    watch: "Watch overview",
+    office: "Office",
+    technicians: "Technicians",
+    customers: "Customers",
   },
 
   guide: {

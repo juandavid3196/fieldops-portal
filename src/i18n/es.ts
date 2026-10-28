@@ -122,11 +122,15 @@ export const es = {
   },
 
   video: {
-    eyebrow: "Presentación",
-    title: "Conoce FieldOps en un video.",
-    lead: "Un recorrido por la plataforma: de la solicitud al reporte, desde cada rol.",
+    eyebrow: "FieldOps en acción",
+    title: "Tu operación, conectada.",
+    lead: "De la solicitud al trabajo terminado. Conoce cómo se conectan oficina, técnicos y clientes.",
     videoTitle: "FieldOps: presentación del proyecto",
     play: "Reproducir video",
+    watch: "Ver presentación",
+    office: "Oficina",
+    technicians: "Técnicos",
+    customers: "Clientes",
   },
 
   guide: {
