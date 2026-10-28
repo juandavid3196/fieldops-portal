@@ -39,6 +39,7 @@ export const es = {
     howItWorks: "Cómo funciona",
     demo: "Demo",
     docs: "Documentación",
+    goPortfolio: "Ir al portafolio",
     credit: "Diseñado y desarrollado por Juan David Ríos.",
     portfolio: "Proyecto de portafolio · 2026",
     whatsapp: "Escríbeme por WhatsApp",
@@ -118,6 +119,14 @@ export const es = {
       { bold: "Registro", text: "de acciones importantes por usuario y fecha." },
     ],
     caption: "Datos de demostración.",
+  },
+
+  video: {
+    eyebrow: "Presentación",
+    title: "Conoce FieldOps en un video.",
+    lead: "Un recorrido por la plataforma: de la solicitud al reporte, desde cada rol.",
+    videoTitle: "FieldOps: presentación del proyecto",
+    play: "Reproducir video",
   },
 
   guide: {

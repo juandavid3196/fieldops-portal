@@ -33,6 +33,7 @@ export const en: Dictionary = {
     howItWorks: "How it works",
     demo: "Demo",
     docs: "Documentation",
+    goPortfolio: "Go to portfolio",
     credit: "Designed and built by Juan David Ríos.",
     portfolio: "Portfolio project · 2026",
     whatsapp: "Message me on WhatsApp",
@@ -112,6 +113,14 @@ export const en: Dictionary = {
       { bold: "A log", text: "of key actions by user and date." },
     ],
     caption: "Demo data.",
+  },
+
+  video: {
+    eyebrow: "Overview",
+    title: "See FieldOps in a video.",
+    lead: "A walkthrough of the platform: from request to report, seen from every role.",
+    videoTitle: "FieldOps: project overview",
+    play: "Play video",
   },
 
   guide: {

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { getDictionary, getLocale } from "@/i18n/dictionaries";
+import { CONTACT } from "@/content/contact";
 import { ColombiaFlag, LogoMark, Wordmark } from "./mock-frames";
 import { SocialLinks } from "./SocialLinks";
 
@@ -20,6 +21,7 @@ export async function MarketingFooter() {
           <a href="#como-funciona" style={linkStyle}>{t.howItWorks}</a>
           <a href="#demo" style={linkStyle}>{t.demo}</a>
           <Link href={`/${locale}/caso-tecnico`} style={linkStyle}>{t.docs}</Link>
+          <a href={CONTACT.portfolio} target="_blank" rel="noopener noreferrer" style={linkStyle}>{t.goPortfolio} ↗</a>
         </nav>
         <div className="fo-footer-end">
           <div style={{ fontSize: 11.5, color: "var(--ink)", textAlign: "right", lineHeight: 1.45 }}>

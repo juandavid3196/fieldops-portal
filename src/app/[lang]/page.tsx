@@ -6,6 +6,7 @@ import { DataAudit } from "@/components/marketing/sections/DataAudit";
 import { Flow } from "@/components/marketing/sections/Flow";
 import { Guide } from "@/components/marketing/sections/Guide";
 import { Hero } from "@/components/marketing/sections/Hero";
+import { Video } from "@/components/marketing/sections/Video";
 import { Roles } from "@/components/marketing/sections/Roles";
 import { Schedule } from "@/components/marketing/sections/Schedule";
 import { MarketingFooter } from "@/components/marketing/MarketingFooter";
@@ -34,6 +35,7 @@ export default async function Home() {
         <Roles />
         <Connected />
         <DataAudit />
+        <Video />
         <Guide />
         <Cta />
       </main>
