@@ -31,6 +31,16 @@ export const es = {
     closeMenu: "Cerrar menú",
     language: "Idioma",
     theme: "Cambiar entre modo claro y oscuro",
+    explore: "Explora FieldOps",
+    productTag: "Un solo espacio. Cada trabajo.",
+    caseTag: "Mira el flujo en acción.",
+    demoTag: "Explora el espacio en vivo.",
+    repoTag: "Revisa el código fuente.",
+    appearance: "Apariencia",
+    dark: "Oscuro",
+    light: "Claro",
+    demoNote: "Proyecto demo",
+    fictional: "Datos ficticios",
   },
 
   footer: {

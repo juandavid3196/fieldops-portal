@@ -384,18 +384,11 @@ html {
 }
 .fo-drawer {
   display: none;
-  border-top: 1px solid var(--line-soft);
-  padding: 8px var(--padx) 16px;
-  flex-direction: column;
 }
-.fo-drawer.open {
-  display: flex;
-}
-.fo .fo-drawer a {
-  padding: 12px 0;
-  color: var(--ink);
-  font-weight: 500;
-  border-bottom: 1px solid var(--line-soft);
+.fo-drawer-sep {
+  align-self: stretch;
+  width: 1px;
+  background: var(--line-soft);
 }
 
 /* ---------- hero ---------- */
@@ -944,6 +937,206 @@ html {
   }
   .fo-burger {
     display: grid;
+  }
+  .fo-tools {
+    display: none;
+  }
+  .fo-drawer {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    background: var(--bg);
+    overflow-y: auto;
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-8px);
+    transition: opacity 0.22s ease, transform 0.22s ease, visibility 0s linear 0.22s;
+  }
+  .fo-drawer.open {
+    visibility: visible;
+    opacity: 1;
+    transform: none;
+    transition-delay: 0s;
+  }
+  .fo-drawer::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(120% 60% at 100% 100%, color-mix(in srgb, var(--accent) 9%, transparent), transparent 70%);
+  }
+  .fo-drawer > *:not(.fo-drawer-peaks) {
+    position: relative;
+  }
+  .fo-drawer-head {
+    height: 72px;
+    flex: none;
+    padding: 0 var(--padx);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .fo-drawer-close {
+    width: 44px;
+    height: 44px;
+    display: grid;
+    place-items: center;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    background: transparent;
+    color: var(--ink-strong);
+    cursor: pointer;
+  }
+  .fo-drawer-peaks {
+    position: absolute;
+    right: 0;
+    bottom: 150px;
+    width: 62%;
+    max-width: 280px;
+    pointer-events: none;
+  }
+  .fo-drawer-peaks path {
+    stroke: color-mix(in srgb, var(--accent) 35%, transparent);
+    stroke-width: 1.2;
+  }
+  .fo-drawer-peaks .big {
+    fill: color-mix(in srgb, var(--accent) 6%, transparent);
+  }
+  .fo-drawer-peaks .small {
+    fill: color-mix(in srgb, var(--accent) 14%, transparent);
+  }
+  .fo-drawer-nav {
+    flex: none;
+    padding: 28px var(--padx) 0;
+  }
+  .fo-drawer-eyebrow {
+    margin: 0 0 8px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 12.5px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--body);
+  }
+  .fo-drawer-eyebrow:not(.small)::before {
+    content: "";
+    width: 22px;
+    height: 2px;
+    background: var(--accent);
+  }
+  .fo-drawer-eyebrow.small {
+    font-size: 11px;
+    margin-bottom: 12px;
+  }
+  .fo .fo-drawer-item {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    column-gap: 12px;
+    padding: 22px 0 24px;
+    border-bottom: 1px solid var(--line-soft);
+    color: var(--ink-strong);
+  }
+  .fo .fo-drawer-item:last-child {
+    border-bottom: 0;
+  }
+  .fo-drawer-num {
+    grid-column: 1;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    color: var(--accent);
+    opacity: 0.8;
+  }
+  .fo-drawer-label {
+    grid-column: 1;
+    margin-top: 4px;
+    font-size: 40px;
+    line-height: 1.1;
+    font-weight: 700;
+    letter-spacing: -0.04em;
+  }
+  .fo-drawer-tag {
+    grid-column: 1;
+    margin-top: 8px;
+    font-size: 16px;
+    color: var(--body);
+  }
+  .fo-drawer-arrow {
+    grid-column: 2;
+    grid-row: 2;
+    align-self: center;
+    width: 48px;
+    height: 48px;
+    display: grid;
+    place-items: center;
+    border-radius: 12px;
+  }
+  .fo .fo-drawer-item.primary .fo-drawer-label {
+    color: var(--accent);
+  }
+  .fo-drawer-item.primary .fo-drawer-arrow {
+    background: color-mix(in srgb, var(--accent) 10%, transparent);
+    color: var(--accent);
+  }
+  .fo-drawer-foot {
+    margin-top: auto;
+    flex: none;
+    padding: 0 var(--padx) 24px;
+  }
+  .fo-drawer-controls {
+    display: flex;
+    gap: 24px;
+    padding: 24px 0 20px;
+    border-top: 1px solid var(--line-soft);
+  }
+  .fo-drawer-controls > div:not(.fo-drawer-sep) {
+    flex: 1;
+  }
+  .fo .fo-lang.fo-lang-lg {
+    width: max-content;
+    height: 44px;
+    padding: 4px;
+    font-size: 15px;
+  }
+  .fo .fo-lang-lg a {
+    min-width: 54px;
+    height: 36px;
+  }
+  .fo-drawer-theme {
+    height: 44px;
+    padding: 0 18px;
+    display: inline-flex;
+    align-items: center;
+    border-radius: 12px;
+    border: 1px solid var(--line);
+    background: transparent;
+    color: var(--ink-strong);
+    font: inherit;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+  }
+  .fo-drawer-theme span {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .fo-drawer-theme .to-light,
+  :root[data-theme="dark"] .fo-drawer-theme .to-dark {
+    display: none;
+  }
+  :root[data-theme="dark"] .fo-drawer-theme .to-light {
+    display: inline-flex;
+  }
+  .fo-drawer-note {
+    margin: 0;
+    font-size: 13.5px;
+    color: var(--body);
   }
   .fo-nav-cta {
     display: none !important;

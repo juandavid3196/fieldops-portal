@@ -25,6 +25,16 @@ export const en: Dictionary = {
     closeMenu: "Close menu",
     language: "Language",
     theme: "Toggle light and dark mode",
+    explore: "Explore FieldOps",
+    productTag: "One workspace. Every job.",
+    caseTag: "See the workflow in action.",
+    demoTag: "Explore the live workspace.",
+    repoTag: "Browse the source code.",
+    appearance: "Appearance",
+    dark: "Dark",
+    light: "Light",
+    demoNote: "Demo project",
+    fictional: "Fictional data",
   },
 
   footer: {
