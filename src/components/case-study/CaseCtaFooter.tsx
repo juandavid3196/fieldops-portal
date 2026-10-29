@@ -31,7 +31,7 @@ export async function CaseCta() {
             <div style={{ fontSize: 15, color: "#d5deea", marginTop: 6 }}>{t.lead}</div>
           </div>
           <div style={{ position: "relative", display: "flex", flexWrap: "wrap", gap: 14 }}>
-            <Link href={`/${locale}#demo`} className="fo-btn fo-btn-primary on-navy" style={{ height: 48, padding: "0 30px", fontWeight: 600, fontSize: 15 }}>
+            <Link href={`/${locale}/demo`} className="fo-btn fo-btn-primary on-navy" style={{ height: 48, padding: "0 30px", fontWeight: 600, fontSize: 15 }}>
               {t.demo} <Icon name="pi-arrow-right" size={12} />
             </Link>
             <a href={REPO_URL} target="_blank" rel="noopener noreferrer" className="fo-btn fo-btn-ghost" style={{ height: 48, padding: "0 28px", fontSize: 15 }}>
@@ -66,7 +66,7 @@ export async function CaseFooter() {
           <Link href={`/${locale}`} style={linkStyle}>{t.product}</Link>
           <a href="#reto" style={linkStyle}>{t.caseStudy}</a>
           <a href="#proceso" style={linkStyle}>{t.docs}</a>
-          <Link href={`/${locale}#demo`} style={linkStyle}>{t.demo}</Link>
+          <Link href={`/${locale}/demo`} style={linkStyle}>{t.demo}</Link>
         </nav>
         <div className="fo-footer-end">
           <div style={{ fontSize: 13, color: "var(--body)" }}>

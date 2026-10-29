@@ -1,5 +1,6 @@
+import Link from "next/link";
 import { INVOICE_TONE, INVOICES, KPIS, PHONE_TAB_ICONS } from "@/content/landing.data";
-import { getDictionary, getMockCopy, type MockCopy } from "@/i18n/dictionaries";
+import { getDictionary, getLocale, getMockCopy, type MockCopy } from "@/i18n/dictionaries";
 import { delay } from "../../motion";
 import { APP_SIDEBAR_WIDTH, AppSidebar } from "../AppSidebar";
 import { Avatar, Bell, Box, Chip, Icon, LogoMark, Wordmark, PhoneShell, PhoneTabBar } from "../mock-frames";
@@ -291,6 +292,7 @@ function Toast({ title, body }: { title: string; body: string }) {
 export async function Hero() {
   const { hero: t } = await getDictionary();
   const m = await getMockCopy();
+  const locale = await getLocale();
   return (
     <section id="producto" className="fo-hero">
       <div className="fo-container fo-hero-grid">
@@ -306,9 +308,9 @@ export async function Hero() {
           </h1>
           <p className="fo-enter" style={{ marginTop: 26, fontSize: 18, lineHeight: 1.5, color: "var(--body)", maxWidth: 360, ...delay(380) }}>{t.lead}</p>
           <div className="fo-enter" style={{ marginTop: 33, display: "flex", flexWrap: "wrap", gap: 12, ...delay(470) }}>
-            <a href="#demo" className="fo-btn fo-btn-primary" style={{ minWidth: 193, height: 52, padding: "0 14px", fontSize: 15, boxShadow: "0 6px 16px rgba(15,140,137,.25)" }}>
+            <Link href={`/${locale}/demo`} className="fo-btn fo-btn-primary" style={{ minWidth: 193, height: 52, padding: "0 14px", fontSize: 15, boxShadow: "0 6px 16px rgba(15,140,137,.25)" }}>
               {t.primary} <Icon name="pi-arrow-right" size={13} />
-            </a>
+            </Link>
             <a href="#video" className="fo-btn fo-btn-secondary" style={{ minWidth: 195, height: 52, padding: "0 14px", fontSize: 15, gap: 10 }}>
               <span style={{ width: 19, height: 19, borderRadius: "50%", background: "#2563eb", color: "#fff", display: "grid", placeItems: "center" }}>
                 <Icon name="pi-play" size={8} style={{ marginLeft: 1 }} />

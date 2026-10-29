@@ -1,9 +1,11 @@
 import type { CSSProperties } from "react";
-import { getDictionary } from "@/i18n/dictionaries";
+import Link from "next/link";
+import { getDictionary, getLocale } from "@/i18n/dictionaries";
 import { Icon } from "../mock-frames";
 
 export async function Cta() {
   const { cta: t } = await getDictionary();
+  const locale = await getLocale();
   return (
     <section id="demo" className="fo-cta" data-reveal="fade">
       <svg className="fo-cta-lines" viewBox="0 0 1384 250" preserveAspectRatio="xMidYMid slice" aria-hidden="true" style={{ position: "absolute", inset: 0, width: "100%", height: "100%" }}>
@@ -18,9 +20,9 @@ export async function Cta() {
         </h2>
         <p style={{ marginTop: 10, fontSize: 17, color: "#d5deea" }}>{t.lead}</p>
         <div style={{ marginTop: 26, display: "flex", flexWrap: "wrap", justifyContent: "center", gap: 14 }}>
-          <a href="#demo" className="fo-btn fo-btn-primary on-navy" style={{ minWidth: 213, height: 46, padding: "0 24px", fontSize: 15 }}>
+          <Link href={`/${locale}/demo`} className="fo-btn fo-btn-primary on-navy" style={{ minWidth: 213, height: 46, padding: "0 24px", fontSize: 15 }}>
             {t.primary} <Icon name="pi-arrow-right" size={13} />
-          </a>
+          </Link>
           <a href="#guia" className="fo-btn fo-btn-ghost" style={{ minWidth: 209, height: 46, padding: "0 24px", fontSize: 15 }}>
             <span style={{ width: 20, height: 20, borderRadius: "50%", background: "#fff", color: "#0a1f3d", display: "grid", placeItems: "center" }}>
               <Icon name="pi-play" size={8} style={{ marginLeft: 1 }} />

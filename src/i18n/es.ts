@@ -14,6 +14,9 @@ export const es = {
     description:
       "Conecta solicitudes, cotizaciones, visitas y facturación para mantener tu operación bajo control. Proyecto demostrativo con datos ficticios.",
     caseTitle: "Caso técnico — FieldOps",
+    demoTitle: "Demo interactiva — FieldOps",
+    demoDescription:
+      "Explora FieldOps con cuentas de demostración por rol: propietario, equipo interno, técnico y cliente. Datos ficticios y solo lectura.",
     caseDescription:
       "Cómo se construyó FieldOps: el reto, la arquitectura en capas, el stack, el proceso spec-driven, las decisiones técnicas y la calidad de entrega.",
   },
@@ -41,6 +44,10 @@ export const es = {
     light: "Claro",
     demoNote: "Proyecto demo",
     fictional: "Datos ficticios",
+    demo: "Demo",
+    quickGuide: "Guía rápida",
+    openApp: "Abrir app",
+    openAppTag: "Ingresa a la aplicación.",
   },
 
   footer: {
@@ -159,6 +166,87 @@ export const es = {
     primary: "Explorar la demo",
     secondary: "Ver documentación",
     caption: "Proyecto demostrativo · No utiliza datos reales",
+  },
+
+  demo: {
+    hero: {
+      eyebrow: "Demo interactiva",
+      line1: "Entra. Explora.",
+      accent: "Conoce FieldOps.",
+      lead: ["Una operación de ejemplo lista para recorrer.", "Elige un rol y descubre cómo se conectan el equipo, el trabajo en campo y el cliente."],
+      primary: "Elegir una cuenta",
+      secondary: "Cómo empezar",
+      caption: "Datos ficticios · Sin registro · Demo de solo lectura",
+      org: "Summit Home Services",
+      orgSuffix: "Demo",
+      badge: "Solo lectura",
+      title: "Una operación. Tres perspectivas.",
+      sub: "Cambia de cuenta para ver cada lado del servicio.",
+      roles: [
+        { title: "Equipo", desc: "Gestión y coordinación" },
+        { title: "Técnico", desc: "Trabajo en campo" },
+        { title: "Cliente", desc: "Su propio portal" },
+      ],
+      foot: ["Mismos datos de ejemplo", "Permisos por rol"],
+    },
+    accounts: {
+      eyebrow: "Cuentas de demostración",
+      title: "Elige desde dónde explorar.",
+      lead: "Copia el correo y la contraseña. Después, abre el acceso de ese rol.",
+      badge: "Consulta libre. Datos protegidos.",
+      shared: "La misma contraseña para todas las cuentas demo",
+      password: "Contraseña",
+      show: "Mostrar contraseña",
+      hide: "Ocultar contraseña",
+      copyPassword: "Copiar contraseña",
+      copyEmail: "Copiar correo de {role}",
+      copied: "Copiado",
+      cols: ["Rol", "Qué explorar", "Correo de la demo", "Acceso"],
+      start: "Empieza aquí",
+      rows: [
+        { role: "Propietario", sub: "", explore: "Panel, equipo y configuración", cta: "Entrar" },
+        { role: "Operaciones", sub: "Equipo interno", explore: "Solicitudes, cotizaciones y órdenes", cta: "Entrar" },
+        { role: "Despachador", sub: "Equipo interno", explore: "Agenda, visitas y asignaciones", cta: "Entrar" },
+        { role: "Contabilidad", sub: "Equipo interno", explore: "Facturas y seguimiento de pagos", cta: "Entrar" },
+        { role: "Consulta", sub: "Equipo interno · Viewer", explore: "Información disponible para consulta", cta: "Entrar" },
+        { role: "Técnico", sub: "Experiencia de campo · HVAC", explore: "Visitas asignadas y detalle del trabajo", cta: "Entrar" },
+        { role: "Cliente", sub: "Portal del cliente", explore: "Sus solicitudes, cotizaciones y facturas", cta: "Portal" },
+      ],
+      note: "La demo permite consultar y descargar. Las acciones que modifican datos muestran un aviso. Para cambiar de rol, cierra la sesión actual.",
+      others: "Otras cuentas técnicas: plomería y electricidad",
+      plumbing: "Plomería",
+      electric: "Electricidad",
+    },
+    journey: {
+      title: "Tu primer recorrido, en tres pasos.",
+      hint: "Empieza por Propietario para tener el contexto completo.",
+      steps: [
+        { title: "Conoce la operación", desc: "Entra como **Propietario**. Revisa el panel, abre una solicitud y sigue su cotización y orden de trabajo." },
+        { title: "Acércate al trabajo en campo", desc: "Cambia a **Técnico**. Consulta las visitas asignadas, los detalles del servicio y la información del cliente." },
+        { title: "Mira el otro lado del servicio", desc: "Abre el **Portal del cliente**. Explora sus solicitudes, cotizaciones y facturas desde su propia cuenta." },
+      ],
+      thread: "El hilo que conecta todo",
+      threadSteps: ["Solicitud", "Cotización", "Orden y visita", "Factura y pago"],
+    },
+    help: {
+      guideTitle: "¿Necesitas una guía?",
+      guideText: "Consulta los primeros pasos y las funciones de cada experiencia. Dentro de la app también encontrarás la sección **Ayuda**.",
+      guideLink: "Ver instrucciones",
+      orgTitle: "¿Quieres probar con tu organización?",
+      orgText: "Crea un espacio independiente y prueba tus propios datos. La organización de ejemplo seguirá protegida.",
+      orgLink: "Crear mi organización",
+      orgNote: "Usa información de prueba y evita datos sensibles.",
+    },
+    cta: {
+      title: "La mejor forma de conocerlo es entrar.",
+      lead: "Elige una cuenta y sigue el recorrido de un servicio.",
+      button: "Explorar la demo",
+    },
+    footer: {
+      guide: "Guía rápida",
+      repo: "Repositorio",
+      credit: "Creado por Juan David Ríos · Proyecto de portafolio",
+    },
   },
 
   /** Copy shown inside the product mock-ups (the in-app UI language). */

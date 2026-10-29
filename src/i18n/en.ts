@@ -8,6 +8,9 @@ export const en: Dictionary = {
     description:
       "Connect requests, quotes, visits and invoicing to keep your operation under control. Demo project with fictional data.",
     caseTitle: "Case study — FieldOps",
+    demoTitle: "Interactive demo — FieldOps",
+    demoDescription:
+      "Explore FieldOps with demo accounts for every role: owner, internal team, technician and customer. Fictional, read-only data.",
     caseDescription:
       "How FieldOps was built: the challenge, the layered architecture, the stack, the spec-driven process, key technical decisions and delivery quality.",
   },
@@ -35,6 +38,10 @@ export const en: Dictionary = {
     light: "Light",
     demoNote: "Demo project",
     fictional: "Fictional data",
+    demo: "Demo",
+    quickGuide: "Quick guide",
+    openApp: "Open app",
+    openAppTag: "Go to the application.",
   },
 
   footer: {
@@ -153,6 +160,87 @@ export const en: Dictionary = {
     primary: "Explore the demo",
     secondary: "View documentation",
     caption: "Demo project · Uses no real data",
+  },
+
+  demo: {
+    hero: {
+      eyebrow: "Interactive demo",
+      line1: "Step in. Explore.",
+      accent: "Meet FieldOps.",
+      lead: ["A sample operation, ready to walk through.", "Pick a role and see how the team, the field work and the customer connect."],
+      primary: "Choose an account",
+      secondary: "How to start",
+      caption: "Fictional data · No sign-up · Read-only demo",
+      org: "Summit Home Services",
+      orgSuffix: "Demo",
+      badge: "Read-only",
+      title: "One operation. Three perspectives.",
+      sub: "Switch accounts to see every side of the service.",
+      roles: [
+        { title: "Team", desc: "Management and coordination" },
+        { title: "Technician", desc: "Field work" },
+        { title: "Customer", desc: "Their own portal" },
+      ],
+      foot: ["Same sample data", "Role-based permissions"],
+    },
+    accounts: {
+      eyebrow: "Demo accounts",
+      title: "Choose where to explore from.",
+      lead: "Copy the email and the password. Then open that role's access.",
+      badge: "Free to browse. Data protected.",
+      shared: "The same password for all demo accounts",
+      password: "Password",
+      show: "Show password",
+      hide: "Hide password",
+      copyPassword: "Copy password",
+      copyEmail: "Copy {role} email",
+      copied: "Copied",
+      cols: ["Role", "What to explore", "Demo email", "Access"],
+      start: "Start here",
+      rows: [
+        { role: "Owner", sub: "", explore: "Dashboard, team and settings", cta: "Sign in" },
+        { role: "Operations", sub: "Internal team", explore: "Requests, quotes and work orders", cta: "Sign in" },
+        { role: "Dispatcher", sub: "Internal team", explore: "Schedule, visits and assignments", cta: "Sign in" },
+        { role: "Accounting", sub: "Internal team", explore: "Invoices and payment tracking", cta: "Sign in" },
+        { role: "Viewer", sub: "Internal team · Viewer", explore: "Information available for reference", cta: "Sign in" },
+        { role: "Technician", sub: "Field experience · HVAC", explore: "Assigned visits and job details", cta: "Sign in" },
+        { role: "Customer", sub: "Customer portal", explore: "Their requests, quotes and invoices", cta: "Portal" },
+      ],
+      note: "The demo lets you browse and download. Actions that change data show a notice. To switch roles, sign out of the current session.",
+      others: "Other technician accounts: plumbing and electrical",
+      plumbing: "Plumbing",
+      electric: "Electrical",
+    },
+    journey: {
+      title: "Your first tour, in three steps.",
+      hint: "Start with Owner to get the full context.",
+      steps: [
+        { title: "Get to know the operation", desc: "Sign in as **Owner**. Review the dashboard, open a request and follow its quote and work order." },
+        { title: "Get close to the field work", desc: "Switch to **Technician**. See the assigned visits, the service details and the customer information." },
+        { title: "See the other side of the service", desc: "Open the **Customer portal**. Explore their requests, quotes and invoices from their own account." },
+      ],
+      thread: "The thread that connects it all",
+      threadSteps: ["Request", "Quote", "Order and visit", "Invoice and payment"],
+    },
+    help: {
+      guideTitle: "Need a guide?",
+      guideText: "Read the first steps and the features of each experience. Inside the app you will also find the **Help** section.",
+      guideLink: "View instructions",
+      orgTitle: "Want to try it with your organization?",
+      orgText: "Create an independent space and try your own data. The sample organization stays protected.",
+      orgLink: "Create my organization",
+      orgNote: "Use test information and avoid sensitive data.",
+    },
+    cta: {
+      title: "The best way to get to know it is to step in.",
+      lead: "Choose an account and follow the journey of a service.",
+      button: "Explore the demo",
+    },
+    footer: {
+      guide: "Quick guide",
+      repo: "Repository",
+      credit: "Created by Juan David Ríos · Portfolio project",
+    },
   },
 
   mock: {

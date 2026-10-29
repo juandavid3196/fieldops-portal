@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useLayoutEffect, useState } from "react";
 import { REPO_URL } from "@/content/case-study.data";
+import { APP_URL, GUIDE_PDF } from "@/content/demo.data";
 import { LOCALE_COOKIE, locales, type Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/es";
 import { Icon, LogoMark, Wordmark } from "./mock-frames";
@@ -62,12 +63,13 @@ function LanguageSwitch({ locale, t, className = "fo-lang" }: { locale: Locale; 
   );
 }
 
-export function MarketingNav({ variant = "landing", locale, t }: { variant?: "landing" | "case"; locale: Locale; t: NavCopy }) {
+export function MarketingNav({ variant = "landing", locale, t }: { variant?: "landing" | "case" | "demo"; locale: Locale; t: NavCopy }) {
   const [open, setOpen] = useState(false);
   const caso = variant === "case";
+  const demo = variant === "demo";
   const home = `/${locale}`;
   const caseHref = `/${locale}/caso-tecnico`;
-  const demoHref = caso ? `${home}#demo` : "#demo";
+  const demoHref = `${home}/demo`;
   const close = () => setOpen(false);
 
   // The open menu covers the page: lock scroll and let Escape close it.
@@ -86,7 +88,8 @@ export function MarketingNav({ variant = "landing", locale, t }: { variant?: "la
   const items: { href: string; label: string; tag: string; primary?: boolean; external?: boolean }[] = [
     { href: home, label: t.product, tag: t.productTag },
     { href: caseHref, label: t.caseStudy, tag: t.caseTag },
-    { href: demoHref, label: caso ? t.exploreDemo : t.viewDemo, tag: t.demoTag, primary: true },
+    { href: demoHref, label: caso ? t.exploreDemo : t.viewDemo, tag: t.demoTag, primary: !demo },
+    ...(demo ? [{ href: APP_URL, label: t.openApp, tag: t.openAppTag, primary: true, external: true }] : []),
     ...(caso ? [{ href: REPO_URL, label: t.viewRepo, tag: t.repoTag, external: true }] : []),
   ];
 
@@ -98,11 +101,14 @@ export function MarketingNav({ variant = "landing", locale, t }: { variant?: "la
           <span style={{ fontWeight: 700, fontSize: 25, letterSpacing: "-0.035em", color: "var(--ink-strong)" }}><Wordmark /></span>
         </Link>
         <nav className="fo-nav-links" aria-label={t.main}>
-          <Link href={home} className={`fo-nav-link${caso ? "" : " active"}`} aria-current={caso ? undefined : "page"}>
+          <Link href={home} className={`fo-nav-link${caso || demo ? "" : " active"}`} aria-current={caso || demo ? undefined : "page"}>
             {t.product}
           </Link>
           <Link href={caseHref} className={`fo-nav-link${caso ? " active" : ""}`} aria-current={caso ? "page" : undefined}>
             {t.caseStudy}
+          </Link>
+          <Link href={demoHref} className={`fo-nav-link${demo ? " active" : ""}`} aria-current={demo ? "page" : undefined}>
+            {t.demo}
           </Link>
         </nav>
         <div style={{ marginLeft: "auto", display: "flex", gap: 12, alignItems: "center" }}>
@@ -115,9 +121,20 @@ export function MarketingNav({ variant = "landing", locale, t }: { variant?: "la
               <Icon name="pi-github" size={16} /> {t.viewRepo}
             </a>
           )}
-          <Link href={demoHref} className="fo-btn fo-btn-primary fo-nav-cta" style={{ height: 38, padding: "0 18px", fontSize: 14, gap: 10 }}>
-            {caso ? t.exploreDemo : t.viewDemo} <Icon name="pi-arrow-right" size={12} />
-          </Link>
+          {demo ? (
+            <>
+              <a href={GUIDE_PDF[locale]} target="_blank" rel="noopener noreferrer" className="fo-nav-guide fo-hide-tablet">
+                <Icon name="pi-book" size={16} /> {t.quickGuide}
+              </a>
+              <a href={APP_URL} target="_blank" rel="noopener noreferrer" className="fo-btn fo-btn-primary fo-nav-cta" style={{ height: 38, padding: "0 18px", fontSize: 14, gap: 10 }}>
+                {t.openApp} <Icon name="pi-external-link" size={13} />
+              </a>
+            </>
+          ) : (
+            <Link href={demoHref} className="fo-btn fo-btn-primary fo-nav-cta" style={{ height: 38, padding: "0 18px", fontSize: 14, gap: 10 }}>
+              {caso ? t.exploreDemo : t.viewDemo} <Icon name="pi-arrow-right" size={12} />
+            </Link>
+          )}
           <button type="button" className="fo-burger" aria-label={open ? t.closeMenu : t.openMenu} aria-expanded={open} aria-controls="fo-drawer" onClick={() => setOpen((v) => !v)}>
             <Icon name="pi-bars" size={18} />
           </button>
