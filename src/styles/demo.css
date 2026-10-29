@@ -29,19 +29,6 @@
 }
 
 /* ---------- nav extras ---------- */
-.fo a.fo-nav-guide {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  margin-right: 8px;
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--body);
-  white-space: nowrap;
-}
-.fo a.fo-nav-guide:hover {
-  color: var(--ink-strong);
-}
 @media (max-width: 1099.98px) {
   .fo-hide-tablet {
     display: none !important;
@@ -482,7 +469,7 @@
   display: flex;
   align-items: flex-start;
   gap: 9px;
-  font-size: 10.5px;
+  font-size: 12px;
   line-height: 1.5;
   color: var(--muted);
 }
@@ -547,7 +534,7 @@
   gap: 20px;
 }
 .fo .dm-journey-head p {
-  font-size: 11px;
+  font-size: 12.5px;
   color: var(--muted);
   text-align: right;
 }
@@ -579,14 +566,14 @@
 }
 .fo .dm-steps h3 {
   margin-top: 5px;
-  font-size: 13.5px;
+  font-size: 15.5px;
   font-weight: 700;
   color: var(--ink-h1);
 }
 .fo .dm-steps p {
   margin-top: 9px;
-  max-width: 320px;
-  font-size: 11.5px;
+  max-width: 340px;
+  font-size: 13.5px;
   line-height: 1.7;
   color: var(--body);
 }
@@ -606,7 +593,7 @@
   border: 1px solid var(--line);
   border-radius: 6px;
   background: var(--surface);
-  font-size: 11px;
+  font-size: 12.5px;
   color: var(--ink);
 }
 .dm-thread-label {
@@ -665,14 +652,14 @@
 }
 .fo .dm-help-card h3 {
   margin-top: 2px;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 700;
   color: var(--ink-h1);
 }
 .fo .dm-help-card p {
   margin-top: 9px;
-  max-width: 330px;
-  font-size: 11px;
+  max-width: 380px;
+  font-size: 13.5px;
   line-height: 1.7;
   color: var(--body);
 }
@@ -685,7 +672,7 @@
   display: inline-flex;
   align-items: center;
   gap: 9px;
-  font-size: 11.5px;
+  font-size: 13px;
   font-weight: 600;
   color: var(--icon-teal);
 }
@@ -695,7 +682,7 @@
 .dm-help-card small {
   display: block;
   margin-top: 14px;
-  font-size: 10px;
+  font-size: 11.5px;
   color: var(--muted);
 }
 
@@ -733,14 +720,14 @@
   position: relative;
 }
 .dm-cta h2 {
-  font-size: 17px;
+  font-size: 20px;
   font-weight: 700;
   letter-spacing: -0.02em;
   color: #fff;
 }
 .fo .dm-cta p {
   margin-top: 6px;
-  font-size: 11px;
+  font-size: 13px;
   color: #cfdbe8;
 }
 .fo a.dm-cta-btn {

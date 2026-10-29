@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { APP_URL, DEMO_ACCOUNTS, DEMO_PASSWORD, OTHER_ACCOUNTS } from "@/content/demo.data";
+import { APP_URL, DEMO_ACCOUNTS, DEMO_PASSWORD, OTHER_ACCOUNTS, PORTAL_URL } from "@/content/demo.data";
 import type { Dictionary } from "@/i18n/es";
 import { Icon } from "../marketing/mock-frames";
 
@@ -96,7 +96,7 @@ export function DemoAccounts({ t }: { t: Copy }) {
                 <CopyButton value={acc.email} label={t.copyEmail.replace("{role}", row.role)} copied={t.copied} />
               </div>
               <span className="dm-col-end" role="cell">
-                <a href={APP_URL} target="_blank" rel="noopener noreferrer" className="dm-enter">
+                <a href={"portal" in acc ? PORTAL_URL : APP_URL} target="_blank" rel="noopener noreferrer" className="dm-enter">
                   {row.cta} <Icon name="pi-external-link" size={12} />
                 </a>
               </span>

@@ -123,7 +123,7 @@ export function MarketingNav({ variant = "landing", locale, t }: { variant?: "la
           )}
           {demo ? (
             <>
-              <a href={GUIDE_PDF[locale]} target="_blank" rel="noopener noreferrer" className="fo-nav-guide fo-hide-tablet">
+              <a href={GUIDE_PDF[locale]} target="_blank" rel="noopener noreferrer" className="fo-btn fo-btn-repo fo-hide-tablet" style={{ height: 38, padding: "0 18px", fontSize: 14 }}>
                 <Icon name="pi-book" size={16} /> {t.quickGuide}
               </a>
               <a href={APP_URL} target="_blank" rel="noopener noreferrer" className="fo-btn fo-btn-primary fo-nav-cta" style={{ height: 38, padding: "0 18px", fontSize: 14, gap: 10 }}>

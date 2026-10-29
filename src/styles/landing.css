@@ -279,6 +279,19 @@ html {
   color: #fff;
 }
 
+/* Outlined teal button (repo link, quick guide) */
+.fo a.fo-btn-repo {
+  gap: 10px;
+  color: var(--ink-strong);
+  font-weight: 500;
+  border-radius: 5px;
+  border: 1px solid #0f8c89;
+}
+.fo a.fo-btn-repo:hover {
+  background: var(--btn-outline-hover);
+  color: var(--ink-strong);
+}
+
 /* ---------- nav ---------- */
 .fo-nav {
   background: var(--bg);

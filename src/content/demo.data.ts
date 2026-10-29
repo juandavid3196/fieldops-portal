@@ -1,6 +1,7 @@
 // Data for the demo page. Translatable copy lives in src/i18n (`demo`).
 
 export const APP_URL = "https://fieldops-co-app.vercel.app/auth/sign-in";
+export const PORTAL_URL = "https://fieldops-co-app.vercel.app/portal/sign-in";
 export const SIGN_UP_URL = "https://fieldops-co-app.vercel.app/auth/sign-up";
 
 /** Shared by every demo account (fictional, read-only data). */
@@ -20,7 +21,7 @@ export const DEMO_ACCOUNTS = [
   { email: "accounting@demo.fieldops.test", icon: "pi-file" },
   { email: "viewer@demo.fieldops.test", icon: "pi-eye" },
   { email: "tech.hvac@demo.fieldops.test", icon: "pi-wrench" },
-  { email: "customer1@demo.fieldops.test", icon: "pi-user" },
+  { email: "customer1@demo.fieldops.test", icon: "pi-user", portal: true },
 ] as const;
 
 export const OTHER_ACCOUNTS = [

@@ -59,7 +59,7 @@ export async function DemoHero() {
           <p className="dm-panel-sub">{t.sub}</p>
           <ul className="dm-roles">
             {t.roles.map((r, i) => (
-              <li key={r.title} className="fo-stagger" style={order(i + 3)}>
+              <li key={r.title} className="fo-enter" style={delay(380 + i * 90)}>
                 <Icon name={HERO_ROLE_ICONS[i]} size={22} />
                 <b>{r.title}</b>
                 <small>{r.desc}</small>
@@ -110,7 +110,7 @@ export async function DemoJourney() {
           <h2 className="dm-h2 dm-h2-md">{t.title}</h2>
           <p>{t.hint}</p>
         </div>
-        <ol className="dm-steps">
+        <ol className="dm-steps" data-reveal="up">
           {t.steps.map((s, i) => (
             <li key={s.title} className="fo-stagger" style={order(i)}>
               <span className="dm-step-num">{String(i + 1).padStart(2, "0")}</span>
