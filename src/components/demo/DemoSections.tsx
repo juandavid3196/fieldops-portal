@@ -216,7 +216,7 @@ export async function DemoFooter() {
           <a href={REPO_URL} target="_blank" rel="noopener noreferrer" style={linkStyle}>{t.repo} ↗</a>
         </nav>
         <div className="fo-footer-end">
-          <span style={{ fontSize: 11.5, color: "var(--muted)" }}>{t.credit}</span>
+          <span style={{ fontSize: 13, color: "var(--body)" }}>{t.credit}</span>
           <SocialLinks />
         </div>
       </div>
