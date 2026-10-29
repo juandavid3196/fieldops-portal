@@ -3,7 +3,7 @@ import { APP_URL, GUIDE_PDF, HERO_ROLE_ICONS, SIGN_UP_URL } from "@/content/demo
 import { REPO_URL } from "@/content/case-study.data";
 import { getDictionary, getLocale } from "@/i18n/dictionaries";
 import { delay, order } from "../motion";
-import { Icon, LogoMark, Wordmark } from "../marketing/mock-frames";
+import { ColombiaFlag, Icon, LogoMark, Wordmark } from "../marketing/mock-frames";
 import { SocialLinks } from "../marketing/SocialLinks";
 import { DemoAccounts } from "./DemoAccounts";
 import Link from "next/link";
@@ -200,7 +200,7 @@ export async function DemoCta() {
 }
 
 export async function DemoFooter() {
-  const { demo } = await getDictionary();
+  const { demo, caseStudy } = await getDictionary();
   const locale = await getLocale();
   const t = demo.footer;
   const linkStyle = { color: "var(--ink)" } as const;
@@ -216,7 +216,10 @@ export async function DemoFooter() {
           <a href={REPO_URL} target="_blank" rel="noopener noreferrer" style={linkStyle}>{t.repo} ↗</a>
         </nav>
         <div className="fo-footer-end">
-          <span style={{ fontSize: 13, color: "var(--body)" }}>{t.credit}</span>
+          <span style={{ fontSize: 13, color: "var(--body)" }}>
+            {caseStudy.footer.credit}
+            <ColombiaFlag />
+          </span>
           <SocialLinks />
         </div>
       </div>

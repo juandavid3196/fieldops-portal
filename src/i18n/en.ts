@@ -239,7 +239,6 @@ export const en: Dictionary = {
     footer: {
       guide: "Quick guide",
       repo: "Repository",
-      credit: "Created by Juan David Ríos · Portfolio project",
     },
   },
 

@@ -245,7 +245,6 @@ export const es = {
     footer: {
       guide: "Guía rápida",
       repo: "Repositorio",
-      credit: "Creado por Juan David Ríos · Proyecto de portafolio",
     },
   },
 
