@@ -2,7 +2,7 @@
 
 export const APP_URL = "https://fieldops-co-app.vercel.app/auth/sign-in";
 export const PORTAL_URL = "https://fieldops-co-app.vercel.app/portal/sign-in";
-export const SIGN_UP_URL = "https://fieldops-co-app.vercel.app/auth/sign-up";
+export const SIGN_UP_URL = "https://fieldops-co-app.vercel.app/auth/register-company";
 
 /** Shared by every demo account (fictional, read-only data). */
 export const DEMO_PASSWORD = "ExploreFieldOps2026!";
