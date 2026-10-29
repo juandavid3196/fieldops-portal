@@ -1,7 +1,7 @@
 import type { CSSProperties, ReactNode } from "react";
-import Link from "next/link";
 import { STATS } from "@/content/case-study.data";
-import { getDictionary, getLocale, type Dictionary } from "@/i18n/dictionaries";
+import { APP_URL } from "@/content/demo.data";
+import { getDictionary, type Dictionary } from "@/i18n/dictionaries";
 import { delay } from "../motion";
 import { Icon } from "../marketing/mock-frames";
 import { AngularMark, DotnetMark, PostgresMark, TechIcon } from "./BrandIcons";
@@ -110,7 +110,6 @@ function ArchDiagram({ caption, d }: { caption: string; d: Dictionary["caseStudy
 
 export async function CaseHero() {
   const { caseStudy: t } = await getDictionary();
-  const locale = await getLocale();
   return (
     <>
       <section className="cs-hero">
@@ -138,12 +137,12 @@ export async function CaseHero() {
               <a href="#arquitectura" className="fo-btn fo-btn-primary" style={{ height: 52, padding: "0 26px", fontSize: 15.5, fontWeight: 500, boxShadow: "0 6px 16px rgba(15,140,137,.22)" }}>
                 {t.explore} <Icon name="pi-arrow-right" size={13} />
               </a>
-              <Link href={`/${locale}`} className="fo-btn fo-btn-secondary" style={{ height: 52, padding: "0 26px", fontSize: 15.5, color: "var(--link)" }}>
+              <a href={APP_URL} target="_blank" rel="noopener noreferrer" className="fo-btn fo-btn-secondary" style={{ height: 52, padding: "0 26px", fontSize: 15.5, color: "var(--link)" }}>
                 <span style={{ width: 20, height: 20, borderRadius: "50%", background: "#2563eb", color: "#fff", display: "grid", placeItems: "center" }}>
                   <Icon name="pi-play" size={8} style={{ marginLeft: 1 }} />
                 </span>
                 {t.viewApp}
-              </Link>
+              </a>
             </div>
           </div>
           <ArchDiagram caption={t.diagramCaption} d={t.diagram} />
