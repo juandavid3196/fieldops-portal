@@ -1,11 +1,13 @@
-import { getDictionary } from "@/i18n/dictionaries";
+import { getDictionary, getLocale } from "@/i18n/dictionaries";
 import { HardHat, Icon } from "../mock-frames";
 import { VideoPlayer } from "../VideoPlayer";
 
-const VIDEO_ID = "uo4dG3d09gE";
+// One overview video per language.
+const VIDEO_IDS = { es: "MFVKT5zHsZw", en: "uo4dG3d09gE" } as const;
 
 export async function Video() {
   const { video: t } = await getDictionary();
+  const locale = await getLocale();
   const audiences = [
     { icon: <Icon name="pi-building" size={26} />, label: t.office },
     { icon: <HardHat size={28} />, label: t.technicians },
@@ -23,7 +25,7 @@ export async function Video() {
           <p style={{ marginTop: 14, fontSize: 19, lineHeight: "28px", color: "var(--body)", maxWidth: 540, marginInline: "auto" }}>{t.lead}</p>
         </div>
         <div data-reveal="scale" style={{ width: "100%" }}>
-          <VideoPlayer id={VIDEO_ID} title={t.videoTitle} playLabel={t.play} watchLabel={t.watch} />
+          <VideoPlayer id={VIDEO_IDS[locale]} title={t.videoTitle} playLabel={t.play} watchLabel={t.watch} />
         </div>
         <ul className="fo-video-aud" data-reveal="fade">
           {audiences.map((a) => (
