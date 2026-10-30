@@ -83,6 +83,16 @@ html[data-reveal-ready] [data-reveal][data-in] {
   position: sticky;
   top: 0;
   z-index: 50;
+  background: transparent;
+}
+/* The blur lives on a pseudo-element: backdrop-filter on .fo-nav itself would make WebKit treat it as the
+   containing block of the position:fixed mobile drawer, shrinking the menu to the nav's height on iOS. */
+.fo-nav::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
   background: color-mix(in srgb, var(--bg) 82%, transparent);
   backdrop-filter: saturate(160%) blur(12px);
   -webkit-backdrop-filter: saturate(160%) blur(12px);

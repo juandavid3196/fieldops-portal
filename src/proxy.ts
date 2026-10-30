@@ -1,21 +1,10 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { defaultLocale, hasLocale, LOCALE_COOKIE, type Locale } from "@/i18n/config";
 
-/** Picks the visitor's locale: saved choice first, then the browser's Accept-Language. */
+/** Picks the visitor's locale: their saved choice, otherwise Spanish (the browser language is ignored). */
 function pickLocale(request: NextRequest): Locale {
   const saved = request.cookies.get(LOCALE_COOKIE)?.value;
-  if (saved && hasLocale(saved)) return saved;
-
-  const header = request.headers.get("accept-language") ?? "";
-  const ranked = header
-    .split(",")
-    .map((part) => {
-      const [tag, q] = part.trim().split(";q=");
-      return { lang: tag.toLowerCase().split("-")[0], q: q ? Number(q) : 1 };
-    })
-    .sort((a, b) => b.q - a.q);
-  for (const { lang } of ranked) if (hasLocale(lang)) return lang;
-  return defaultLocale;
+  return saved && hasLocale(saved) ? saved : defaultLocale;
 }
 
 /** Sends locale-less paths ("/", "/caso-tecnico") to their localized version. */
